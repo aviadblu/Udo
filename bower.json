@@ -1,0 +1,8 @@
+{
+  "name": "Udo",
+  "version": "0.0.0",
+  "dependencies": {
+    "angular": "~1.4.8",
+    "angular-ui-router": "~0.2.15"
+  }
+}
