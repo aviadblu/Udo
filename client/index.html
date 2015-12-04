@@ -1,10 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="udoApp">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <title>Udo app</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <base href="/">
+    <!-- inject:css -->
+    <!-- endinject -->
 </head>
 <body>
-    hello world
+index
+    <div ui-view></div>
 </body>
+<script src="./bower_components/angular/angular.js"></script>
+<script src="./bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+
+<script src="./app.js"></script>
+<!-- inject:js -->
+<script src="modules/views/app/app.js"></script>
+<script src="modules/views/homepage/homepage.ctrl.js"></script>
+<script src="modules/views/homepage/homepage.js"></script>
+<!-- endinject -->
 </html>
