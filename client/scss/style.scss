@@ -1,5 +1,29 @@
-@import "../bower_components/bootstrap/dist/css/bootstrap.min.css";
+@import "../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap";
 
-body {
+#app-menu {
+  height: 80px;
+  border-bottom: 1px solid gray;
 
+  .container {
+    height: 100%;
+
+    .row {
+      height: 100%;
+
+      &>div {
+        height: 100%;
+      }
+
+      .logo {
+        background-image: url(../img/logo_placeholder.gif);
+        background-repeat: no-repeat;
+        background-position: left center;
+      }
+
+      .menu-wrap {
+        position: absolute;
+        bottom:0;
+      }
+    }
+  }
 }

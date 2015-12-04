@@ -1,2 +1,14 @@
-hello app
-<div ui-view></div>
+<section id="app-menu">
+    <div class="container">
+        <div class="row">
+            <div class="logo col-sm-4 col-lg-2"></div>
+            <div class="top-menu col-sm-8 col-lg-10">
+                <div class="menu-wrap">
+                    <a ui-sref="app.homepage" class="btn btn-default btn-md">Home</a>
+                    <a ui-sref="app.findjob" class="btn btn-default btn-md">Find Job</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section if="app-content" ui-view></section>
