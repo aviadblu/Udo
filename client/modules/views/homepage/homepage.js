@@ -11,6 +11,7 @@
             .state('app.homepage', {
                 url: '/',
                 controller: 'HomepageCtrl',
+                controllerAs: 'ctrl',
                 templateUrl: 'modules/views/homepage/homepage.tpl.html'
             })
     }
