@@ -5,6 +5,8 @@
 FROM ubuntu
 MAINTAINER SvenDowideit@docker.com
 
+
+
 # Add the PostgreSQL PGP key to verify their Debian packages.
 # It should be the same key as https://www.postgresql.org/media/keys/ACCC4CF8.asc
 RUN apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys B97B0AFCAA1A47F044F244A07FCC7D46ACCC4CF8
@@ -24,13 +26,28 @@ RUN apt-get update && apt-get install -y python-software-properties software-pro
 # Run the rest of the commands as the ``postgres`` user created by the ``postgres-9.3`` package when it was ``apt-get installed``
 USER postgres
 
+# default root password
+#RUN echo "postgres:postgres" | chpasswd
+
 # Create a PostgreSQL role named ``docker`` with ``docker`` as the password and
 # then create a database `docker` owned by the ``docker`` role.
 # Note: here we use ``&&\`` to run commands one after the other - the ``\``
 #       allows the RUN command to span multiple lines.
 RUN    /etc/init.d/postgresql start &&\
-    psql --command "CREATE USER docker WITH SUPERUSER PASSWORD 'docker';" &&\
-    createdb -O docker docker
+
+    # set default db to be UTF8
+    psql --command "CREATE USER udo WITH SUPERUSER PASSWORD 'udo1234';" &&\
+
+    psql --command "UPDATE pg_database SET datistemplate=FALSE WHERE datname='template1';" &&\
+
+    psql --command "DROP DATABASE template1;" &&\
+
+    psql --command "CREATE DATABASE template1 WITH owner=postgres template=template0 encoding='UTF8';" &&\
+
+    psql --command "UPDATE pg_database SET datistemplate=TRUE WHERE datname='template1';" &&\
+
+    # create udo_db with owner udo
+    createdb -O udo udo_db
 
 # Adjust PostgreSQL configuration so that remote connections to the
 # database are possible.
@@ -40,7 +57,10 @@ RUN echo "host all  all    0.0.0.0/0  md5" >> /etc/postgresql/9.3/main/pg_hba.co
 RUN echo "listen_addresses='*'" >> /etc/postgresql/9.3/main/postgresql.conf
 
 # Expose the PostgreSQL port
-EXPOSE 5432
+EXPOSE 5433
+
+# Copy create db file
+ADD ./create_db /var/lib/postgresql/create_db
 
 # Add VOLUMEs to allow backup of config, logs and databases
 VOLUME  ["/etc/postgresql", "/var/log/postgresql", "/var/lib/postgresql"]
