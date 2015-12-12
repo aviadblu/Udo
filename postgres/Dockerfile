@@ -57,7 +57,7 @@ RUN echo "host all  all    0.0.0.0/0  md5" >> /etc/postgresql/9.3/main/pg_hba.co
 RUN echo "listen_addresses='*'" >> /etc/postgresql/9.3/main/postgresql.conf
 
 # Expose the PostgreSQL port
-EXPOSE 5433
+EXPOSE 5432
 
 # Copy create db file
 ADD ./create_db /var/lib/postgresql/create_db
