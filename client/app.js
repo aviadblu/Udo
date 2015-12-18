@@ -2,6 +2,9 @@
     'use strict';
 
     angular
+        .module('udo.config', []);
+
+    angular
         .module('udo.services', []);
 
     angular
@@ -22,6 +25,7 @@
 
     angular
         .module('udo', [
+            'udo.config',
             'udo.services',
             'udo.factories',
             'udo.controllers',
@@ -33,10 +37,29 @@
 })(window, window.angular);
 
 angular.module('udoApp', [
-    'ui.router',
-    'udo'
-])
-.config(['$locationProvider', '$stateProvider', '$urlRouterProvider' ,function($locationProvider, $stateProvider, $urlRouterProvider) {
-    $locationProvider.html5Mode(true);
-    $urlRouterProvider.otherwise("/");
-}]);
+        'ui.router',
+        'ui.bootstrap',
+        'udo'
+    ])
+    .config(['$locationProvider', '$stateProvider', '$urlRouterProvider', function ($locationProvider, $stateProvider, $urlRouterProvider) {
+        $locationProvider.html5Mode(true);
+        $urlRouterProvider.otherwise("/");
+    }])
+    .run(['$rootScope', '$state', '$stateParams', 'authorization', 'principal',
+        function ($rootScope, $state, $stateParams, authorization, principal) {
+            $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams) {
+                $rootScope.toState = toState;
+                $rootScope.toStateParams = toStateParams;
+
+                if (principal.isIdentityResolved()) {
+                    authorization.authorize();
+                }
+                else {
+                    principal.identity()
+                        .then(function(){
+                            authorization.authorize();
+                        });
+                }
+            });
+        }
+    ]);

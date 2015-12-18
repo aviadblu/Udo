@@ -8,14 +8,14 @@
     function Configuration($stateProvider) {
         // Contact state routing
         $stateProvider
-            .state('app.find', {
-                url: '/find',
+            .state('app.accessdenied', {
+                url: '/accessdenied',
                 data: {
                     roles: ['guest', 'user', 'admin']
                 },
-                controller: 'FindjobCtrl',
+                controller: function(){},
                 controllerAs: 'ctrl',
-                templateUrl: 'modules/views/findjob/findjob.tpl.html'
+                templateUrl: 'modules/views/accessdenied/accessdenied.tpl.html'
             })
     }
 

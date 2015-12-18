@@ -1,5 +1,18 @@
 @import "../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap";
 
+.center-block {
+  position: relative;
+  margin: 0px auto;
+}
+
+.justify-float {
+  div, .btn {
+    &:last-of-type {
+      float:right;
+    }
+  }
+}
+
 #app-menu {
   height: 80px;
   border-bottom: 1px solid gray;
@@ -25,5 +38,15 @@
         bottom:0;
       }
     }
+  }
+}
+
+.container.home {
+  padding-top:100px;
+
+  .home-buttons {
+    @extend .center-block;
+    @extend .justify-float;
+    width:200px;
   }
 }

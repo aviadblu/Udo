@@ -1,12 +1,18 @@
 <section id="app-menu">
     <div class="container">
         <div class="row">
-            <div class="logo col-sm-4 col-lg-2"></div>
-            <div class="top-menu col-sm-8 col-lg-10">
+            <div class="logo col-sm-3 col-lg-2"></div>
+            <div class="top-menu col-sm-6 col-lg-6">
                 <div class="menu-wrap">
                     <a ui-sref="app.homepage" class="btn btn-default btn-md">Home</a>
-                    <a ui-sref="app.findjob" class="btn btn-default btn-md">Find Job</a>
+                    <a ui-sref="app.upload" class="btn btn-default btn-md">Upload one</a>
+                    <a ui-sref="app.find" class="btn btn-default btn-md">Find one</a>
+
+                    <a href="/auth/facebook" ng-click="$event.stopPropagation()" class="btn btn-primary btn-md">Facebook Login</a>
                 </div>
+            </div>
+            <div class="top-user col-sm-3 col-lg-4">
+                <user-top></user-top>
             </div>
         </div>
     </div>

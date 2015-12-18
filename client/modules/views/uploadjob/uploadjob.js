@@ -8,14 +8,14 @@
     function Configuration($stateProvider) {
         // Contact state routing
         $stateProvider
-            .state('app.find', {
-                url: '/find',
+            .state('app.upload', {
+                url: '/upload',
                 data: {
-                    roles: ['guest', 'user', 'admin']
+                    roles: ['user', 'admin']
                 },
-                controller: 'FindjobCtrl',
+                controller: 'UploadjobCtrl',
                 controllerAs: 'ctrl',
-                templateUrl: 'modules/views/findjob/findjob.tpl.html'
+                templateUrl: 'modules/views/uploadjob/uploadjob.tpl.html'
             })
     }
 

@@ -10,6 +10,9 @@
         $stateProvider
             .state('app.homepage', {
                 url: '/',
+                data: {
+                    roles: ['guest', 'user', 'admin']
+                },
                 controller: 'HomepageCtrl',
                 controllerAs: 'ctrl',
                 templateUrl: 'modules/views/homepage/homepage.tpl.html'

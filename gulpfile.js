@@ -11,7 +11,7 @@ var gulp = require("gulp"),
 gulp.task('injectIndex', function () {
     var target = gulp.src('./client/index.html');
     // It's not necessary to read the files (will speed up things), we're only after their paths:
-    var sources = gulp.src(['./client/modules/**/*.js', './client/modules/**/*.css'], {read: false});
+    var sources = gulp.src(['./client/config/*.js', './client/modules/**/*.js', './client/modules/**/*.css'], {read: false});
 
     return target.pipe(inject(sources, {relative: true}))
         .pipe(gulp.dest('./client'));
