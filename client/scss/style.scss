@@ -41,6 +41,11 @@
   }
 }
 
+.user-top {
+  float:right;
+  padding-top: 5px;
+}
+
 .container.home {
   padding-top:100px;
 
@@ -49,4 +54,25 @@
     @extend .justify-float;
     width:200px;
   }
+}
+
+.modal-bottom-navigation {
+  .btn.cancel {
+    float:left;
+  }
+}
+
+.angular-google-map-container { height: 400px; }
+
+.map-canvas {
+  z-index: 0;
+}
+
+.map-search {
+  width: 70%;
+  margin-top:10px;
+}
+
+.pac-container {
+  z-index: 9999;
 }

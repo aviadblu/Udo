@@ -16,7 +16,7 @@ angular.module('udo.config')
                     return angular.isDefined(_identity);
                 },
                 isAuthenticated: function () {
-                    return _authenticated;
+                    return _authenticated && _identity.roles.indexOf('guest') < 0;
                 },
                 isInRole: function (role) {
                     if (!_authenticated || !_identity.roles) return false;

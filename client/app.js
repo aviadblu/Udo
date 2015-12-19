@@ -39,6 +39,7 @@
 angular.module('udoApp', [
         'ui.router',
         'ui.bootstrap',
+        'uiGmapgoogle-maps',
         'udo'
     ])
     .config(['$locationProvider', '$stateProvider', '$urlRouterProvider', function ($locationProvider, $stateProvider, $urlRouterProvider) {

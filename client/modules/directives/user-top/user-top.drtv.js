@@ -3,7 +3,7 @@ angular.module('udo.directives')
         return {
             restrict: 'E',
             scope: {},
-            templateUrl: 'modules/views/app/directives/user-top/user-top.tpl.html',
+            templateUrl: 'modules/directives/user-top/user-top.tpl.html',
             controllerAs: 'ctrl',
             controller: ['principal', function(principal) {
                 var ctrl = this;
