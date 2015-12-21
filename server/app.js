@@ -61,7 +61,7 @@ passport.deserializeUser(function(obj, done) {
 passport.use(new FacebookStrategy({
         clientID: FACEBOOK_APP_ID,
         clientSecret: FACEBOOK_APP_SECRET,
-        callbackURL: "http://localhost:9090/auth/facebook/callback",
+        callbackURL: config.FBcallbackUrl,
         profileFields: ['id', 'displayName', 'email', 'photos']
     },
     function(accessToken, refreshToken, profile, done) {
@@ -122,4 +122,4 @@ config.app = app;
 require('./routes.js')(app);
 
 app.listen(port);
-console.log("App listening on port " + port);
+console.log("App listening on port " + port + " env mode: " + config.env);

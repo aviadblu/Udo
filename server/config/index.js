@@ -1,4 +1,4 @@
-var env = 'dev';
+var env = process.env.ENV_CONF || 'dev';
 
 var config = {
     pgConnectionStr: '',
@@ -11,5 +11,7 @@ var envConfig = require('./env/' + env);
 for(var i in envConfig) {
     config[i] = envConfig[i];
 }
+
+config.env = env;
 
 module.exports = config;
