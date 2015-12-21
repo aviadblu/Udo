@@ -18,8 +18,7 @@
             "meta": {
                 "accessList": [
                     "tab5",
-                    "tab0",
-                    "tab1"
+                    "tab0"
                 ]
             },
             "name": "pane1",
@@ -46,28 +45,6 @@
                         }
                     },
                     "editorType": "terminal",
-                    "active": false
-                },
-                {
-                    "type": "tab",
-                    "name": "tab1",
-                    "path": "",
-                    "className": [
-                        "tab1"
-                    ],
-                    "document": {
-                        "changed": false,
-                        "meta": {},
-                        "filter": true,
-                        "title": "Immediate (Javascript (browser))",
-                        "tooltip": "Immediate (Javascript (browser))",
-                        "immediate": {
-                            "type": "jsbrowser",
-                            "history": [],
-                            "pos": 0
-                        }
-                    },
-                    "editorType": "immediate",
                     "active": false
                 },
                 {
@@ -116,15 +93,15 @@
             "@ace": 2,
             "@acestatus": 1,
             "@divider": 4,
-            "@document": 11,
+            "@document": 12,
             "@form": 5,
             "@immediate": 1,
             "@menu": 5,
             "@menuitem": 13,
             "@pane": 2,
-            "@session": 11,
-            "@tab": 11,
-            "@undoManager": 11
+            "@session": 12,
+            "@tab": 12,
+            "@undoManager": 12
         }
     },
     "findinfiles": {
@@ -142,7 +119,7 @@
     "panecycle": {
         "json()": [
             "tab5",
-            "tab10"
+            "tab11"
         ]
     },
     "panels": {
@@ -200,6 +177,7 @@
             "focus": "tab5",
             "meta": {
                 "accessList": [
+                    "tab11",
                     "tab10",
                     "tab4",
                     "tab2",
@@ -308,6 +286,26 @@
                         "ace": {}
                     },
                     "editorType": "ace",
+                    "active": false
+                },
+                {
+                    "type": "tab",
+                    "name": "tab11",
+                    "path": "/gulpfile.js",
+                    "className": [
+                        "tab11"
+                    ],
+                    "document": {
+                        "changed": false,
+                        "meta": {
+                            "timestamp": 1450714328733
+                        },
+                        "filter": true,
+                        "title": "gulpfile.js",
+                        "tooltip": "/gulpfile.js",
+                        "ace": {}
+                    },
+                    "editorType": "ace",
                     "active": true
                 }
             ],
@@ -318,7 +316,7 @@
     },
     "tree_selection": {
         "json()": [
-            "/server/config/env/ec2.js"
+            "/gulpfile.js"
         ]
     }
 }

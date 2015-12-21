@@ -66,6 +66,10 @@ gulp.task("refresh", ["injectIndex"], function(){
 });
 
 
-gulp.task('default', ['injectIndex', 'watch'], function () {
+gulp.task('default', ['styles','injectIndex', 'watch'], function () {
+
+});
+
+gulp.task('build', ['styles','injectIndex'], function () {
 
 });
