@@ -1,0 +1,101 @@
+@import "../../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap";
+@import "../../bower_components/pure/pure.css";
+@import "../../bower_components/pure/grids-responsive.css";
+@import "./purecss-tpl";
+
+// .center-block {
+//   position: relative;
+//   margin: 0px auto;
+// }
+
+// .justify-float {
+//   div, .btn {
+//     &:last-of-type {
+//       float:right;
+//     }
+//   }
+// }
+
+// #app-menu {
+//   height: 80px;
+//   border-bottom: 1px solid gray;
+
+//   .container {
+//     height: 100%;
+
+//     .row {
+//       height: 100%;
+
+//       &>div {
+//         height: 100%;
+//       }
+
+//       .logo {
+//         background-image: url(../img/logo_placeholder.gif);
+//         background-repeat: no-repeat;
+//         background-position: left center;
+//       }
+
+//       .menu-wrap {
+//         position: absolute;
+//         bottom:0;
+//       }
+//     }
+//   }
+// }
+
+// .user-top {
+//   float:right;
+//   padding-top: 5px;
+// }
+
+// .container.home {
+//   padding-top:100px;
+
+//   .home-buttons {
+//     @extend .center-block;
+//     @extend .justify-float;
+//     width:200px;
+//   }
+// }
+
+html, body {
+  height: 100%;
+}
+
+.modal-bottom-navigation {
+  .btn.cancel {
+    float:left;
+  }
+}
+
+.angular-google-map-container { height: 400px; }
+
+.map-canvas {
+  z-index: 0;
+}
+
+.map-search {
+  width: 70%;
+  margin-top:10px;
+}
+
+.pac-container {
+  z-index: 9999;
+}
+
+.modal-dialog {
+  color:#000;
+}
+
+.loader {
+  width:100%;
+  height:100%;
+  background: #fff url(../img/hex-loader.gif) center no-repeat;
+  
+  &.hidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s linear;
+  }
+}

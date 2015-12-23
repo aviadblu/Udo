@@ -1,6 +1,6 @@
 <div class="user-top" ng-if="ctrl.user">
-    <div class="text-center"><img ng-src="{{ctrl.user.picture}}"></div>
-    <div class="text-center">Hello {{ctrl.user.fname}} {{ctrl.user.lname}} <a href="/auth/logout" ng-click="$event.stopPropagation()">logout</a></div>
+    <div class="text-center" ng-click="ctrl.userClick()"><img ng-src="{{ctrl.user.picture}}"></div>
+    <!--<div class="text-center">Hello {{ctrl.user.fname}} {{ctrl.user.lname}} <a href="/auth/logout" ng-click="$event.stopPropagation()">logout</a></div>-->
 </div>
 <div class="user-top text-right" ng-if="!ctrl.user">
     <a href="/auth/facebook" ng-click="$event.stopPropagation()" class="btn btn-primary btn-md">Facebook Login</a>

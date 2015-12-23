@@ -1,19 +1,15 @@
-<section id="app-menu">
-    <div class="container">
-        <div class="row">
-            <div ui-sref="app.homepage" class="logo col-sm-3 col-lg-2"></div>
-            <div class="top-menu col-sm-6 col-lg-6">
-                <div class="menu-wrap">
-                    <a ui-sref="app.homepage" class="btn btn-default btn-md">Home</a>
-                    <!--<a ui-sref="app.upload" class="btn btn-default btn-md">Upload one</a>-->
-                    <!--<a ui-sref="app.find" class="btn btn-default btn-md">Find one</a>-->
-                    <a ui-sref="app.my-tasks" class="btn btn-default btn-md">My tasks (0)</a>
-                </div>
-            </div>
-            <div class="col-sm-3 col-lg-4">
-                <user-top></user-top>
-            </div>
+<div ng-show="ctrl.appReady">
+    <div class="header">
+        <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
+            <a class="pure-menu-heading" ui-sref="app.homepage">Udo</a>
+    
+            <ul class="pure-menu-list">
+                <li class="pure-menu-item pure-menu-selected"><a ui-sref="app.homepage" class="pure-menu-link">Home</a></li>
+                <li class="pure-menu-item"><a href="#" class="pure-menu-link">My tasks (0)</a></li>
+                <li class="pure-menu-item"><user-top></user-top></li>
+            </ul>
         </div>
     </div>
-</section>
-<section if="app-content" ui-view></section>
+    <ui-view></ui-view>
+</div>
+<div class="loader" ng-class="{hidden: ctrl.appReady}"></div>

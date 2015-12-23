@@ -109,7 +109,7 @@ angular.module('udo.controllers')
                     latitude: newMarkers[0].latitude,
                     longitude: newMarkers[0].longitude
                 };
-                ctrl.map.zoom = 12;
+                ctrl.map.zoom = 16;
 
 
                 ctrl.map.markers = newMarkers;

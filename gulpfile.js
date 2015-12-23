@@ -18,19 +18,25 @@ gulp.task('injectIndex', function () {
 });
 
 gulp.task('styles', function () {
-    return gulp.src('./client/scss/*.scss')
+    return gulp.src('./client/assets/scss/*.scss')
         .pipe(sass({style: 'expanded'}))
         .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1'))
-        .pipe(gulp.dest('./client/css'))
+        .pipe(gulp.dest('./client/assets/css'))
         .pipe(rename({suffix: '.min'}))
         .pipe(minifycss())
-        .pipe(gulp.dest('./client/css'))
+        .pipe(gulp.dest('./client/assets/css'))
         .pipe(livereload());
 });
 
+// Copies fonts to /dist (for Bootstrap glyphicons)
+gulp.task('dist-fonts', function() {
+  return gulp.src('./client/bower_components/bootstrap-sass/assets/fonts/**')
+    .pipe(gulp.dest('./client/assets/fonts'))
+})
+
 gulp.task('watch', function () {
     livereload.listen();
-    gulp.watch('./client/scss/*.scss', ['styles']);
+    gulp.watch('./client/assets/scss/*.scss', ['styles']);
     //gulp.watch('./client/**/*.html', ['refresh']);
     //gulp.watch('./client/**/*.js', ['refresh']);
 
@@ -70,6 +76,6 @@ gulp.task('default', ['styles','injectIndex', 'watch'], function () {
 
 });
 
-gulp.task('build', ['styles','injectIndex'], function () {
+gulp.task('build', ['styles','dist-fonts','injectIndex'], function () {
 
 });

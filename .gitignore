@@ -1,3 +1,6 @@
+.c9
+.c9/*
+
 # Logs
 logs
 *.log
@@ -28,5 +31,5 @@ node_modules
 bower_components
 .idea/*
 client/css
-.c9
+.c9/
 .c9/*
