@@ -41,11 +41,11 @@ ALTER TABLE users
   
   
   
--- Table: public.tasks
+-- Table: tasks
 
--- DROP TABLE public.tasks;
+-- DROP TABLE tasks;
 
-CREATE TABLE public.tasks
+CREATE TABLE tasks
 (
   id bigserial NOT NULL,
   user_id integer,
@@ -59,10 +59,10 @@ CREATE TABLE public.tasks
   pricing_method character varying(20),
   pricing_rate character varying(10),
   "time" integer,
-  CONSTRAINT pk_id PRIMARY KEY (id)
+  CONSTRAINT pk_task_id PRIMARY KEY (id)
 )
 WITH (
   OIDS=FALSE
 );
-ALTER TABLE public.tasks
-  OWNER TO postgres;
+ALTER TABLE tasks
+  OWNER TO udo;
