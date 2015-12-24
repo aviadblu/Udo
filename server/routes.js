@@ -4,6 +4,8 @@ module.exports = function(app) {
     app.use('/auth', require('./modules/auth/routes'));
 
     app.use('/api/users', require('./modules/entities/users/routes'));
+    
+    app.use('/api/tasks', require('./modules/entities/tasks/routes'));
 
     app.get('/*', function(req, res) {
         res.sendFile(path.resolve(__dirname, '../client/index.html'));

@@ -64,7 +64,7 @@ html, body {
 }
 
 .modal-bottom-navigation {
-  .btn.cancel {
+  .btn.cancel, .btn.back {
     float:left;
   }
 }
@@ -98,4 +98,10 @@ html, body {
     opacity: 0;
     transition: visibility 0s, opacity 0.5s linear;
   }
+}
+
+.error-msg {
+  padding: 5px;
+  margin-bottom: 10px;
+  text-align: left;
 }

@@ -18,8 +18,13 @@
                     var ctrl = this;
                     
                     ctrl.appReady = false;
-                    $timeout(function(){
+                    
+                    function init() {
                         ctrl.appReady = true;
+                    }
+                    
+                    $timeout(function(){
+                        init();
                     },2000);
                     
                 }],

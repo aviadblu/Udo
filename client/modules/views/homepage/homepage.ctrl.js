@@ -1,4 +1,5 @@
 angular.module('udo.controllers')
-    .controller('HomepageCtrl', [function(){
-        var a=1;
+    .controller('HomepageCtrl', ['principal', function(principal){
+        var ctrl = this;
+        ctrl.isAuthenticated = principal.isAuthenticated();
     }]);

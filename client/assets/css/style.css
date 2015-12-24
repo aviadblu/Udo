@@ -6008,7 +6008,7 @@ a.pure-button-primary {
 html, body {
   height: 100%; }
 
-.modal-bottom-navigation .btn.cancel {
+.modal-bottom-navigation .btn.cancel, .modal-bottom-navigation .btn.back {
   float: left; }
 
 .angular-google-map-container {
@@ -6036,3 +6036,8 @@ html, body {
     opacity: 0;
     -webkit-transition: visibility 0s, opacity 0.5s linear;
             transition: visibility 0s, opacity 0.5s linear; }
+
+.error-msg {
+  padding: 5px;
+  margin-bottom: 10px;
+  text-align: left; }

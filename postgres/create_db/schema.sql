@@ -38,3 +38,31 @@ WITH (
 );
 ALTER TABLE users
   OWNER TO udo;
+  
+  
+  
+-- Table: public.tasks
+
+-- DROP TABLE public.tasks;
+
+CREATE TABLE public.tasks
+(
+  id bigserial NOT NULL,
+  user_id integer,
+  status character varying(50),
+  location_name character varying(100),
+  location_latitude character varying(20),
+  location_longitude character varying(50),
+  field character varying(50),
+  description text,
+  pricing_calc character varying(20),
+  pricing_method character varying(20),
+  pricing_rate character varying(10),
+  "time" integer,
+  CONSTRAINT pk_id PRIMARY KEY (id)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.tasks
+  OWNER TO postgres;

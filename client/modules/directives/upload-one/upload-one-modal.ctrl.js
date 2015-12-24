@@ -5,10 +5,21 @@ angular.module('udo.controllers')
             $scope.place = param;
         }
     })
-    .controller('uploadOneModalCtrl', ['$scope', '$uibModalInstance', function($scope, $uibModalInstance){
+    .controller('uploadOneModalCtrl', ['$scope', '$uibModalInstance', 'TasksService', function($scope, $uibModalInstance, TasksService){
         var ctrl = this;
         ctrl.cancel = function() {
             $uibModalInstance.dismiss('cancel');
+        };
+        
+        var _taskData = {};
+        ctrl.form = {
+            field: undefined,
+            description: '',
+            pricing: {
+                calc: 'hour',
+                rate: undefined,
+                method: 'paypal'
+            }
         };
 
         ctrl.selected = {
@@ -49,12 +60,15 @@ angular.module('udo.controllers')
         ctrl.options = {
             scrollwheel: true
         };
+        
+        var newMarkers = [];
         var events = {
             places_changed: function (searchBox) {
-                console.log('places_changed');
+                //console.log('places_changed');
                 places = searchBox.getPlaces();
 
                 if (places.length == 0) {
+                    newMarkers = [];
                     return;
                 }
                 // For each place, get the icon, place name, and location.
@@ -102,9 +116,7 @@ angular.module('udo.controllers')
                         ctrl.selected.options.visible = true;
                     };
                 });
-
-                console.log(newMarkers);
-
+                
                 ctrl.map.center = {
                     latitude: newMarkers[0].latitude,
                     longitude: newMarkers[0].longitude
@@ -127,4 +139,56 @@ angular.module('udo.controllers')
 
 
         ctrl.currentStep = 'provideLocation';
+        
+        ctrl.saveLocation = function() {
+            ctrl.errors = [];
+            if(newMarkers.length === 0) {
+                ctrl.errors.push('Address not found');
+            }
+            else {
+                _taskData.location = {
+                    name: newMarkers[0].name,
+                    latitude: newMarkers[0].latitude,
+                    longitude: newMarkers[0].longitude,
+                };
+                ctrl.currentStep = 'provideGeneralData';
+            }
+        };
+        
+        ctrl.saveGeneralData = function() {
+            ctrl.errors = [];
+            
+            if(!ctrl.form.field) {
+                ctrl.errors.push('Please provide field');
+            }
+            
+            if(ctrl.errors.length === 0) {
+                _taskData.field = ctrl.form.field;
+                _taskData.description = ctrl.form.description;
+                
+                ctrl.currentStep = 'providePricingData';
+            }
+        };
+        
+        ctrl.savePricingData = function() {
+            ctrl.errors = [];
+            
+            if(!ctrl.form.pricing.rate) {
+                ctrl.errors.push('Please provide pricing rate');
+            }
+            
+            if(ctrl.errors.length === 0) {
+                _taskData.pricing = ctrl.form.pricing;
+                saveTask(_taskData);
+            }
+        };
+        
+        function saveTask(taskData) {
+            TasksService.saveTask(taskData)
+                .then(function(response){
+                    console.log('task saved');
+                });
+        }
+        
+        
     }]);
