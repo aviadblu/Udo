@@ -58,7 +58,7 @@ CREATE TABLE tasks
   pricing_calc character varying(20),
   pricing_method character varying(20),
   pricing_rate character varying(10),
-  "time" integer,
+  "time" character varying(20),
   CONSTRAINT pk_task_id PRIMARY KEY (id)
 )
 WITH (
