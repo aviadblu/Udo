@@ -5,8 +5,8 @@
     
             <ul class="pure-menu-list">
                 <li class="pure-menu-item pure-menu-selected"><a ui-sref="app.homepage" class="pure-menu-link">Home</a></li>
-                <li class="pure-menu-item"><a href="#" class="pure-menu-link">My tasks (0)</a></li>
-                <li class="pure-menu-item"><user-top></user-top></li>
+                <li class="pure-menu-item"><a href="#" class="pure-menu-link">My tasks ({{ctrl.userTasks.length}})</a></li>
+                <li class="pure-menu-item"><user-top user="ctrl.user"></user-top></li>
             </ul>
         </div>
     </div>

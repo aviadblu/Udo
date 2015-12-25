@@ -22,9 +22,6 @@ module.exports = {
                     return deferred.reject('error running query ::: ' + err);
                 }
                 var resData = result.rows.length ? result.rows : null;
-                if(result.rows.length === 1) {
-                    resData = result.rows[0];
-                }
                 deferred.resolve(resData);
             });
         });

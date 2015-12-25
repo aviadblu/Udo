@@ -46,6 +46,9 @@ angular.module('udoApp', [
         $locationProvider.html5Mode(true);
         $urlRouterProvider.otherwise("/");
     }])
+    .config(['$httpProvider', function($httpProvider) {  
+        $httpProvider.interceptors.push('userInterceptor');
+    }])
     .run(['$rootScope', '$state', '$stateParams', 'authorization', 'principal',
         function ($rootScope, $state, $stateParams, authorization, principal) {
             $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams) {

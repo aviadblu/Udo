@@ -2,6 +2,7 @@ var express = require('express');
 var app   = require('../../config').app;
 var router = express.Router();
 var passport = app.passport;
+var usersCtrl = require('../entities/users/users-ctrl');
 
 // GET /auth/facebook
 //   Use passport.authenticate() as route middleware to authenticate the
@@ -35,9 +36,10 @@ router.get('/logout', function(req, res){
 
 router.get('/identity', function(req, res){
     if(req.user) {
-        var _sql = "SELECT id,fname,lname,email,picture,roles FROM users WHERE email=$1";
-        app.db.query(_sql, [req.user._json.email]).then(function(user){
-            res.send(user);
+        usersCtrl.searchUsers('email=$1', [req.user._json.email])
+        .then(function(result){
+            req.session.user = result;
+            res.send(result);
         }, function(err){
             res.status(500).send(err);
         });

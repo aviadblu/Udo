@@ -10,9 +10,21 @@
             "@wraparound": "true"
         }
     },
+    "breakpoints": {
+        "json()": [
+            {
+                "path": "/client/modules/directives/upload-one/upload-one-modal.tpl.html",
+                "line": 104,
+                "column": 8,
+                "text": "upload-one-modal.tpl.html",
+                "content": "        <div class=\"modal-footer modal-bottom-navigation\">",
+                "enabled": true
+            }
+        ]
+    },
     "console": {
         "@expanded": true,
-        "@height": 283,
+        "@height": 727,
         "@maximized": "false",
         "json()": {
             "meta": {
@@ -41,8 +53,8 @@
                         "terminal": {
                             "id": "devel_598",
                             "cwd": "",
-                            "width": 1206,
-                            "height": 257
+                            "width": 790,
+                            "height": 701
                         }
                     },
                     "editorType": "terminal",
@@ -65,8 +77,8 @@
                         "terminal": {
                             "id": "devel_559",
                             "cwd": "",
-                            "width": 1206,
-                            "height": 257
+                            "width": 790,
+                            "height": 701
                         }
                     },
                     "editorType": "terminal",
@@ -90,8 +102,8 @@
                         "terminal": {
                             "id": "devel_832",
                             "cwd": "",
-                            "width": 1206,
-                            "height": 257
+                            "width": 790,
+                            "height": 701
                         }
                     },
                     "editorType": "terminal",
@@ -117,17 +129,17 @@
         "counters": {
             "@ace": 1,
             "@acestatus": 1,
-            "@divider": 7,
-            "@document": 29,
+            "@divider": 4,
+            "@document": 58,
             "@form": 5,
             "@imgeditor": 1,
             "@immediate": 1,
-            "@menu": 7,
-            "@menuitem": 27,
+            "@menu": 5,
+            "@menuitem": 13,
             "@pane": 2,
-            "@session": 29,
-            "@tab": 23,
-            "@undoManager": 29
+            "@session": 58,
+            "@tab": 58,
+            "@undoManager": 58
         }
     },
     "findinfiles": {
@@ -145,12 +157,12 @@
     "panecycle": {
         "json()": [
             "tab14",
-            "tab22"
+            "tab53"
         ]
     },
     "panels": {
         "@active-left": "tree",
-        "@width-left": 402,
+        "@width-left": 418,
         "commands.panel": {
             "@enabled": "true",
             "@name": "commands.panel"
@@ -177,34 +189,32 @@
         }
     },
     "projecttree": {
-        "@scrollpos": 374,
+        "@scrollpos": -10,
         "@showfs": true,
         "expanded": {
             "json()": [
                 "/",
                 "/server/modules",
-                "/client/modules/directives/user-top",
-                "/client/modules/directives/upload-one",
                 "/client/bower_components/bootstrap-sass/assets/stylesheets/bootstrap",
                 "/client/bower_components/bootstrap-sass",
                 "/client/bower_components/bootstrap-sass/assets/fonts",
                 "/client/bower_components/bootstrap-sass/assets/fonts/bootstrap",
-                "/client/assets/img",
                 "/client/assets/scss",
-                "/client/modules/views/homepage",
-                "/client/modules/views/app",
                 "/client",
-                "/client/modules",
-                "/client/modules/New Folder",
-                "/client/modules/services",
-                "/client/modules/factories",
-                "/server",
                 "/client/modules/directives",
-                "/server/modules/entities",
-                "/server/config/env",
                 "/server/modules/entities/tasks",
-                "/server/config",
-                "/postgres"
+                "/postgres",
+                "/server/modules/entities/users",
+                "/server",
+                "/server/modules/entities",
+                "/server/modules/auth",
+                "/server/modules/db",
+                "/client/config",
+                "/client/modules",
+                "/client/modules/views/app",
+                "/client/modules/directives/upload-one",
+                "/client/modules/views",
+                "/client/assets"
             ]
         }
     },
@@ -242,38 +252,43 @@
     },
     "tabs": {
         "json()": {
-            "focus": "/postgres/init.sh",
+            "focus": "tab14",
             "meta": {
                 "accessList": [
-                    "tab18",
-                    "tab11",
+                    "tab53",
+                    "tab54",
+                    "tab57",
+                    "tab56",
+                    "tab55",
+                    "tab48",
+                    "tab44",
+                    "tab39",
+                    "tab36",
+                    "tab34",
+                    "tab32",
+                    "tab30",
+                    "tab29",
+                    "tab28",
+                    "tab25",
+                    "tab22",
                     "tab20",
-                    "tab17",
-                    "tab8",
                     "tab12",
-                    "tab15",
-                    "tab2",
-                    "tab4",
-                    "tab6",
-                    "tab9",
-                    "tab7",
-                    "tab3"
+                    "tab7"
                 ]
             },
             "name": "pane0",
             "nodes": [
                 {
                     "type": "tab",
-                    "name": "tab2",
+                    "name": "tab53",
                     "path": "/client/modules/directives/upload-one/upload-one-modal.ctrl.js",
                     "className": [
-                        "tab2",
-                        "changed"
+                        "tab53"
                     ],
                     "document": {
-                        "changed": true,
+                        "changed": false,
                         "meta": {
-                            "timestamp": 1450976063916
+                            "timestamp": 1451047572335
                         },
                         "filter": true,
                         "title": "upload-one-modal.ctrl.js",
@@ -281,19 +296,19 @@
                         "ace": {}
                     },
                     "editorType": "ace",
-                    "active": false
+                    "active": true
                 },
                 {
                     "type": "tab",
-                    "name": "tab4",
+                    "name": "tab54",
                     "path": "/client/modules/directives/upload-one/upload-one-modal.tpl.html",
                     "className": [
-                        "tab4"
+                        "tab54"
                     ],
                     "document": {
                         "changed": false,
                         "meta": {
-                            "timestamp": 1450976008264
+                            "timestamp": 1451047092853
                         },
                         "filter": true,
                         "title": "upload-one-modal.tpl.html",
@@ -305,140 +320,19 @@
                 },
                 {
                     "type": "tab",
-                    "name": "tab6",
-                    "path": "/client/modules/views/homepage/homepage.tpl.html",
-                    "className": [
-                        "tab6"
-                    ],
-                    "document": {
-                        "changed": false,
-                        "meta": {
-                            "timestamp": 1450971143866
-                        },
-                        "filter": true,
-                        "title": "homepage.tpl.html",
-                        "tooltip": "/client/modules/views/homepage/homepage.tpl.html",
-                        "ace": {}
-                    },
-                    "editorType": "ace",
-                    "active": false
-                },
-                {
-                    "type": "tab",
-                    "name": "tab7",
+                    "name": "tab57",
                     "path": "/client/assets/scss/style.scss",
                     "className": [
-                        "tab7"
+                        "tab57"
                     ],
                     "document": {
                         "changed": false,
                         "meta": {
-                            "timestamp": 1450972040395
+                            "timestamp": 1451047013473
                         },
                         "filter": true,
                         "title": "style.scss",
                         "tooltip": "/client/assets/scss/style.scss",
-                        "ace": {}
-                    },
-                    "editorType": "ace",
-                    "active": false
-                },
-                {
-                    "type": "tab",
-                    "name": "tab8",
-                    "path": "/client/modules/factories/event-dispatcher-factory.js",
-                    "className": [
-                        "tab8"
-                    ],
-                    "document": {
-                        "changed": false,
-                        "meta": {
-                            "timestamp": 1450880207494
-                        },
-                        "filter": true,
-                        "title": "event-dispatcher-factory.js",
-                        "tooltip": "/client/modules/factories/event-dispatcher-factory.js",
-                        "ace": {}
-                    },
-                    "editorType": "ace",
-                    "active": false
-                },
-                {
-                    "type": "tab",
-                    "name": "tab9",
-                    "path": "/client/modules/services/tasks.svc.js",
-                    "className": [
-                        "tab9"
-                    ],
-                    "document": {
-                        "changed": false,
-                        "meta": {
-                            "timestamp": 1450975640929
-                        },
-                        "filter": true,
-                        "title": "tasks.svc.js",
-                        "tooltip": "/client/modules/services/tasks.svc.js",
-                        "ace": {}
-                    },
-                    "editorType": "ace",
-                    "active": false
-                },
-                {
-                    "type": "tab",
-                    "name": "tab11",
-                    "path": "/server/modules/entities/tasks/routes.js",
-                    "className": [
-                        "tab11"
-                    ],
-                    "document": {
-                        "changed": false,
-                        "meta": {
-                            "timestamp": 1450975602946
-                        },
-                        "filter": true,
-                        "title": "routes.js",
-                        "tooltip": "/server/modules/entities/tasks/routes.js",
-                        "ace": {}
-                    },
-                    "editorType": "ace",
-                    "active": false
-                },
-                {
-                    "type": "tab",
-                    "name": "tab12",
-                    "path": "/client/modules/directives/upload-one/upload-one.tpl.html",
-                    "className": [
-                        "tab12"
-                    ],
-                    "document": {
-                        "changed": false,
-                        "meta": {
-                            "timestamp": 1450975760368
-                        },
-                        "filter": true,
-                        "title": "upload-one.tpl.html",
-                        "tooltip": "/client/modules/directives/upload-one/upload-one.tpl.html",
-                        "ace": {}
-                    },
-                    "editorType": "ace",
-                    "active": false
-                },
-                {
-                    "type": "tab",
-                    "name": "tab18",
-                    "path": "/postgres/init.sh",
-                    "className": [
-                        "tab18",
-                        "focus"
-                    ],
-                    "document": {
-                        "changed": false,
-                        "meta": {
-                            "timestamp": 1450622029284
-                        },
-                        "filter": true,
-                        "title": "init.sh",
-                        "tooltip": "/postgres/init.sh",
                         "ace": {}
                     },
                     "editorType": "ace",
@@ -452,7 +346,7 @@
     },
     "tree_selection": {
         "json()": [
-            "/postgres/create_db/schema.sql"
+            "/client/assets/scss/style.scss"
         ]
     }
 }

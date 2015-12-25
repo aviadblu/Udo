@@ -2,17 +2,14 @@ angular.module('udo.directives')
     .directive('userTop', ['$uibModal', function($uibModal) {
         return {
             restrict: 'E',
-            scope: {},
+            scope: {
+                user: '='
+            },
             templateUrl: 'modules/directives/user-top/user-top.tpl.html',
             controllerAs: 'ctrl',
-            controller: ['principal', function(principal) {
+            controller: ['$scope', 'principal', function($scope, principal) {
                 var ctrl = this;
-                principal.identity()
-                    .then(function(user){
-                        if(user.roles && user.roles.indexOf('guest') === -1) {
-                            ctrl.user = user;
-                        }
-                    });
+                ctrl.user = $scope.user;
                     
                 ctrl.userClick = function() {
                     var modalInstance = $uibModal.open({

@@ -2,12 +2,12 @@
     <div class="splash">
         <h1 class="splash-head">Search for a job</h1>
         
-        <p class="splash-subhead" ng-if="!ctrl.isAuthenticated">
+        <p class="splash-subhead" ng-hide="ctrl.user.authenticated">
             Want to upload your on job?
         </p>
         <p>
-            <a ng-if="!ctrl.isAuthenticated" href="http://purecss.io" class="pure-button pure-button-primary">Get Started</a>
-            <upload-one></upload-one>
+            <a ng-hide="ctrl.user.authenticated" href="http://purecss.io" class="pure-button pure-button-primary">Get Started</a>
+            <upload-one ng-show="ctrl.user.authenticated"></upload-one>
         </p>
     </div>
 </div>

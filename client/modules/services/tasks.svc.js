@@ -4,5 +4,9 @@ angular.module('udo.services')
         this.saveTask = function(taskData) {
             return $http.post('/api/tasks', taskData);
         };
+        
+        this.userTasks = function() {
+            return $http.get('/api/users/user-tasks');
+        };
     
     }]);

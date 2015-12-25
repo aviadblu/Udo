@@ -7,10 +7,11 @@ angular.module('udo.controllers')
     })
     .controller('uploadOneModalCtrl', ['$scope', '$uibModalInstance', 'TasksService', function($scope, $uibModalInstance, TasksService){
         var ctrl = this;
+        ctrl.loading = false;
         ctrl.cancel = function() {
             $uibModalInstance.dismiss('cancel');
         };
-        
+ 
         var _taskData = {};
         ctrl.form = {
             field: undefined,
@@ -184,11 +185,30 @@ angular.module('udo.controllers')
         };
         
         function saveTask(taskData) {
+            ctrl.loading = true;
             TasksService.saveTask(taskData)
                 .then(function(response){
-                    console.log('task saved');
+                    ctrl.loading = false;
+                    ctrl.currentStep = 'taskPostDone';
                 });
         }
+        
+        ctrl.reset = function() {
+            ctrl.errors = [];
+            ctrl.currentStep = 'provideLocation';
+            var lastLocation = _taskData.location;
+            _taskData = {};
+            _taskData.location = lastLocation;
+            ctrl.form = {
+                field: undefined,
+                description: '',
+                pricing: {
+                    calc: 'hour',
+                    rate: undefined,
+                    method: 'paypal'
+                }
+            };
+        };
         
         
     }]);

@@ -14,8 +14,10 @@
                 },
                 abstract: true,
                 templateUrl: 'modules/views/app/app.tpl.html',
-                controller:['$timeout', function($timeout) {
+                controller:['$timeout', 'user', 'userTasks', function($timeout, user, userTasks) {
                     var ctrl = this;
+                    ctrl.user = user;
+                    ctrl.userTasks = userTasks;
                     
                     ctrl.appReady = false;
                     
@@ -28,7 +30,18 @@
                     },2000);
                     
                 }],
-                controllerAs: 'ctrl'
+                controllerAs: 'ctrl',
+                resolve: { 
+                    user: function(principal){
+                        return principal.identity()
+                    },
+                    userTasks: function(TasksService) {
+                        return TasksService.userTasks()
+                            .then(function(result) {
+                                return result.data;
+                            })
+                    }
+                }
             })
     }
 

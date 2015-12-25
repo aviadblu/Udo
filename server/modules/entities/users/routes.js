@@ -1,34 +1,37 @@
 var express = require('express');
 var app   = require('../../../config').app;
+var usersCtrl = require('./users-ctrl');
 var router = express.Router();
 
 router.post('/', function (req, res) {
-    var sql = 'INSERT INTO users (fname, lname, email) VALUES ($1, $2, $3) RETURNING id';
-    var queryParams = [
-        req.body.fname,
-        req.body.lname,
-        req.body.email
-    ];
-
-    app.db.query(sql, queryParams).then(function(data){
-        res.send(data);
+    usersCtrl.addUser(req.body.fname, req.body.lname, req.body.email)
+    .then(function(result){
+        res.send(result);
     }, function(err){
         res.status(500).send(err);
     });
-
 });
 
 router.get('/', function (req, res) {
-    var sql = 'SELECT * FROM users';
-
-    app.db.query(sql).then(function(data){
-        res.send(data);
+    usersCtrl.searchUsers()
+    .then(function(result){
+        res.send(result);
     }, function(err){
         res.status(500).send(err);
     });
 });
 
-
+router.get('/user-tasks', function (req, res) {
+    if(!req.session.user) {
+        return res.status(401);
+    }
+    usersCtrl.getUserTasks(req.session.user[0].id)
+    .then(function(result){
+        res.send(result);
+    }, function(err){
+        res.status(500).send(err);
+    });
+});
 
 
 module.exports = router;

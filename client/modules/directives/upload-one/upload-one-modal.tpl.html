@@ -1,92 +1,107 @@
-<div ng-show="ctrl.currentStep === 'provideLocation'">
+<div ng-show="ctrl.loading">
     <div class="modal-header">
-        <h3 class="modal-title">Where is the task?</h3>
+        <h3 class="modal-title">Please wait...</h3>
     </div>
     <div class="modal-body map-canvas">
-        <ui-gmap-google-map center='ctrl.map.center' zoom='ctrl.map.zoom' draggable="true" options="ctrl.options">
-            <ui-gmap-search-box template="ctrl.searchbox.template" events="ctrl.searchbox.events"></ui-gmap-search-box>
-            <ui-gmap-markers idkey="ctrl.map.idkey" models="ctrl.map.markers" coords="'self'" icon="'icon'" click="'onClicked'"></ui-gmap-markers>
-        </ui-gmap-google-map>
-        
-        
-    </div>
-    <div class="modal-footer modal-bottom-navigation">
-        <div class="error-msg bg-danger" ng-repeat="err in ctrl.errors">{{err}}</div>
-        <button class="btn btn-primary" type="button" ng-click="ctrl.saveLocation()">Next</button>
+        <div class="loader" ng-class="{hidden: !ctrl.loading}"></div>
     </div>
 </div>
-<div ng-show="ctrl.currentStep === 'provideGeneralData'">
-    <div class="modal-header">
-        <h3 class="modal-title">What is the task?</h3>
+<div ng-hide="ctrl.loading" class="postTaskModal">
+    <div ng-show="ctrl.currentStep === 'provideLocation'">
+        <div class="modal-header">
+            <h3 class="modal-title">Where is the task?</h3>
+        </div>
+        <div class="modal-body">
+            <ui-gmap-google-map center='ctrl.map.center' zoom='ctrl.map.zoom' draggable="true" options="ctrl.options">
+                <ui-gmap-search-box template="ctrl.searchbox.template" events="ctrl.searchbox.events"></ui-gmap-search-box>
+                <ui-gmap-markers idkey="ctrl.map.idkey" models="ctrl.map.markers" coords="'self'" icon="'icon'" click="'onClicked'"></ui-gmap-markers>
+            </ui-gmap-google-map>
+        </div>
+        <div class="modal-footer modal-bottom-navigation">
+            <div class="error-msg bg-danger" ng-repeat="err in ctrl.errors">{{err}}</div>
+            <button class="btn btn-primary" type="button" ng-click="ctrl.saveLocation()">Next</button>
+        </div>
     </div>
-    <div class="modal-body map-canvas">
-        <form class="form-horizontal">
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Field (choose)</label>
-                <div class="col-sm-10">
-                    <select class="form-control" ng-model="ctrl.form.field">
-                        <option>Field 1</option>
-                        <option>Field 2</option>
-                        <option>Field 3</option>
-                        <option>Field 4</option>
-                        <option>Field 5</option>
-                    </select>
-                    <p class="help-block">Choose the field that is most similar to your task</p>
+    <div ng-show="ctrl.currentStep === 'provideGeneralData'">
+        <div class="modal-header">
+            <h3 class="modal-title">What is the task?</h3>
+        </div>
+        <div class="modal-body">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Field (choose)</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" ng-model="ctrl.form.field">
+                            <option>Field 1</option>
+                            <option>Field 2</option>
+                            <option>Field 3</option>
+                            <option>Field 4</option>
+                            <option>Field 5</option>
+                        </select>
+                        <p class="help-block">Choose the field that is most similar to your task</p>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Description</label>
-                <div class="col-sm-10">
-                    <textarea class="form-control" rows="3" ng-model="ctrl.form.description"></textarea>
-                    <p class="help-block">Describe your task in the best ad shortest way u can</p>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Description</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" rows="3" ng-model="ctrl.form.description"></textarea>
+                        <p class="help-block">Describe your task in the best ad shortest way u can</p>
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
+        <div class="modal-footer modal-bottom-navigation">
+            <div class="error-msg bg-danger" ng-repeat="err in ctrl.errors">{{err}}</div>
+            <button class="btn btn-primary" type="button" ng-click="ctrl.saveGeneralData()">Next</button>
+            <button class="btn btn-primary back" type="button" ng-click="ctrl.currentStep = 'provideLocation'">Back</button>
+        </div>
     </div>
-    <div class="modal-footer modal-bottom-navigation">
-        <div class="error-msg bg-danger" ng-repeat="err in ctrl.errors">{{err}}</div>
-        <button class="btn btn-primary" type="button" ng-click="ctrl.saveGeneralData()">Next</button>
-        <button class="btn btn-primary back" type="button" ng-click="ctrl.currentStep = 'provideLocation'">Back</button>
-    </div>
-</div>
-<div ng-show="ctrl.currentStep === 'providePricingData'">
-    <div class="modal-header">
-        <h3 class="modal-title">Pricing</h3>
-    </div>
-    <div class="modal-body map-canvas">
-        <form class="form-horizontal">
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Calculation by</label>
-                <div class="col-sm-10">
-                    <label class="checkbox-inline">
-                        <input type="radio" name="pricing.calc" ng-model="ctrl.form.pricing.calc" value="hour"> Hour
-                    </label>
-                    <label class="checkbox-inline">
-                        <input type="radio" name="pricing.calc" ng-model="ctrl.form.pricing.calc" value="pauschal"> Pauschal
-                    </label>
+    <div ng-show="ctrl.currentStep === 'providePricingData'">
+        <div class="modal-header">
+            <h3 class="modal-title">Pricing</h3>
+        </div>
+        <div class="modal-body map-canvas">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Calculation by</label>
+                    <div class="col-sm-10">
+                        <label class="checkbox-inline">
+                            <input type="radio" name="pricing.calc" ng-model="ctrl.form.pricing.calc" value="hour"> Hour
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="radio" name="pricing.calc" ng-model="ctrl.form.pricing.calc" value="pauschal"> Pauschal
+                        </label>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Rate</label>
-                <div class="input-group col-sm-3">
-                    <div class="input-group-addon">$</div>
-                        <input type="number" class="form-control" ng-model="ctrl.form.pricing.rate" placeholder="Amount">
-                    <div class="input-group-addon">.00</div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Rate</label>
+                    <div class="input-group col-sm-3">
+                        <div class="input-group-addon">$</div>
+                            <input type="number" class="form-control" ng-model="ctrl.form.pricing.rate" placeholder="Amount">
+                        <div class="input-group-addon">.00</div>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Method</label>
-                <div class="col-sm-10">
-                    <label class="checkbox-inline">
-                        <input type="radio" name="pricing.method" ng-model="ctrl.form.pricing.method" value="paypal"> Paypal
-                    </label>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Method</label>
+                    <div class="col-sm-10">
+                        <label class="checkbox-inline">
+                            <input type="radio" name="pricing.method" ng-model="ctrl.form.pricing.method" value="paypal"> Paypal
+                        </label>
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
+        <div class="modal-footer modal-bottom-navigation">
+            <div class="error-msg bg-danger" ng-repeat="err in ctrl.errors">{{err}}</div>
+            <button class="btn btn-info" type="button" ng-click="ctrl.savePricingData()">Post task</button>
+            <button class="btn btn-primary back" type="button" ng-click="ctrl.currentStep = 'provideGeneralData'">Back</button>
+        </div>
     </div>
-    <div class="modal-footer modal-bottom-navigation">
-        <div class="error-msg bg-danger" ng-repeat="err in ctrl.errors">{{err}}</div>
-        <button class="btn btn-info" type="button" ng-click="ctrl.savePricingData()">Post task</button>
-        <button class="btn btn-primary back" type="button" ng-click="ctrl.currentStep = 'provideGeneralData'">Back</button>
+    <div ng-show="ctrl.currentStep === 'taskPostDone'">
+        <div class="modal-body">
+            Your task posted! <br>
+            <button class="btn btn-primary" type="button" ng-click="ctrl.reset()">Post another task</button>
+            <button class="btn btn-primary" type="button" ng-click="ctrl.cancel()">Close</button>
+        </div>
     </div>
 </div>

@@ -54,12 +54,14 @@ angular.module('udo.config')
                     // otherwise, retrieve the identity data from the server, update the identity object, and then resolve.
                     $http.get('/auth/identity', {ignoreErrors: true})
                         .success(function (data) {
-                            _identity = data;
+                            _identity = data[0];
+                            _identity.authenticated = _identity.roles.indexOf('guest') < 0;
                             _authenticated = true;
                             deferred.resolve(_identity);
                         })
                         .error(function () {
                             _identity = null;
+                            _identity.authenticated = false;
                             _authenticated = false;
                             deferred.resolve(_identity);
                         });
