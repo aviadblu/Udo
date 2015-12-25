@@ -30,6 +30,7 @@ router.get('/facebook/callback',
     });
 
 router.get('/logout', function(req, res){
+    delete req.session.user;
     req.logout();
     res.redirect('/');
 });
@@ -50,7 +51,7 @@ router.get('/identity', function(req, res){
             "lname": "",
             "roles": ['guest']
         };
-        res.send(user);
+        res.send([user]);
     }
 });
 

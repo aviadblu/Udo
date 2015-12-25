@@ -23,7 +23,7 @@ router.get('/', function (req, res) {
 
 router.get('/user-tasks', function (req, res) {
     if(!req.session.user) {
-        return res.status(401);
+        return res.send([]);
     }
     usersCtrl.getUserTasks(req.session.user[0].id)
     .then(function(result){

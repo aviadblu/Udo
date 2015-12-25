@@ -10,6 +10,8 @@ angular.module('udo.directives')
             controller: ['$scope', 'principal', function($scope, principal) {
                 var ctrl = this;
                 ctrl.user = $scope.user;
+                
+                console.log(ctrl.user);
                     
                 ctrl.userClick = function() {
                     var modalInstance = $uibModal.open({

@@ -24,14 +24,14 @@
     },
     "console": {
         "@expanded": true,
-        "@height": 727,
+        "@height": 369,
         "@maximized": "false",
         "json()": {
             "meta": {
                 "accessList": [
                     "tab14",
-                    "tab5",
-                    "tab0"
+                    "tab0",
+                    "tab5"
                 ]
             },
             "name": "pane1",
@@ -53,8 +53,8 @@
                         "terminal": {
                             "id": "devel_598",
                             "cwd": "",
-                            "width": 790,
-                            "height": 701
+                            "width": 858,
+                            "height": 343
                         }
                     },
                     "editorType": "terminal",
@@ -77,8 +77,8 @@
                         "terminal": {
                             "id": "devel_559",
                             "cwd": "",
-                            "width": 790,
-                            "height": 701
+                            "width": 858,
+                            "height": 343
                         }
                     },
                     "editorType": "terminal",
@@ -102,8 +102,8 @@
                         "terminal": {
                             "id": "devel_832",
                             "cwd": "",
-                            "width": 790,
-                            "height": 701
+                            "width": 858,
+                            "height": 343
                         }
                     },
                     "editorType": "terminal",
@@ -130,16 +130,16 @@
             "@ace": 1,
             "@acestatus": 1,
             "@divider": 4,
-            "@document": 58,
+            "@document": 64,
             "@form": 5,
             "@imgeditor": 1,
             "@immediate": 1,
             "@menu": 5,
             "@menuitem": 13,
             "@pane": 2,
-            "@session": 58,
-            "@tab": 58,
-            "@undoManager": 58
+            "@session": 64,
+            "@tab": 64,
+            "@undoManager": 64
         }
     },
     "findinfiles": {
@@ -157,12 +157,12 @@
     "panecycle": {
         "json()": [
             "tab14",
-            "tab53"
+            "tab63"
         ]
     },
     "panels": {
         "@active-left": "tree",
-        "@width-left": 418,
+        "@width-left": 350,
         "commands.panel": {
             "@enabled": "true",
             "@name": "commands.panel"
@@ -189,7 +189,7 @@
         }
     },
     "projecttree": {
-        "@scrollpos": -10,
+        "@scrollpos": 14,
         "@showfs": true,
         "expanded": {
             "json()": [
@@ -199,7 +199,6 @@
                 "/client/bower_components/bootstrap-sass",
                 "/client/bower_components/bootstrap-sass/assets/fonts",
                 "/client/bower_components/bootstrap-sass/assets/fonts/bootstrap",
-                "/client/assets/scss",
                 "/client",
                 "/client/modules/directives",
                 "/server/modules/entities/tasks",
@@ -209,12 +208,10 @@
                 "/server/modules/entities",
                 "/server/modules/auth",
                 "/server/modules/db",
-                "/client/config",
                 "/client/modules",
                 "/client/modules/views/app",
-                "/client/modules/directives/upload-one",
                 "/client/modules/views",
-                "/client/assets"
+                "/client/modules/directives/user-top"
             ]
         }
     },
@@ -255,6 +252,11 @@
             "focus": "tab14",
             "meta": {
                 "accessList": [
+                    "tab63",
+                    "tab61",
+                    "tab58",
+                    "tab60",
+                    "tab59",
                     "tab53",
                     "tab54",
                     "tab57",
@@ -296,7 +298,7 @@
                         "ace": {}
                     },
                     "editorType": "ace",
-                    "active": true
+                    "active": false
                 },
                 {
                     "type": "tab",
@@ -337,6 +339,86 @@
                     },
                     "editorType": "ace",
                     "active": false
+                },
+                {
+                    "type": "tab",
+                    "name": "tab58",
+                    "path": "/server/modules/auth/routes.js",
+                    "className": [
+                        "tab58"
+                    ],
+                    "document": {
+                        "changed": false,
+                        "meta": {
+                            "timestamp": 1451048130079
+                        },
+                        "filter": true,
+                        "title": "routes.js",
+                        "tooltip": "/server/modules/auth/routes.js",
+                        "ace": {}
+                    },
+                    "editorType": "ace",
+                    "active": false
+                },
+                {
+                    "type": "tab",
+                    "name": "tab60",
+                    "path": "/client/modules/directives/user-top/user-top.drtv.js",
+                    "className": [
+                        "tab60"
+                    ],
+                    "document": {
+                        "changed": false,
+                        "meta": {
+                            "timestamp": 1451047949920
+                        },
+                        "filter": true,
+                        "title": "user-top.drtv.js",
+                        "tooltip": "/client/modules/directives/user-top/user-top.drtv.js",
+                        "ace": {}
+                    },
+                    "editorType": "ace",
+                    "active": false
+                },
+                {
+                    "type": "tab",
+                    "name": "tab61",
+                    "path": "/client/modules/directives/user-top/user-top.tpl.html",
+                    "className": [
+                        "tab61"
+                    ],
+                    "document": {
+                        "changed": false,
+                        "meta": {
+                            "timestamp": 1451048002553
+                        },
+                        "filter": true,
+                        "title": "user-top.tpl.html",
+                        "tooltip": "/client/modules/directives/user-top/user-top.tpl.html",
+                        "ace": {}
+                    },
+                    "editorType": "ace",
+                    "active": false
+                },
+                {
+                    "type": "tab",
+                    "name": "tab63",
+                    "path": "/server/modules/entities/users/routes.js",
+                    "className": [
+                        "tab63"
+                    ],
+                    "document": {
+                        "changed": false,
+                        "meta": {
+                            "timestamp": 1451048189174
+                        },
+                        "filter": true,
+                        "title": "routes.js",
+                        "tooltip": "/server/modules/entities/users/routes.js",
+                        "ace": {}
+                    },
+                    "editorType": "ace",
+                    "active": true
                 }
             ],
             "skin": "editor_tab",
@@ -346,7 +428,7 @@
     },
     "tree_selection": {
         "json()": [
-            "/client/assets/scss/style.scss"
+            "/server/modules/entities/users/routes.js"
         ]
     }
 }
