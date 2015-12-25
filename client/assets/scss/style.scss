@@ -2,62 +2,11 @@
 @import "../../bower_components/pure/pure.css";
 @import "../../bower_components/pure/grids-responsive.css";
 @import "./purecss-tpl";
+@import "../../bower_components/angular-ui-grid/ui-grid.css";
 
-// .center-block {
-//   position: relative;
-//   margin: 0px auto;
-// }
 
-// .justify-float {
-//   div, .btn {
-//     &:last-of-type {
-//       float:right;
-//     }
-//   }
-// }
-
-// #app-menu {
-//   height: 80px;
-//   border-bottom: 1px solid gray;
-
-//   .container {
-//     height: 100%;
-
-//     .row {
-//       height: 100%;
-
-//       &>div {
-//         height: 100%;
-//       }
-
-//       .logo {
-//         background-image: url(../img/logo_placeholder.gif);
-//         background-repeat: no-repeat;
-//         background-position: left center;
-//       }
-
-//       .menu-wrap {
-//         position: absolute;
-//         bottom:0;
-//       }
-//     }
-//   }
-// }
-
-// .user-top {
-//   float:right;
-//   padding-top: 5px;
-// }
-
-// .container.home {
-//   padding-top:100px;
-
-//   .home-buttons {
-//     @extend .center-block;
-//     @extend .justify-float;
-//     width:200px;
-//   }
-// }
+$main-bg-color: #00C3BF;
+$main-bg-text-color: #FFF;
 
 html, body {
   height: 100%;
@@ -65,11 +14,13 @@ html, body {
 
 .modal-bottom-navigation {
   .btn.cancel, .btn.back {
-    float:left;
+    float: left;
   }
 }
 
-.angular-google-map-container { height: 400px; }
+.angular-google-map-container {
+  height: 400px;
+}
 
 .map-canvas {
   z-index: 0;
@@ -77,7 +28,7 @@ html, body {
 
 .map-search {
   width: 70%;
-  margin-top:10px;
+  margin-top: 10px;
 }
 
 .pac-container {
@@ -85,15 +36,15 @@ html, body {
 }
 
 .modal-dialog {
-  color:#000;
+  color: #000;
 }
 
 .loader {
-  width:100%;
-  height:100%;
-  min-height:400px;
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
   background: #fff url(../img/hex-loader.gif) center no-repeat;
-  
+
   &.hidden {
     visibility: hidden;
     opacity: 0;
@@ -110,5 +61,46 @@ html, body {
 .postTaskModal {
   .modal-body {
     min-height: 300px;
+  }
+}
+
+.home-menu li a.facebook-btn {
+  background-color: #2E5A94;
+  color: #fff;
+}
+
+.search-task-home {
+  cursor: pointer;
+
+  &:hover {
+    background-color: $main-bg-color;
+  }
+}
+
+.content-wrapper.pages {
+  top: 60px;
+}
+
+.grid-user {
+  img {
+    height:27px;
+    margin-right:5px;
+    float:left;
+  }
+}
+
+.my-tasks {
+  .upload-one-btn {
+    display: inline-block;
+    letter-spacing: 0em;
+    margin: 0;
+    padding: 0;
+
+    a {
+      height:30px;
+      font-size:60%;
+      padding: 5px;
+      text-decoration: underline;
+    }
   }
 }

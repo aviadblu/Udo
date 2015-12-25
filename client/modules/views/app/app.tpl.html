@@ -1,11 +1,12 @@
 <div ng-show="ctrl.appReady">
     <div class="header">
         <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
-            <a class="pure-menu-heading" ui-sref="app.homepage">Udo</a>
+            <a class="pure-menu-heading" ui-sref="app.homepage">Udo I Pay</a>
     
             <ul class="pure-menu-list">
-                <li class="pure-menu-item pure-menu-selected"><a ui-sref="app.homepage" class="pure-menu-link">Home</a></li>
-                <li class="pure-menu-item"><a href="#" class="pure-menu-link">My tasks ({{ctrl.userTasks.length}})</a></li>
+                <li class="pure-menu-item"><a ui-sref="app.homepage" class="pure-menu-link">Home</a></li>
+                <li class="pure-menu-item"><a ui-sref="app.find" class="pure-menu-link">Open Tasks</a></li>
+                <li class="pure-menu-item" ng-if="ctrl.user.authenticated"><a ui-sref="app.my-tasks" class="pure-menu-link">My tasks ({{ctrl.userTasks.length}})</a></li>
                 <li class="pure-menu-item"><user-top user="ctrl.user"></user-top></li>
             </ul>
         </div>

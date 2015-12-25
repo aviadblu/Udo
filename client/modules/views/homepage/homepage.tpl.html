@@ -1,9 +1,9 @@
 <div class="splash-container">
     <div class="splash">
-        <h1 class="splash-head">Search for a job</h1>
+        <h1 class="splash-head search-task-home" ui-sref="app.find">Search for a task</h1>
         
         <p class="splash-subhead" ng-hide="ctrl.user.authenticated">
-            Want to upload your on job?
+            Want to upload your own task?
         </p>
         <p>
             <a ng-hide="ctrl.user.authenticated" href="javascript:;" class="pure-button pure-button-primary">Get Started</a>
@@ -116,8 +116,6 @@
 
     </div>
 
-    <div class="footer l-box is-center">
-        View the source of this layout to learn more. Made with love by the YUI Team.
-    </div>
+    <div ng-include src="'modules/views/footer/footer.tpl.html'"></div>
 
 </div>

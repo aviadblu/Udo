@@ -7,6 +7,7 @@
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 @import url(../../bower_components/pure/pure.css);
 @import url(../../bower_components/pure/grids-responsive.css);
+@import url(../../bower_components/angular-ui-grid/ui-grid.css);
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -5043,11 +5044,13 @@ button.close {
   outline: 0; }
   .modal.fade .modal-dialog {
     -webkit-transform: translate(0, -25%);
+    -ms-transform: translate(0, -25%);
     transform: translate(0, -25%);
     -webkit-transition: -webkit-transform 0.3s ease-out;
     transition: transform 0.3s ease-out; }
   .modal.in .modal-dialog {
     -webkit-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
     transform: translate(0, 0); }
 
 .modal-open .modal {
@@ -6045,3 +6048,31 @@ html, body {
 
 .postTaskModal .modal-body {
   min-height: 300px; }
+
+.home-menu li a.facebook-btn {
+  background-color: #2E5A94;
+  color: #fff; }
+
+.search-task-home {
+  cursor: pointer; }
+  .search-task-home:hover {
+    background-color: #00C3BF; }
+
+.content-wrapper.pages {
+  top: 60px; }
+
+.grid-user img {
+  height: 27px;
+  margin-right: 5px;
+  float: left; }
+
+.my-tasks .upload-one-btn {
+  display: inline-block;
+  letter-spacing: 0em;
+  margin: 0;
+  padding: 0; }
+  .my-tasks .upload-one-btn a {
+    height: 30px;
+    font-size: 60%;
+    padding: 5px;
+    text-decoration: underline; }

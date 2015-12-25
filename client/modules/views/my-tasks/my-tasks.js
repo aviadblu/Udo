@@ -8,14 +8,14 @@
     function Configuration($stateProvider) {
         // Contact state routing
         $stateProvider
-            .state('app.upload', {
-                url: '/upload',
+            .state('app.my-tasks', {
+                url: '/my-tasks',
                 data: {
-                    roles: ['user', 'admin']
+                    roles: ['guest', 'user', 'admin']
                 },
-                controller: 'UploadjobCtrl',
+                controller: 'MyTasksCtrl',
                 controllerAs: 'ctrl',
-                templateUrl: 'modules/views/uploadjob/uploadjob.tpl.html'
+                templateUrl: 'modules/views/my-tasks/my-tasks.tpl.html'
             })
     }
 

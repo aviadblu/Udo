@@ -27,7 +27,7 @@
                     
                     $timeout(function(){
                         init();
-                    },2000);
+                    },500);
                     
                 }],
                 controllerAs: 'ctrl',

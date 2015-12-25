@@ -1,11 +1,11 @@
 angular.module('udo.controllers')
-    .controller('FindjobCtrl', ['$timeout', '$window', 'openTasks', function($timeout, $window, openTasks){
+    .controller('MyTasksCtrl', ['$timeout', '$window', 'userTasks', function($timeout, $window, userTasks){
         //console.log(openTasks);
         var ctrl = this;
-        ctrl.openTasks = openTasks;
+        ctrl.userTasks = userTasks;
 
         ctrl.tasksGridOptions = {
-            data: 'ctrl.openTasks',
+            data: 'ctrl.userTasks',
             enableSorting: true,
             enableColumnMenus: false,
             columnDefs: [
@@ -14,12 +14,12 @@ angular.module('udo.controllers')
                     name: 'Task Field'
                 },
                 {
-                    field: 'fname',
-                    name: 'Posted By' ,
-                    cellTemplate: '<div class="ui-grid-cell-contents grid-user"> <img ng-src="{{row.entity.picture}}"> {{row.entity.time | timeAgo}}</div>'
+                    field: 'time',
+                    name: 'Posted' ,
+                    cellTemplate: '<div class="ui-grid-cell-contents">{{row.entity.time | timeAgo}}</div>'
                 },
                 {
-                    name: 'Where?' ,
+                    name: 'Address' ,
                     cellTemplate: '<div class="ui-grid-cell-contents">{{row.entity.location_name}}</div>'
                 },
                 {

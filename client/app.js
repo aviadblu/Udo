@@ -40,13 +40,15 @@ angular.module('udoApp', [
         'ui.router',
         'ui.bootstrap',
         'uiGmapgoogle-maps',
+        'ui.grid',
+        'yaru22.angular-timeago',
         'udo'
     ])
     .config(['$locationProvider', '$stateProvider', '$urlRouterProvider', function ($locationProvider, $stateProvider, $urlRouterProvider) {
         $locationProvider.html5Mode(true);
         $urlRouterProvider.otherwise("/");
     }])
-    .config(['$httpProvider', function($httpProvider) {  
+    .config(['$httpProvider', function ($httpProvider) {
         $httpProvider.interceptors.push('userInterceptor');
     }])
     .run(['$rootScope', '$state', '$stateParams', 'authorization', 'principal',
@@ -60,7 +62,7 @@ angular.module('udoApp', [
                 }
                 else {
                     principal.identity()
-                        .then(function(){
+                        .then(function () {
                             authorization.authorize();
                         });
                 }

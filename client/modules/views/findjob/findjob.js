@@ -15,7 +15,15 @@
                 },
                 controller: 'FindjobCtrl',
                 controllerAs: 'ctrl',
-                templateUrl: 'modules/views/findjob/findjob.tpl.html'
+                templateUrl: 'modules/views/findjob/findjob.tpl.html',
+                resolve: {
+                    openTasks: function(TasksService) {
+                        return TasksService.getOpenTasks()
+                            .then(function(result) {
+                                return result.data;
+                            })
+                    }
+                }
             })
     }
 

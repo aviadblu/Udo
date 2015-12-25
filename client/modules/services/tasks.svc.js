@@ -8,5 +8,9 @@ angular.module('udo.services')
         this.userTasks = function() {
             return $http.get('/api/users/user-tasks');
         };
+
+        this.getOpenTasks = function() {
+            return $http.get('/api/tasks');
+        };
     
     }]);
