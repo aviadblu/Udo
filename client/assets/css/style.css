@@ -6082,3 +6082,14 @@ html, body {
     font-size: 60%;
     padding: 5px;
     text-decoration: underline; }
+
+.taskPostDone {
+  background-color: #00C3BF;
+  text-align: center; }
+  .taskPostDone h2 {
+    margin-top: 100px;
+    color: #FFF; }
+  .taskPostDone .btn {
+    padding: 15px 30px;
+    font-size: 130%;
+    margin: 10px; }

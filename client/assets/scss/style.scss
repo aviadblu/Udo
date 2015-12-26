@@ -114,3 +114,19 @@ html, body {
     }
   }
 }
+
+.taskPostDone {
+  background-color: $main-bg-color;
+  text-align: center;
+
+  h2 {
+    margin-top:100px;
+    color: $main-bg-text-color;
+  }
+
+  .btn {
+    padding: 15px 30px;
+    font-size: 130%;
+    margin:10px;
+  }
+}

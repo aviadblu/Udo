@@ -98,10 +98,10 @@
         </div>
     </div>
     <div ng-show="ctrl.currentStep === 'taskPostDone'">
-        <div class="modal-body">
-            Your task posted! <br>
-            <button class="btn btn-primary" type="button" ng-click="ctrl.reset()">Post another task</button>
-            <button class="btn btn-primary" type="button" ng-click="ctrl.cancel()">Close</button>
+        <div class="modal-body taskPostDone">
+            <h2>Your task posted!</h2>
+            <button class="btn btn-success" type="button" ng-click="ctrl.reset()">Post another task</button>
+            <button class="btn btn-warning" type="button" ng-click="ctrl.cancel()">Close</button>
         </div>
     </div>
 </div>
