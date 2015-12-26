@@ -6021,7 +6021,7 @@ html, body {
   z-index: 0; }
 
 .map-search {
-  width: 70%;
+  max-width: 70%;
   margin-top: 10px; }
 
 .pac-container {
@@ -6029,6 +6029,12 @@ html, body {
 
 .modal-dialog {
   color: #000; }
+
+.modal-body.map-success {
+  background-color: #00C3BF; }
+
+.modal-body.map-failed {
+  background-color: #f2dede; }
 
 .loader {
   width: 100%;

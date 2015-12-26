@@ -7,6 +7,8 @@ module.exports = function(app) {
     
     app.use('/api/tasks', require('./modules/entities/tasks/routes'));
 
+    app.use('/api/locations', require('./modules/entities/locations/routes'));
+
     app.get('/*', function(req, res) {
         res.sendFile(path.resolve(__dirname, '../client/index.html'));
     });

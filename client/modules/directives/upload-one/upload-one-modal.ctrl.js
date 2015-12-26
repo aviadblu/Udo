@@ -5,7 +5,7 @@ angular.module('udo.controllers')
             $scope.place = param;
         }
     })
-    .controller('uploadOneModalCtrl', ['$scope', '$uibModalInstance', 'TasksService', function ($scope, $uibModalInstance, TasksService) {
+    .controller('uploadOneModalCtrl', ['$scope', '$uibModalInstance', 'TasksService', 'LocationsService', function ($scope, $uibModalInstance, TasksService, LocationsService) {
         var ctrl = this;
         ctrl.loading = false;
         ctrl.cancel = function () {
@@ -63,56 +63,6 @@ angular.module('udo.controllers')
         };
 
 
-        var allowedCountries = {
-            'Germany': {
-                allowAll: false,
-                allowedCities: ['Berlin']
-            },
-            'Israel': {
-                allowAll: true
-            }
-        };
-
-        function analyzeAddress(gmapSearchBoxObject) {
-
-            if (!gmapSearchBoxObject.address_components) {
-                console.log('cant analyze address');
-                return false;
-            }
-
-            try {
-                var formatAddressArr = gmapSearchBoxObject.formatted_address.split(',');
-                var country = formatAddressArr[formatAddressArr.length - 1].replace(' ', '');
-
-                if (allowedCountries[country]) {
-
-                    if (!allowedCountries[country].allowAll) {
-
-                        var cities = allowedCountries[country].allowedCities;
-                        for (var i = 0; i < gmapSearchBoxObject.address_components.length; i++) {
-                            if (cities.indexOf(gmapSearchBoxObject.address_components[i].long_name) > -1) {
-                                return true;
-                            }
-                        }
-                        console.log('city blocked');
-                        return false;
-
-                    }
-                    else {
-                        return true;
-                    }
-                }
-                else {
-                    console.log('country blocked');
-                    return false;
-                }
-            }
-            catch (err) {
-                console.log(err);
-                return false;
-            }
-        }
-
         function formatAddress(gmapSearchBoxObject) {
             return {
                 name: gmapSearchBoxObject.formatted_address,
@@ -123,7 +73,7 @@ angular.module('udo.controllers')
         }
 
         var newMarkers = [];
-        var addressCheck = false;
+        ctrl.addressCheck = null;
         var formattedAddress = null;
         var events = {
             places_changed: function (searchBox) {
@@ -135,8 +85,8 @@ angular.module('udo.controllers')
                     return;
                 }
 
-                addressCheck = analyzeAddress(gmapSearchBoxObjectsArr[0]);
-                if(addressCheck) {
+                ctrl.addressCheck = LocationsService.analyzeAddress(gmapSearchBoxObjectsArr[0]);
+                if(ctrl.addressCheck) {
                     ctrl.errors = [];
                     formattedAddress = formatAddress(gmapSearchBoxObjectsArr[0]);
                 }
@@ -216,7 +166,7 @@ angular.module('udo.controllers')
 
         ctrl.saveLocation = function () {
             ctrl.errors = [];
-            if (!addressCheck) {
+            if (!ctrl.addressCheck) {
                 ctrl.errors.push('Invalid address');
             }
             else {

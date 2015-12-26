@@ -11,7 +11,7 @@
         <div class="modal-header">
             <h3 class="modal-title">Where is the task?</h3>
         </div>
-        <div class="modal-body">
+        <div class="modal-body" ng-class="{'map-success': ctrl.addressCheck, 'map-failed': ctrl.addressCheck === false}">
             <ui-gmap-google-map center='ctrl.map.center' zoom='ctrl.map.zoom' draggable="true" options="ctrl.options">
                 <ui-gmap-search-box template="ctrl.searchbox.template" events="ctrl.searchbox.events"></ui-gmap-search-box>
                 <ui-gmap-markers idkey="ctrl.map.idkey" models="ctrl.map.markers" coords="'self'" icon="'icon'" click="'onClicked'"></ui-gmap-markers>
