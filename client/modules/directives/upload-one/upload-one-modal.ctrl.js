@@ -1,17 +1,17 @@
 angular.module('udo.controllers')
     .controller('WindowCtrl', function ($scope) {
         $scope.place = {};
-        $scope.showPlaceDetails = function(param) {
+        $scope.showPlaceDetails = function (param) {
             $scope.place = param;
         }
     })
-    .controller('uploadOneModalCtrl', ['$scope', '$uibModalInstance', 'TasksService', function($scope, $uibModalInstance, TasksService){
+    .controller('uploadOneModalCtrl', ['$scope', '$uibModalInstance', 'TasksService', function ($scope, $uibModalInstance, TasksService) {
         var ctrl = this;
         ctrl.loading = false;
-        ctrl.cancel = function() {
+        ctrl.cancel = function () {
             $uibModalInstance.dismiss('cancel');
         };
- 
+
         var _taskData = {};
         ctrl.form = {
             field: undefined,
@@ -25,10 +25,10 @@ angular.module('udo.controllers')
 
         ctrl.selected = {
             options: {
-                visible:false
+                visible: false
 
             },
-            templateurl:'modules/directives/upload-one/window.tpl.html',
+            templateurl: 'modules/directives/upload-one/window.tpl.html',
             templateparameter: {}
         };
 
@@ -47,7 +47,7 @@ angular.module('udo.controllers')
                 idle: function (map) {
 
                 },
-                dragend: function(map) {
+                dragend: function (map) {
                     //update the search box bounds after dragging the map
                     var bounds = map.getBounds();
                     var ne = bounds.getNorthEast();
@@ -61,32 +61,105 @@ angular.module('udo.controllers')
         ctrl.options = {
             scrollwheel: true
         };
-        
+
+
+        var allowedCountries = {
+            'Germany': {
+                allowAll: false,
+                allowedCities: ['Berlin']
+            },
+            'Israel': {
+                allowAll: true
+            }
+        };
+
+        function analyzeAddress(gmapSearchBoxObject) {
+
+            if (!gmapSearchBoxObject.address_components) {
+                console.log('cant analyze address');
+                return false;
+            }
+
+            try {
+                var formatAddressArr = gmapSearchBoxObject.formatted_address.split(',');
+                var country = formatAddressArr[formatAddressArr.length - 1].replace(' ', '');
+
+                if (allowedCountries[country]) {
+
+                    if (!allowedCountries[country].allowAll) {
+
+                        var cities = allowedCountries[country].allowedCities;
+                        for (var i = 0; i < gmapSearchBoxObject.address_components.length; i++) {
+                            if (cities.indexOf(gmapSearchBoxObject.address_components[i].long_name) > -1) {
+                                return true;
+                            }
+                        }
+                        console.log('city blocked');
+                        return false;
+
+                    }
+                    else {
+                        return true;
+                    }
+                }
+                else {
+                    console.log('country blocked');
+                    return false;
+                }
+            }
+            catch (err) {
+                console.log(err);
+                return false;
+            }
+        }
+
+        function formatAddress(gmapSearchBoxObject) {
+            return {
+                name: gmapSearchBoxObject.formatted_address,
+                latitude: gmapSearchBoxObject.geometry.location.lat(),
+                longitude: gmapSearchBoxObject.geometry.location.lng(),
+                fullData: gmapSearchBoxObject
+            };
+        }
+
         var newMarkers = [];
+        var addressCheck = false;
+        var formattedAddress = null;
         var events = {
             places_changed: function (searchBox) {
-                //console.log('places_changed');
-                places = searchBox.getPlaces();
 
-                if (places.length == 0) {
+                gmapSearchBoxObjectsArr = searchBox.getPlaces();
+
+                if (gmapSearchBoxObjectsArr.length == 0) {
                     newMarkers = [];
                     return;
                 }
+
+                addressCheck = analyzeAddress(gmapSearchBoxObjectsArr[0]);
+                if(addressCheck) {
+                    ctrl.errors = [];
+                    formattedAddress = formatAddress(gmapSearchBoxObjectsArr[0]);
+                }
+                else {
+                    ctrl.errors = ['Invalid address'];
+                    formattedAddress = null;
+                }
+
                 // For each place, get the icon, place name, and location.
                 newMarkers = [];
                 var bounds = new google.maps.LatLngBounds();
-                for (var i = 0, place; place = places[i]; i++) {
+                for (var i = 0, place; place = gmapSearchBoxObjectsArr[i]; i++) {
                     // Create a marker for each place.
                     var marker = {
-                        id:i,
+                        id: i,
                         place_id: place.place_id,
                         name: place.name,
                         latitude: place.geometry.location.lat(),
                         longitude: place.geometry.location.lng(),
                         options: {
-                            visible:false
+                            visible: false
                         },
-                        templateurl:'modules/directives/upload-one/window.tpl.html',
+                        templateurl: 'modules/directives/upload-one/window.tpl.html',
                         templateparameter: place
                     };
                     newMarkers.push(marker);
@@ -105,19 +178,19 @@ angular.module('udo.controllers')
                     }
                 };
 
-                _.each(newMarkers, function(marker) {
-                    marker.closeClick = function() {
+                _.each(newMarkers, function (marker) {
+                    marker.closeClick = function () {
                         ctrl.selected.options.visible = false;
                         marker.options.visble = false;
                         return $scope.$apply();
                     };
-                    marker.onClicked = function() {
+                    marker.onClicked = function () {
                         ctrl.selected.options.visible = false;
                         ctrl.selected = marker;
                         ctrl.selected.options.visible = true;
                     };
                 });
-                
+
                 ctrl.map.center = {
                     latitude: newMarkers[0].latitude,
                     longitude: newMarkers[0].longitude
@@ -129,71 +202,67 @@ angular.module('udo.controllers')
             }
         };
         ctrl.searchbox = {
-            position:'top-left',
+            position: 'top-left',
             options: {
                 bounds: {},
                 visible: true
             },
-            template:'modules/directives/upload-one/gmap-searchbox.tpl.html',
-            events:events
+            template: 'modules/directives/upload-one/gmap-searchbox.tpl.html',
+            events: events
         };
 
 
         ctrl.currentStep = 'provideLocation';
-        
-        ctrl.saveLocation = function() {
+
+        ctrl.saveLocation = function () {
             ctrl.errors = [];
-            if(newMarkers.length === 0) {
-                ctrl.errors.push('Address not found');
+            if (!addressCheck) {
+                ctrl.errors.push('Invalid address');
             }
             else {
-                _taskData.location = {
-                    name: newMarkers[0].name,
-                    latitude: newMarkers[0].latitude,
-                    longitude: newMarkers[0].longitude,
-                };
+                _taskData.location = formattedAddress;
                 ctrl.currentStep = 'provideGeneralData';
             }
         };
-        
-        ctrl.saveGeneralData = function() {
+
+        ctrl.saveGeneralData = function () {
             ctrl.errors = [];
-            
-            if(!ctrl.form.field) {
+
+            if (!ctrl.form.field) {
                 ctrl.errors.push('Please provide field');
             }
-            
-            if(ctrl.errors.length === 0) {
+
+            if (ctrl.errors.length === 0) {
                 _taskData.field = ctrl.form.field;
                 _taskData.description = ctrl.form.description;
-                
+
                 ctrl.currentStep = 'providePricingData';
             }
         };
-        
-        ctrl.savePricingData = function() {
+
+        ctrl.savePricingData = function () {
             ctrl.errors = [];
-            
-            if(!ctrl.form.pricing.rate) {
+
+            if (!ctrl.form.pricing.rate) {
                 ctrl.errors.push('Please provide pricing rate');
             }
-            
-            if(ctrl.errors.length === 0) {
+
+            if (ctrl.errors.length === 0) {
                 _taskData.pricing = ctrl.form.pricing;
                 saveTask(_taskData);
             }
         };
-        
+
         function saveTask(taskData) {
             ctrl.loading = true;
             TasksService.saveTask(taskData)
-                .then(function(response){
+                .then(function (response) {
                     ctrl.loading = false;
                     ctrl.currentStep = 'taskPostDone';
                 });
         }
-        
-        ctrl.reset = function() {
+
+        ctrl.reset = function () {
             ctrl.errors = [];
             ctrl.currentStep = 'provideLocation';
             var lastLocation = _taskData.location;
@@ -209,6 +278,6 @@ angular.module('udo.controllers')
                 }
             };
         };
-        
-        
+
+
     }]);

@@ -13,6 +13,7 @@ router.post('/', function (req, res) {
         req.body.location.name,
         req.body.location.latitude,
         req.body.location.longitude,
+        req.body.location.fullData,
         req.body.field,
         req.body.description,
         req.body.pricing.calc,

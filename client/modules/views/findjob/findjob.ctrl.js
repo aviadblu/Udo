@@ -15,7 +15,7 @@ angular.module('udo.controllers')
                 },
                 {
                     field: 'fname',
-                    name: 'Posted By' ,
+                    name: 'Posted' ,
                     cellTemplate: '<div class="ui-grid-cell-contents grid-user"> <img ng-src="{{row.entity.picture}}"> {{row.entity.time | timeAgo}}</div>'
                 },
                 {

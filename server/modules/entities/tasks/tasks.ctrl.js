@@ -4,16 +4,17 @@ var Q = require('q');
 
 
 module.exports = {
-    newTask: function(userId, location_name, location_latitude, location_longitude, field, description, pricing_calc, pricing_method, pricing_rate) {
+    newTask: function(userId, location_name, location_latitude, location_longitude, location_fulldata, field, description, pricing_calc, pricing_method, pricing_rate) {
         var deferred = Q.defer();
         var timeNow = parseInt(new Date().getTime());
-        var sql = 'INSERT INTO tasks (user_id, status, location_name, location_latitude, location_longitude, field, description, pricing_calc, pricing_method, pricing_rate, time) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING id';
+        var sql = 'INSERT INTO tasks (user_id, status, location_name, location_latitude, location_longitude, location_fulldata, field, description, pricing_calc, pricing_method, pricing_rate, time) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING id';
         var queryParams = [
             userId,
             'open',
             location_name,
             location_latitude,
             location_longitude,
+            location_fulldata,
             field,
             description,
             pricing_calc,

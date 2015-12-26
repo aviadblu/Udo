@@ -53,6 +53,7 @@ CREATE TABLE tasks
   location_name character varying(100),
   location_latitude character varying(20),
   location_longitude character varying(50),
+  location_fulldata json,
   field character varying(50),
   description text,
   pricing_calc character varying(20),
