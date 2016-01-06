@@ -24,7 +24,7 @@
     },
     "console": {
         "@expanded": true,
-        "@height": 369,
+        "@height": 818,
         "@maximized": "false",
         "json()": {
             "meta": {
@@ -44,18 +44,20 @@
                         "tab0"
                     ],
                     "document": {
-                        "changed": false,
-                        "meta": {
-                            "timestamp": 1450625701926
-                        },
                         "filter": true,
                         "title": "Terminal",
                         "terminal": {
                             "id": "devel_598",
                             "cwd": "",
-                            "width": 858,
-                            "height": 343
-                        }
+                            "width": 1498,
+                            "height": 506,
+                            "scrollTop": 13756
+                        },
+                        "hash": "67452301efcdab8998badcfe10325476c3d2e1f0",
+                        "meta": {
+                            "timestamp": 1450625701926
+                        },
+                        "changed": false
                     },
                     "editorType": "terminal",
                     "active": false
@@ -77,8 +79,8 @@
                         "terminal": {
                             "id": "devel_559",
                             "cwd": "",
-                            "width": 858,
-                            "height": 343
+                            "width": 1258,
+                            "height": 792
                         }
                     },
                     "editorType": "terminal",
@@ -102,8 +104,8 @@
                         "terminal": {
                             "id": "devel_832",
                             "cwd": "",
-                            "width": 858,
-                            "height": 343
+                            "width": 1258,
+                            "height": 792
                         }
                     },
                     "editorType": "terminal",
@@ -130,16 +132,16 @@
             "@ace": 1,
             "@acestatus": 1,
             "@divider": 4,
-            "@document": 64,
+            "@document": 4,
             "@form": 5,
             "@imgeditor": 1,
             "@immediate": 1,
             "@menu": 5,
             "@menuitem": 13,
             "@pane": 2,
-            "@session": 64,
-            "@tab": 64,
-            "@undoManager": 64
+            "@session": 3,
+            "@tab": 16,
+            "@undoManager": 4
         }
     },
     "findinfiles": {
@@ -157,7 +159,7 @@
     "panecycle": {
         "json()": [
             "tab14",
-            "tab63"
+            "tab11"
         ]
     },
     "panels": {
@@ -189,7 +191,7 @@
         }
     },
     "projecttree": {
-        "@scrollpos": 14,
+        "@scrollpos": 50,
         "@showfs": true,
         "expanded": {
             "json()": [
@@ -200,7 +202,6 @@
                 "/client/bower_components/bootstrap-sass/assets/fonts",
                 "/client/bower_components/bootstrap-sass/assets/fonts/bootstrap",
                 "/client",
-                "/client/modules/directives",
                 "/server/modules/entities/tasks",
                 "/postgres",
                 "/server/modules/entities/users",
@@ -209,9 +210,14 @@
                 "/server/modules/auth",
                 "/server/modules/db",
                 "/client/modules",
-                "/client/modules/views/app",
-                "/client/modules/views",
-                "/client/modules/directives/user-top"
+                "/client/modules/views/homepage",
+                "/client/modules/views/findjob",
+                "/client/assets",
+                "/client/assets/scss",
+                "/client/modules/directives",
+                "/client/modules/directives/upload-one",
+                "/client/modules/directives/search-task",
+                "/client/modules/views"
             ]
         }
     },
@@ -227,6 +233,7 @@
         },
         "search": {
             "json()": [
+                "h1",
                 "cancel",
                 "console.log",
                 "newMarkers",
@@ -252,169 +259,27 @@
             "focus": "tab14",
             "meta": {
                 "accessList": [
-                    "tab63",
-                    "tab61",
-                    "tab58",
-                    "tab60",
-                    "tab59",
-                    "tab53",
-                    "tab54",
-                    "tab57",
-                    "tab56",
-                    "tab55",
-                    "tab48",
-                    "tab44",
-                    "tab39",
-                    "tab36",
-                    "tab34",
-                    "tab32",
-                    "tab30",
-                    "tab29",
-                    "tab28",
-                    "tab25",
-                    "tab22",
-                    "tab20",
-                    "tab12",
-                    "tab7"
+                    "tab11"
                 ]
             },
             "name": "pane0",
             "nodes": [
                 {
                     "type": "tab",
-                    "name": "tab53",
-                    "path": "/client/modules/directives/upload-one/upload-one-modal.ctrl.js",
+                    "name": "tab11",
+                    "path": "/client/modules/directives/search-task/search-task.drtv.js",
                     "className": [
-                        "tab53"
+                        "tab11",
+                        "saved"
                     ],
                     "document": {
                         "changed": false,
                         "meta": {
-                            "timestamp": 1451047572335
+                            "timestamp": 1451922365434
                         },
                         "filter": true,
-                        "title": "upload-one-modal.ctrl.js",
-                        "tooltip": "/client/modules/directives/upload-one/upload-one-modal.ctrl.js",
-                        "ace": {}
-                    },
-                    "editorType": "ace",
-                    "active": false
-                },
-                {
-                    "type": "tab",
-                    "name": "tab54",
-                    "path": "/client/modules/directives/upload-one/upload-one-modal.tpl.html",
-                    "className": [
-                        "tab54"
-                    ],
-                    "document": {
-                        "changed": false,
-                        "meta": {
-                            "timestamp": 1451047092853
-                        },
-                        "filter": true,
-                        "title": "upload-one-modal.tpl.html",
-                        "tooltip": "/client/modules/directives/upload-one/upload-one-modal.tpl.html",
-                        "ace": {}
-                    },
-                    "editorType": "ace",
-                    "active": false
-                },
-                {
-                    "type": "tab",
-                    "name": "tab57",
-                    "path": "/client/assets/scss/style.scss",
-                    "className": [
-                        "tab57"
-                    ],
-                    "document": {
-                        "changed": false,
-                        "meta": {
-                            "timestamp": 1451047013473
-                        },
-                        "filter": true,
-                        "title": "style.scss",
-                        "tooltip": "/client/assets/scss/style.scss",
-                        "ace": {}
-                    },
-                    "editorType": "ace",
-                    "active": false
-                },
-                {
-                    "type": "tab",
-                    "name": "tab58",
-                    "path": "/server/modules/auth/routes.js",
-                    "className": [
-                        "tab58"
-                    ],
-                    "document": {
-                        "changed": false,
-                        "meta": {
-                            "timestamp": 1451048130079
-                        },
-                        "filter": true,
-                        "title": "routes.js",
-                        "tooltip": "/server/modules/auth/routes.js",
-                        "ace": {}
-                    },
-                    "editorType": "ace",
-                    "active": false
-                },
-                {
-                    "type": "tab",
-                    "name": "tab60",
-                    "path": "/client/modules/directives/user-top/user-top.drtv.js",
-                    "className": [
-                        "tab60"
-                    ],
-                    "document": {
-                        "changed": false,
-                        "meta": {
-                            "timestamp": 1451047949920
-                        },
-                        "filter": true,
-                        "title": "user-top.drtv.js",
-                        "tooltip": "/client/modules/directives/user-top/user-top.drtv.js",
-                        "ace": {}
-                    },
-                    "editorType": "ace",
-                    "active": false
-                },
-                {
-                    "type": "tab",
-                    "name": "tab61",
-                    "path": "/client/modules/directives/user-top/user-top.tpl.html",
-                    "className": [
-                        "tab61"
-                    ],
-                    "document": {
-                        "changed": false,
-                        "meta": {
-                            "timestamp": 1451048002553
-                        },
-                        "filter": true,
-                        "title": "user-top.tpl.html",
-                        "tooltip": "/client/modules/directives/user-top/user-top.tpl.html",
-                        "ace": {}
-                    },
-                    "editorType": "ace",
-                    "active": false
-                },
-                {
-                    "type": "tab",
-                    "name": "tab63",
-                    "path": "/server/modules/entities/users/routes.js",
-                    "className": [
-                        "tab63"
-                    ],
-                    "document": {
-                        "changed": false,
-                        "meta": {
-                            "timestamp": 1451048189174
-                        },
-                        "filter": true,
-                        "title": "routes.js",
-                        "tooltip": "/server/modules/entities/users/routes.js",
+                        "title": "search-task.drtv.js",
+                        "tooltip": "/client/modules/directives/search-task/search-task.drtv.js",
                         "ace": {}
                     },
                     "editorType": "ace",
@@ -428,7 +293,7 @@
     },
     "tree_selection": {
         "json()": [
-            "/server/modules/entities/users/routes.js"
+            "/client/assets/scss/purecss-tpl.scss"
         ]
     }
 }

@@ -1,11 +1,14 @@
 <div class="content-wrapper pages">
     <div class="content">
-        <h2 class="content-head is-center">Latest open tasks:</h2>
-
-        <div ui-grid="ctrl.tasksGridOptions" class="grid" ng-init="ctrl.initGrid()"></div>
-
+        <uib-tabset justified="true">
+            <uib-tab heading="Search">
+                search content
+            </uib-tab>
+            <uib-tab heading="Browse">
+                <h2 class="content-head is-center">Latest open tasks:</h2>
+                <div ui-grid="ctrl.tasksGridOptions" class="grid" ng-init="ctrl.initGrid()"></div>
+            </uib-tab>
+        </uib-tabset>
     </div>
-
     <div ng-include src="'modules/views/footer/footer.tpl.html'"></div>
-
 </div>
