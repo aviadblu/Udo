@@ -136,3 +136,10 @@ html, body {
 //   margin:0px auto;
 //   position:relative;
 // }
+
+#gmap-container {
+  position: absolute;
+  width:100%;
+  height:calc(100% - 62px);
+  margin-top:62px;
+}

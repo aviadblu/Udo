@@ -6,10 +6,22 @@ angular.module('udo.directives')
             replace: true,
             templateUrl: 'modules/directives/search-task/search-task.tpl.html',
             controllerAs: 'ctrl',
-            controller: ['principal', function(principal) {
+            controller: ['MapSearchService', function(MapSearchService) {
                 var ctrl = this;
-                ctrl.authenticated = principal.isAuthenticated();
 
+                var _key;
+
+                ctrl.searchKey = function (newKey) {
+                    function ifChanged() {
+                        _key = newKey;
+                        MapSearchService.nameChanged(_key);
+                        return _key;
+                    }
+
+                    return arguments.length ? ifChanged() : _key;
+                };
+
+                MapSearchService.initializeSearchBox("gmap-search");
             }]
         };
     }]);

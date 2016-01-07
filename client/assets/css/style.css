@@ -5888,7 +5888,7 @@ a.pure-button-primary {
   overflow: hidden;
   /* The following styles are required for the "scroll-over" effect */
   width: 100%;
-  height: 88%;
+  height: 70%;
   top: 0;
   left: 0;
   position: fixed !important; }
@@ -6091,3 +6091,9 @@ html, body {
     padding: 15px 30px;
     font-size: 130%;
     margin: 10px; }
+
+#gmap-container {
+  position: absolute;
+  width: 100%;
+  height: calc(100% - 62px);
+  margin-top: 62px; }

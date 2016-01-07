@@ -2,10 +2,15 @@
 # example Dockerfile for https://docs.docker.com/examples/postgresql_service/
 #
 
-FROM ubuntu
+FROM ubuntu:14.04
 MAINTAINER SvenDowideit@docker.com
 
+ENV http_proxy 'http://16.42.57.12:8080'
+ENV https_proxy 'http://16.42.57.12:8080'
+ENV HTTP_PROXY 'http://16.42.57.12:8080'
+ENV HTTPS_PROXY 'http://16.42.57.12:8080'
 
+#RUN echo 'Acquire::http::Proxy "http://16.42.57.12:8080/";' > /etc/apt/apt.conf.d/proxy
 
 # Add the PostgreSQL PGP key to verify their Debian packages.
 # It should be the same key as https://www.postgresql.org/media/keys/ACCC4CF8.asc

@@ -72,7 +72,7 @@ gulp.task("refresh", ["injectIndex"], function(){
 });
 
 
-gulp.task('default', ['styles','injectIndex', 'watch'], function () {
+gulp.task('default', ['build', 'watch'], function () {
 
 });
 
