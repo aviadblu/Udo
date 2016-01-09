@@ -114,6 +114,7 @@ a.pure-button-primary {
  */
 .splash-container {
   background: #1f8dd6 url(../img/hp-slides/bg1.jpg) center top no-repeat;
+  background-size: 100%;
   z-index: 1;
   overflow: hidden;
   /* The following styles are required for the "scroll-over" effect */

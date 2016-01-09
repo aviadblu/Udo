@@ -5887,6 +5887,7 @@ a.pure-button-primary {
  */
 .splash-container {
   background: #1f8dd6 url(../img/hp-slides/bg1.jpg) center top no-repeat;
+  background-size: 100%;
   z-index: 1;
   overflow: hidden;
   /* The following styles are required for the "scroll-over" effect */
@@ -6125,6 +6126,7 @@ html, body {
       width: 45%;
       height: 40px; }
       .hp-search-wrapper .search-task-form .location-input-wrapper #gmap-search {
+        color: #333;
         width: 100%;
         height: 100%;
         padding: 0px 10px;
