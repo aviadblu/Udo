@@ -1,28 +1,41 @@
 angular.module('udo.directives')
-    .directive('searchTask', [function(){
+    .directive('searchTask', ['TasksService', function(TasksService){
         return {
             restrict: 'E',
             scope: {},
             replace: true,
             templateUrl: 'modules/directives/search-task/search-task.tpl.html',
             controllerAs: 'ctrl',
-            controller: ['MapSearchService', function(MapSearchService) {
+            controller: ['$element', '$timeout', 'MapSearchService',function(element, $timeout, MapSearchService) {
                 var ctrl = this;
 
-                var _key;
-
-                ctrl.searchKey = function (newKey) {
-                    function ifChanged() {
-                        _key = newKey;
-                        MapSearchService.nameChanged(_key);
-                        return _key;
-                    }
-
-                    return arguments.length ? ifChanged() : _key;
+                ctrl.form = {
+                    place: null,
+                    field: null
                 };
 
-                MapSearchService.initializeSearchBox("gmap-search");
+                function initAutocomplete() {
+                  var place;
+                  var autocomplete = new google.maps.places.Autocomplete((document.getElementById("gmap-search")),{types: ['geocode']});
+                  autocomplete.addListener('place_changed', function(){
+                    place = autocomplete.getPlace();
+                    ctrl.form.place = place;
+                  });
+                }
+
+                $timeout(initAutocomplete, 200);
+
+                TasksService.getFields().then(function(data){
+                  ctrl.fieldsList = data;
+                  ctrl.form.field = ctrl.fieldsList[0];
+                });
+
+                ctrl.search = function() {
+                  if(ctrl.form.place && ctrl.form.field) {
+                    console.log("search now");
+                    console.log(ctrl.form);
+                  }
+                };
             }]
         };
     }]);
-

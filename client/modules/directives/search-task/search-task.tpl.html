@@ -1,3 +1,20 @@
 <div class="search-task-form">
-    <input type="text" id="gmap-search" placeholder="Insert location" ng-model="ctrl.searchKey" ng-model-options="{ getterSetter: true , debounce: 1000}" >
+
+    <div class="location-input-wrapper">
+      <input type="text" id="gmap-search" placeholder="Where do you live?">
+    </div>
+
+    <ui-select ng-model="ctrl.form.field">
+        <ui-select-match>
+            <span ng-bind="$select.selected.name"></span>
+        </ui-select-match>
+        <ui-select-choices repeat="item in (ctrl.fieldsList | filter: $select.search) track by item.id">
+            <span ng-bind="item.name"></span>
+        </ui-select-choices>
+    </ui-select>
+
+    <div class="search-btn-wrapper">
+        <button class="btn" ng-click="ctrl.search()">Search</button>
+    </div>
+
 </div>

@@ -8,6 +8,7 @@
 @import url(../../bower_components/pure/pure.css);
 @import url(../../bower_components/pure/grids-responsive.css);
 @import url(../../bower_components/angular-ui-grid/ui-grid.css);
+@import url(../../bower_components/ui-select/dist/select.css);
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -5044,11 +5045,13 @@ button.close {
   outline: 0; }
   .modal.fade .modal-dialog {
     -webkit-transform: translate(0, -25%);
+    -ms-transform: translate(0, -25%);
     transform: translate(0, -25%);
     -webkit-transition: -webkit-transform 0.3s ease-out;
     transition: transform 0.3s ease-out; }
   .modal.in .modal-dialog {
     -webkit-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
     transform: translate(0, 0); }
 
 .modal-open .modal {
@@ -5883,12 +5886,12 @@ a.pure-button-primary {
  * This is the blue top section that appears on the page.
  */
 .splash-container {
-  background: #1f8dd6 url(../img/bg.jpg) center top no-repeat;
+  background: #1f8dd6 url(../img/hp-slides/bg1.jpg) center top no-repeat;
   z-index: 1;
   overflow: hidden;
   /* The following styles are required for the "scroll-over" effect */
   width: 100%;
-  height: 70%;
+  height: 600px;
   top: 0;
   left: 0;
   position: fixed !important; }
@@ -6053,17 +6056,21 @@ html, body {
 .postTaskModal .modal-body {
   min-height: 300px; }
 
-.home-menu li a.facebook-btn {
-  background-color: #2E5A94;
-  color: #fff; }
+.home-menu {
+  background-color: rgba(0, 195, 191, 0.7); }
+  .home-menu li a.facebook-btn {
+    background-color: #2E5A94;
+    color: #fff; }
 
 .search-task-home {
   cursor: pointer; }
   .search-task-home:hover {
     background-color: #00C3BF; }
 
-.content-wrapper.pages {
-  top: 60px; }
+.content-wrapper {
+  top: 600px; }
+  .content-wrapper.pages {
+    top: 60px; }
 
 .grid-user img {
   height: 27px;
@@ -6097,3 +6104,64 @@ html, body {
   width: 100%;
   height: calc(100% - 62px);
   margin-top: 62px; }
+
+.hp-search-wrapper {
+  position: absolute;
+  z-index: 3;
+  background-color: rgba(0, 0, 0, 0.5);
+  top: 500px;
+  height: 100px;
+  padding: 30px;
+  width: 100%;
+  text-align: center; }
+  .hp-search-wrapper .search-task-form {
+    position: relative;
+    margin: 0px auto;
+    max-width: 700px; }
+    .hp-search-wrapper .search-task-form > div {
+      float: left; }
+    .hp-search-wrapper .search-task-form .location-input-wrapper {
+      display: inline-block;
+      width: 45%;
+      height: 40px; }
+      .hp-search-wrapper .search-task-form .location-input-wrapper #gmap-search {
+        width: 100%;
+        height: 100%;
+        padding: 0px 10px;
+        line-height: 40px;
+        border: 0;
+        border-right: 1px solid #00C3BF; }
+    .hp-search-wrapper .search-task-form .ui-select-container {
+      display: inline-block;
+      width: 35%;
+      height: 40px;
+      margin: 0px;
+      padding: 0;
+      border: 0; }
+      .hp-search-wrapper .search-task-form .ui-select-container .ui-select-match {
+        width: 100%;
+        height: 100%; }
+      .hp-search-wrapper .search-task-form .ui-select-container .ui-select-toggle {
+        height: 100%;
+        border-radius: 0;
+        border: 0;
+        line-height: 40px;
+        padding: 0px 10px; }
+      .hp-search-wrapper .search-task-form .ui-select-container .ui-select-search {
+        height: 100%;
+        border-radius: 0;
+        border: 0;
+        line-height: 40px;
+        padding: 0px 10px; }
+      .hp-search-wrapper .search-task-form .ui-select-container .ui-select-choices-row.active > a {
+        background-color: #00C3BF; }
+    .hp-search-wrapper .search-task-form .search-btn-wrapper {
+      display: inline-block;
+      width: 20%; }
+      .hp-search-wrapper .search-task-form .search-btn-wrapper button {
+        background-color: #00C3BF;
+        color: #fff;
+        border-radius: 0;
+        text-transform: uppercase;
+        height: 40px;
+        width: 100%; }

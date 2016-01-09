@@ -42,6 +42,8 @@ angular.module('udoApp', [
         'uiGmapgoogle-maps',
         'ui.grid',
         'yaru22.angular-timeago',
+        'ui.select',
+        'ngSanitize',
         'udo'
     ])
     .config(['$locationProvider', '$stateProvider', '$urlRouterProvider', function ($locationProvider, $stateProvider, $urlRouterProvider) {

@@ -33,3 +33,5 @@ bower_components
 client/css
 .c9/
 .c9/*
+
+.DS_Store

@@ -3,9 +3,11 @@
 @import "../../bower_components/pure/grids-responsive.css";
 @import "./purecss-tpl";
 @import "../../bower_components/angular-ui-grid/ui-grid.css";
+@import "../../bower_components/ui-select/dist/select.css";
 
 
 $main-bg-color: #00C3BF;
+$faild-color: #f2dede;
 $main-bg-text-color: #FFF;
 
 html, body {
@@ -41,11 +43,11 @@ html, body {
 
 .modal-body {
   &.map-success {
-    background-color: #00C3BF;
+    background-color: $main-bg-color;
   }
 
   &.map-failed {
-    background-color: #f2dede;
+    background-color: $faild-color;
   }
 }
 
@@ -74,9 +76,12 @@ html, body {
   }
 }
 
-.home-menu li a.facebook-btn {
-  background-color: #2E5A94;
-  color: #fff;
+.home-menu {
+  background-color: rgba(0, 195, 191, 0.7);
+  li a.facebook-btn {
+    background-color: #2E5A94;
+    color: #fff;
+  }
 }
 
 .search-task-home {
@@ -87,8 +92,11 @@ html, body {
   }
 }
 
-.content-wrapper.pages {
-  top: 60px;
+.content-wrapper {
+  top: 600px;
+  &.pages {
+    top: 60px;
+  }
 }
 
 .grid-user {
@@ -142,4 +150,87 @@ html, body {
   width:100%;
   height:calc(100% - 62px);
   margin-top:62px;
+}
+
+.hp-search-wrapper {
+  position: absolute;
+  z-index: 3;
+  background-color: rgba(0, 0, 0, 0.5);
+  top: 500px;
+  height: 100px;
+  padding: 30px;
+  width: 100%;
+  text-align: center;
+
+  .search-task-form {
+    position: relative;
+    margin: 0px auto;
+    max-width: 700px;
+
+    &>div {
+      float:left;
+    }
+
+    .location-input-wrapper {
+      display:inline-block;
+      width:45%;
+      height:40px;
+      #gmap-search {
+        width:100%;
+        height:100%;
+        padding:0px 10px;
+        line-height:40px;
+        border:0;
+        border-right: 1px solid $main-bg-color;
+      }
+    }
+
+
+    .ui-select-container {
+      display:inline-block;
+      width:35%;
+      height:40px;
+      margin: 0px;
+      padding:0;
+      border:0;
+
+      .ui-select-match {
+          width:100%;
+          height:100%;
+      }
+
+      .ui-select-toggle {
+        height:100%;
+        border-radius: 0;
+        border:0;
+        line-height: 40px;
+        padding: 0px 10px;
+      }
+
+      .ui-select-search {
+        height:100%;
+        border-radius: 0;
+        border:0;
+        line-height: 40px;
+        padding:0px 10px;
+      }
+
+      .ui-select-choices-row.active>a {
+        background-color: $main-bg-color;
+      }
+    }
+
+    .search-btn-wrapper {
+      display:inline-block;
+      width: 20%;
+      button {
+        background-color: $main-bg-color;
+        color: #fff;
+        border-radius: 0;
+        text-transform: uppercase;
+        height:40px;
+        width: 100%;
+      }
+    }
+  }
 }
