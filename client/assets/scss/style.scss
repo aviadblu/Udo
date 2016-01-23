@@ -9,9 +9,22 @@
 $main-bg-color: #00C3BF;
 $faild-color: #f2dede;
 $main-bg-text-color: #FFF;
+$header-height: 66px;
+$footer-height: 60px;
 
 html, body {
   height: 100%;
+}
+
+input[type=text],
+input[type=number] {
+  &:focus {
+    outline: none;
+  }
+}
+
+.footer {
+  height: $footer-height;
 }
 
 .modal-bottom-navigation {
@@ -95,7 +108,7 @@ html, body {
 .content-wrapper {
   top: 600px;
   &.pages {
-    top: 60px;
+    top: $header-height;
   }
 }
 
@@ -231,6 +244,70 @@ html, body {
         text-transform: uppercase;
         height:40px;
         width: 100%;
+      }
+    }
+  }
+}
+
+.content-wrapper.pages.search-results {
+  height: calc(100% - #{$header-height});
+  .search-bar {
+    height:50px;
+    border-bottom:1px solid #dce0e0;
+
+    .address {
+      width: 400px;
+      display:inline-block;
+      float:left;
+      padding:10px;
+      line-height:30px;
+      border-right:1px solid #dce0e0;
+      input[type=text] {
+        height:30px;
+        line-height:30px;
+        width:100%;
+        border:0;
+      }
+    }
+  }
+
+  .radius {
+    display:inline-block;
+    float:left;
+    padding:10px;
+    line-height:30px;
+    border-right:1px solid #dce0e0;
+    input[type=number] {
+      height:30px;
+      line-height:30px;
+      width:30px;
+      border:0;
+    }
+  }
+
+  .search-grid {
+    height: calc(100% - #{$footer-height} - 50px);
+    &.row {
+      margin-right:0;
+      margin-left:0;
+    }
+
+    .list-results {
+      height:100%;
+      border-right:1px solid #dce0e0;
+      padding-right: 0px;
+      padding-left: 0px;
+    }
+
+    .map-results {
+      height:100%;
+      padding-right: 0px;
+      padding-left: 0px;
+      .angular-google-map {
+        height:100%;
+        .angular-google-map-container {
+          height:100%;
+        }
       }
     }
   }

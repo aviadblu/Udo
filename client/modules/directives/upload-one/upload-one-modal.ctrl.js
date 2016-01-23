@@ -12,6 +12,11 @@ angular.module('udo.controllers')
             $uibModalInstance.dismiss('cancel');
         };
 
+        TasksService.getFields().then(function(data){
+          ctrl.fieldsList = data;
+          ctrl.form.field = ctrl.fieldsList[0];
+        });
+
         var _taskData = {};
         ctrl.form = {
             field: undefined,
@@ -26,7 +31,6 @@ angular.module('udo.controllers')
         ctrl.selected = {
             options: {
                 visible: false
-
             },
             templateurl: 'modules/directives/upload-one/window.tpl.html',
             templateparameter: {}

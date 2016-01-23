@@ -6013,6 +6013,13 @@ a.pure-button-primary {
 html, body {
   height: 100%; }
 
+input[type=text]:focus,
+input[type=number]:focus {
+  outline: none; }
+
+.footer {
+  height: 60px; }
+
 .modal-bottom-navigation .btn.cancel, .modal-bottom-navigation .btn.back {
   float: left; }
 
@@ -6071,7 +6078,7 @@ html, body {
 .content-wrapper {
   top: 600px; }
   .content-wrapper.pages {
-    top: 60px; }
+    top: 66px; }
 
 .grid-user img {
   height: 27px;
@@ -6167,3 +6174,50 @@ html, body {
         text-transform: uppercase;
         height: 40px;
         width: 100%; }
+
+.content-wrapper.pages.search-results {
+  height: calc(100% - 66px); }
+  .content-wrapper.pages.search-results .search-bar {
+    height: 50px;
+    border-bottom: 1px solid #dce0e0; }
+    .content-wrapper.pages.search-results .search-bar .address {
+      width: 400px;
+      display: inline-block;
+      float: left;
+      padding: 10px;
+      line-height: 30px;
+      border-right: 1px solid #dce0e0; }
+      .content-wrapper.pages.search-results .search-bar .address input[type=text] {
+        height: 30px;
+        line-height: 30px;
+        width: 100%;
+        border: 0; }
+  .content-wrapper.pages.search-results .radius {
+    display: inline-block;
+    float: left;
+    padding: 10px;
+    line-height: 30px;
+    border-right: 1px solid #dce0e0; }
+    .content-wrapper.pages.search-results .radius input[type=number] {
+      height: 30px;
+      line-height: 30px;
+      width: 30px;
+      border: 0; }
+  .content-wrapper.pages.search-results .search-grid {
+    height: calc(100% - 60px - 50px); }
+    .content-wrapper.pages.search-results .search-grid.row {
+      margin-right: 0;
+      margin-left: 0; }
+    .content-wrapper.pages.search-results .search-grid .list-results {
+      height: 100%;
+      border-right: 1px solid #dce0e0;
+      padding-right: 0px;
+      padding-left: 0px; }
+    .content-wrapper.pages.search-results .search-grid .map-results {
+      height: 100%;
+      padding-right: 0px;
+      padding-left: 0px; }
+      .content-wrapper.pages.search-results .search-grid .map-results .angular-google-map {
+        height: 100%; }
+        .content-wrapper.pages.search-results .search-grid .map-results .angular-google-map .angular-google-map-container {
+          height: 100%; }

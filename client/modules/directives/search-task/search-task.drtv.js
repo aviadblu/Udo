@@ -6,7 +6,7 @@ angular.module('udo.directives')
             replace: true,
             templateUrl: 'modules/directives/search-task/search-task.tpl.html',
             controllerAs: 'ctrl',
-            controller: ['$element', '$timeout', 'MapSearchService',function(element, $timeout, MapSearchService) {
+            controller: ['$element', '$timeout', '$state', 'MapSearchService',function(element, $timeout, $state, MapSearchService) {
                 var ctrl = this;
 
                 ctrl.form = {
@@ -32,8 +32,12 @@ angular.module('udo.directives')
 
                 ctrl.search = function() {
                   if(ctrl.form.place && ctrl.form.field) {
-                    console.log("search now");
-                    console.log(ctrl.form);
+                    $state.go('app.s', {
+                      field: ctrl.form.field,
+                      address: ctrl.form.place.formatted_address,
+                      latitude: ctrl.form.place.geometry.location.lat(),
+                      longitude: ctrl.form.place.geometry.location.lng()
+                    });
                   }
                 };
             }]
