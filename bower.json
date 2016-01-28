@@ -12,6 +12,8 @@
     "angular-timeago": "~0.2.4",
     "jquery": "~2.2.0",
     "ui-select": "angular-ui-select#~0.13.2",
-    "angular-sanitize": "~1.4.8"
+    "angular-sanitize": "~1.4.8",
+    "easy-markerwithlabel": "~0.0.1",
+    "angular-slimscroll": "~1.1.5"
   }
 }

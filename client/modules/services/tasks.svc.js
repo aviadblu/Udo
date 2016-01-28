@@ -2,13 +2,24 @@
 angular.module('udo.services')
     .service('TasksService', ['$http', '$q', function ($http, $q) {
 
-        var _fieldsList = [];
-        for(var i = 0;i < 10; i++){
-          _fieldsList.push({
-            id: i+1,
-            name: "field " + (i + 1)
-          });
-        }
+        var _fieldsList = [
+          {
+            id: 1,
+            name: "Laundry",
+            icon: "/assets/img/icons/laundry-icon.png"
+          },
+          {
+            id: 2,
+            name: "Handyman",
+            icon: "/assets/img/icons/handyman-icon.png"
+          }
+        ];
+        // for(var i = 0;i < 10; i++){
+        //   _fieldsList.push({
+        //     id: i+1,
+        //     name: "field " + (i + 1)
+        //   });
+        // }
 
         this.getFields = function() {
           var deferred = $q.defer();
@@ -53,10 +64,11 @@ angular.module('udo.services')
             return $http.get('/api/tasks');
         };
 
-        this.updateDistance = function(currLocation, tasksArr, radius) {
+        this.updateFieldAndDistance = function(currLocation, tasksArr, radius) {
           var retArr = [];
           tasksArr.forEach(function(task){
             task.distance = calculateDist(currLocation, [parseFloat(task.location_latitude), parseFloat(task.location_longitude)]);
+            task.fieldObj = JSON.parse(task.field);
             retArr.push(task);
           });
           return retArr;

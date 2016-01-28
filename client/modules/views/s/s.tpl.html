@@ -1,19 +1,39 @@
 <div class="content-wrapper pages search-results" ng-init="ctrl.init()">
 
-    <div class="search-bar">
-        <div class="address">
-          <input type="text" ng-model="ctrl.address" id="mapSearch" >
-        </div>
-        <div class="radius">
-          Search in radius of <input type="number" ng-model="ctrl.radius"> (Km)
-        </div>
-    </div>
+
     <div class="search-grid row">
       <div class="list-results col-lg-7 col-md-6">
-        left
+        <div class="search-bar">
+            <div class="address">
+              <input type="text" ng-model="ctrl.address" id="mapSearch" >
+            </div>
+            <div class="radius">
+              Search in radius of <input type="number" ng-model="ctrl.radius"> (Km)
+            </div>
+        </div>
+        <div class="tasks-list">
+          <div class="scroll-body">
+            <div class="task" ng-repeat="task in ctrl.tasks">
+                <div class="task-row">
+                  <!-- <label>Field:</label> -->
+                  <img class="field-icon" ng-src="{{task.fieldObj.icon}}"> {{task.fieldObj.name}}
+                  <div class="price">${{task.pricing_rate}}</div>
+                </div>
+                <div class="task-row" ng-if="task.description" ng-bind="task.description"></div>
+                <div class="task-row">
+                  <label>Location:</label>
+                  {{task.location_name}}
+                </div>
+                <div class="task-row">
+                  <label>Location:</label>
+                  {{task.location_name}}
+                </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div id="mapContainer" class="map-results col-lg-5 col-md-6"></div>
     </div>
 
-    <div ng-include src="'modules/views/footer/footer.tpl.html'"></div>
+    <!-- <div ng-include src="'modules/views/footer/footer.tpl.html'"></div> -->
 </div>

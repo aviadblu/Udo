@@ -38,9 +38,9 @@ WITH (
 );
 ALTER TABLE users
   OWNER TO udo;
-  
-  
-  
+
+
+
 -- Table: tasks
 
 -- DROP TABLE tasks;
@@ -54,7 +54,7 @@ CREATE TABLE tasks
   location_latitude character varying(20),
   location_longitude character varying(50),
   location_fulldata json,
-  field character varying(50),
+  field character varying(500),
   description text,
   pricing_calc character varying(20),
   pricing_method character varying(20),
