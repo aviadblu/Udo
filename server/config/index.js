@@ -1,20 +1,40 @@
 var env = process.env.ENV_CONF || 'dev';
+var program = require('commander');
 
 var config = {
     pgConnectionStr: '',
     port: 0,
-    app: null
+    app: null,
+    proxy: false
 };
 
-var envConfig = require('./env/' + env);
+program
+    .version('0.0.1')
+    .usage('[options] <file ...>')
+    .option('-e, --env [type]', 'Environment config')
+    .option('-p, --proxy', 'Over proxy')
+    .option('-po, --port [type]', 'Port')
+    .parse(process.argv);
 
+
+if (!program.env) program.env = 'dev';
+config.env = program.env;
+
+// get env defaults
+var envConfig = require('./env/' + program.env);
 for(var i in envConfig) {
     config[i] = envConfig[i];
 }
 
-config.env = env;
+if (program.proxy) config.proxy = true;
+
+if (program.port) config.port = parseInt(program.port);
+
+console.log(config);
+
+
 // if behind proxy:
-if(env === 'ubuntu') {
+if(config.proxy) {
     var globalTunnel = require('global-tunnel');
 
     globalTunnel.initialize({
