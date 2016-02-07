@@ -13,20 +13,24 @@
         </div>
         <div class="tasks-list">
           <div class="scroll-body">
-            <div class="task" ng-repeat="task in ctrl.tasks">
+            <div class="task" ng-repeat="task in ctrl.tasks" task-id="{{task.id}}" ng-click="ctrl.openTask(task)">
                 <div class="task-row">
                   <!-- <label>Field:</label> -->
                   <img class="field-icon" ng-src="{{task.fieldObj.icon}}"> {{task.fieldObj.name}}
-                  <div class="price">${{task.pricing_rate}}</div>
+                  <div class="price-row" ng-bind-html="ctrl.getPrice(task.pricing_rate, task.pricing_calc)"></div>
                 </div>
-                <div class="task-row" ng-if="task.description" ng-bind="task.description"></div>
+                <div class="task-row description" ng-if="task.description" ng-init="ctrl.initDescScroll()">
+                    <div class="desc-scroll">
+                        {{task.description}}
+                    </div>
+                </div>
                 <div class="task-row">
                   <label>Location:</label>
                   {{task.location_name}}
                 </div>
-                <div class="task-row">
-                  <label>Location:</label>
-                  {{task.location_name}}
+                <div class="task-bottom">
+                    <img ng-src="{{task.picture}}">
+                    {{task.fname}} {{task.lname}}, {{task.time | timeAgo}}
                 </div>
             </div>
           </div>

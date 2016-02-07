@@ -307,29 +307,69 @@ input[type=number] {
         background-color: $sec-bg-color;
 
         .task {
+          position: relative;
           margin: 10px;
           padding:10px;
           width: calc(50% - 20px);
           float: left;
-          height: 300px;
+          height: 250px;
           background-color: #fff;
+          cursor: pointer;
 
           .task-row {
-            height:22px;
+            //min-height:22px;
             font-size:14px;
             line-height:22px;
             margin-bottom: 5px;
             text-overflow: ellipsis;
 
+            &.description {
+              min-height:30px;
+              max-height: 110px;
+
+            }
+
             label {
               float:left;
               font-weight:bold;
+              margin: 0;
               margin-right:4px;
             }
 
             .field-icon {
               height: 20px;
               display: inline-block;
+            }
+
+            .price-row {
+              position: absolute;
+              right: 0px;
+              top: 0px;
+              width: 70px;
+              color: $main-bg-text-color;
+              background-color: $main-bg-color;
+              font-size: 16px;
+              text-align: center;
+            }
+          }
+
+          .task-bottom {
+            height:60px;
+            line-height: 40px;
+            vertical-align: middle;
+            width: 100%;
+            border-top: 2px solid $sec-bg-color;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            padding: 10px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+            img {
+              height: 100%;
+              vertical-align: middle;
+              margin-right: 5px;
             }
           }
         }
@@ -350,6 +390,17 @@ input[type=number] {
   }
 }
 
+@keyframes example {
+  3%  {
+    color: $main-bg-text-color;
+    background-color: $main-bg-color;
+  }
+}
+
+.highlight {
+  animation-name: example;
+  animation-duration: 2s;
+}
 
 .labels {
      color: $main-bg-text-color;
@@ -364,3 +415,10 @@ input[type=number] {
      line-height: 14px;
      padding: 2px;
    }
+
+.price {
+  .extraData {
+    margin-left: 3px;
+    font-size: 0.8em;
+  }
+}

@@ -1,4 +1,6 @@
 {
   "directory": "client/bower_components",
-  "interactive": false
+  "interactive": false,
+  "proxy": "",
+  "https-proxy": ""
 }

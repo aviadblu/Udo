@@ -45,6 +45,7 @@ angular.module('udoApp', [
         'ui.select',
         'ngSanitize',
         'ui.slimscroll',
+        'yaru22.angular-timeago',
         'udo'
     ])
     .config(['$locationProvider', '$stateProvider', '$urlRouterProvider', function ($locationProvider, $stateProvider, $urlRouterProvider) {
