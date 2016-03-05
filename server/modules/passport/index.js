@@ -13,7 +13,7 @@ var FACEBOOK_APP_SECRET = "d5b622072a8d8a38551cc3d601ab3ad7";
 //   have a database of user records, the complete Facebook profile is serialized
 //   and deserialized.
 passport.serializeUser(function (user, done) {
-    var db = require('./modules/db/');
+    var db = require('../db/');
 
     var nameArr = user._json.name.split(' ');
     var fname = nameArr[0];

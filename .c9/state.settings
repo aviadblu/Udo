@@ -24,14 +24,14 @@
     },
     "console": {
         "@expanded": true,
-        "@height": 818,
+        "@height": 787,
         "@maximized": "false",
         "json()": {
             "meta": {
                 "accessList": [
                     "tab14",
-                    "tab0",
-                    "tab5"
+                    "tab5",
+                    "tab0"
                 ]
             },
             "name": "pane1",
@@ -50,8 +50,8 @@
                             "id": "devel_598",
                             "cwd": "",
                             "width": 1498,
-                            "height": 506,
-                            "scrollTop": 13756
+                            "height": 228,
+                            "scrollTop": 12258
                         },
                         "hash": "67452301efcdab8998badcfe10325476c3d2e1f0",
                         "meta": {
@@ -79,8 +79,8 @@
                         "terminal": {
                             "id": "devel_559",
                             "cwd": "",
-                            "width": 1258,
-                            "height": 792
+                            "width": 1498,
+                            "height": 761
                         }
                     },
                     "editorType": "terminal",
@@ -104,8 +104,8 @@
                         "terminal": {
                             "id": "devel_832",
                             "cwd": "",
-                            "width": 1258,
-                            "height": 792
+                            "width": 1498,
+                            "height": 761
                         }
                     },
                     "editorType": "terminal",
@@ -132,16 +132,16 @@
             "@ace": 1,
             "@acestatus": 1,
             "@divider": 4,
-            "@document": 4,
+            "@document": 7,
             "@form": 5,
             "@imgeditor": 1,
             "@immediate": 1,
             "@menu": 5,
             "@menuitem": 13,
             "@pane": 2,
-            "@session": 3,
-            "@tab": 16,
-            "@undoManager": 4
+            "@session": 6,
+            "@tab": 7,
+            "@undoManager": 7
         }
     },
     "findinfiles": {
@@ -159,7 +159,7 @@
     "panecycle": {
         "json()": [
             "tab14",
-            "tab11"
+            "tab6"
         ]
     },
     "panels": {
@@ -191,7 +191,7 @@
         }
     },
     "projecttree": {
-        "@scrollpos": 50,
+        "@scrollpos": -10,
         "@showfs": true,
         "expanded": {
             "json()": [
@@ -201,23 +201,16 @@
                 "/client/bower_components/bootstrap-sass",
                 "/client/bower_components/bootstrap-sass/assets/fonts",
                 "/client/bower_components/bootstrap-sass/assets/fonts/bootstrap",
-                "/client",
                 "/server/modules/entities/tasks",
-                "/postgres",
                 "/server/modules/entities/users",
-                "/server",
-                "/server/modules/entities",
-                "/server/modules/auth",
-                "/server/modules/db",
-                "/client/modules",
                 "/client/modules/views/homepage",
-                "/client/modules/views/findjob",
-                "/client/assets",
                 "/client/assets/scss",
-                "/client/modules/directives",
-                "/client/modules/directives/upload-one",
-                "/client/modules/directives/search-task",
-                "/client/modules/views"
+                "/client/modules/views",
+                "/server/config",
+                "/server/config/env",
+                "/client",
+                "/client/assets",
+                "/client/modules"
             ]
         }
     },
@@ -233,6 +226,7 @@
         },
         "search": {
             "json()": [
+                "footer",
                 "h1",
                 "cancel",
                 "console.log",
@@ -259,27 +253,160 @@
             "focus": "tab14",
             "meta": {
                 "accessList": [
-                    "tab11"
+                    "tab1",
+                    "tab6",
+                    "tab2",
+                    "tab3"
                 ]
             },
             "name": "pane0",
             "nodes": [
                 {
                     "type": "tab",
-                    "name": "tab11",
-                    "path": "/client/modules/directives/search-task/search-task.drtv.js",
+                    "name": "tab1",
+                    "path": "/client/index.html",
                     "className": [
-                        "tab11",
-                        "saved"
+                        "tab1",
+                        "changed"
+                    ],
+                    "document": {
+                        "filter": true,
+                        "title": "index.html",
+                        "tooltip": "/client/index.html",
+                        "ace": {
+                            "folds": [],
+                            "scrolltop": 0,
+                            "scrollleft": 0,
+                            "selection": {
+                                "start": {
+                                    "row": 17,
+                                    "column": 15
+                                },
+                                "end": {
+                                    "row": 17,
+                                    "column": 31
+                                },
+                                "isBackwards": false
+                            },
+                            "options": {
+                                "guessTabSize": true,
+                                "useWrapMode": false,
+                                "wrapToView": true
+                            },
+                            "firstLineState": 0
+                        },
+                        "hash": "6f5d0a251c2f342b82dc9daffa0e139b152592a1",
+                        "meta": {
+                            "timestamp": 1455733912710
+                        },
+                        "changed": true
+                    },
+                    "editorType": "ace",
+                    "active": false
+                },
+                {
+                    "type": "tab",
+                    "name": "tab2",
+                    "path": "/client/modules/views/homepage/homepage.tpl.html",
+                    "className": [
+                        "tab2"
+                    ],
+                    "document": {
+                        "filter": true,
+                        "title": "homepage.tpl.html",
+                        "tooltip": "/client/modules/views/homepage/homepage.tpl.html",
+                        "ace": {
+                            "folds": [],
+                            "scrolltop": 1469,
+                            "scrollleft": 0,
+                            "selection": {
+                                "start": {
+                                    "row": 81,
+                                    "column": 8
+                                },
+                                "end": {
+                                    "row": 120,
+                                    "column": 17
+                                },
+                                "isBackwards": true
+                            },
+                            "options": {
+                                "guessTabSize": true,
+                                "useWrapMode": false,
+                                "wrapToView": true
+                            },
+                            "firstLineState": {
+                                "row": 72,
+                                "state": "start",
+                                "mode": "ace/mode/html"
+                            }
+                        },
+                        "hash": "524c6ac43fa344c3ba9a7727052bc51b6e28b62d",
+                        "meta": {
+                            "timestamp": 1455733814986
+                        },
+                        "changed": false
+                    },
+                    "editorType": "ace",
+                    "active": false
+                },
+                {
+                    "type": "tab",
+                    "name": "tab3",
+                    "path": "/client/assets/scss/style.scss",
+                    "className": [
+                        "tab3"
+                    ],
+                    "document": {
+                        "filter": true,
+                        "title": "style.scss",
+                        "tooltip": "/client/assets/scss/style.scss",
+                        "ace": {
+                            "folds": [],
+                            "scrolltop": 0,
+                            "scrollleft": 0,
+                            "selection": {
+                                "start": {
+                                    "row": 8,
+                                    "column": 16
+                                },
+                                "end": {
+                                    "row": 8,
+                                    "column": 22
+                                },
+                                "isBackwards": false
+                            },
+                            "options": {
+                                "guessTabSize": true,
+                                "useWrapMode": false,
+                                "wrapToView": true
+                            },
+                            "firstLineState": 0
+                        },
+                        "hash": "609cfde61e76c18a00b2d171c7a64925f122dd34",
+                        "meta": {
+                            "timestamp": 1454830214914
+                        },
+                        "changed": false
+                    },
+                    "editorType": "ace",
+                    "active": false
+                },
+                {
+                    "type": "tab",
+                    "name": "tab6",
+                    "path": "/client/assets/scss/purecss-tpl.scss",
+                    "className": [
+                        "tab6"
                     ],
                     "document": {
                         "changed": false,
                         "meta": {
-                            "timestamp": 1451922365434
+                            "timestamp": 1455733935950
                         },
                         "filter": true,
-                        "title": "search-task.drtv.js",
-                        "tooltip": "/client/modules/directives/search-task/search-task.drtv.js",
+                        "title": "purecss-tpl.scss",
+                        "tooltip": "/client/assets/scss/purecss-tpl.scss",
                         "ace": {}
                     },
                     "editorType": "ace",
