@@ -39,7 +39,7 @@
 angular.module('udoApp', [
         'ui.router',
         'ui.bootstrap',
-        'uiGmapgoogle-maps',
+        //'uiGmapgoogle-maps',
         'ui.grid',
         'yaru22.angular-timeago',
         'ui.select',

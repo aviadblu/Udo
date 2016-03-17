@@ -6308,3 +6308,54 @@ input[type=number]:focus {
 .price .extraData {
   margin-left: 3px;
   font-size: 0.8em; }
+
+.splash {
+  display: -webkit-flex;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: space-around;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  top: 62px;
+  bottom: 100px; }
+  .splash .how-it-works {
+    padding: 10px 40px;
+    display: block;
+    background: rgba(0, 195, 191, 0.7);
+    color: #fff;
+    font-size: 20px; }
+    .splash .how-it-works:hover {
+      background: #00c3bf; }
+
+#how-it-works-content {
+  height: 400px;
+  width: 100%;
+  position: absolute;
+  z-index: 1000;
+  top: -450px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 30px;
+  -webkit-transition: all 1s ease;
+  transition: all 1s ease; }
+  #how-it-works-content.open {
+    top: 0px; }
+  #how-it-works-content #close-tab {
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    margin-left: -40px;
+    height: 30px;
+    width: 80px;
+    background: rgba(0, 195, 191, 0.9);
+    color: #fff;
+    text-align: center;
+    cursor: pointer; }
+
+#mapContainer {
+  height: 400px; }
