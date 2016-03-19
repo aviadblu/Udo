@@ -50,5 +50,14 @@ angular.module('udo.services')
                 return false;
             }
         };
+
+        this.formatAddress = function(gmapSearchBoxObject) {
+            return {
+                name: gmapSearchBoxObject.formatted_address,
+                latitude: gmapSearchBoxObject.geometry.location.lat(),
+                longitude: gmapSearchBoxObject.geometry.location.lng(),
+                fullData: gmapSearchBoxObject
+            };
+        };
     
     }]);
