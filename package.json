@@ -5,6 +5,7 @@
   "author": "aviadblu@gmail.com",
   "dependencies": {
     "body-parser": "^1.14.1",
+    "commander": "~2.9.0",
     "connect-pg-simple": "^3.1.0",
     "cookie-parser": "^1.4.0",
     "express": "^4.13.3",
@@ -13,9 +14,9 @@
     "morgan": "^1.6.1",
     "passport": "^0.3.2",
     "passport-facebook": "^2.0.0",
+    "passport-google-oauth2": "^0.1.6",
     "pg": "^4.4.3",
-    "q": "^1.4.1",
-    "commander": "~2.9.0"
+    "q": "^1.4.1"
   },
   "devDependencies": {
     "gulp": "^3.9.0",
@@ -32,5 +33,4 @@
     "start": "nodemon server/app.js --env ubuntu",
     "start-hp": "nodemon server/app.js --env ubuntu --proxy"
   }
-
 }

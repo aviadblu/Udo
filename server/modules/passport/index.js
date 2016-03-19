@@ -1,9 +1,13 @@
 var config = require('../../config/'),
     passport = require('passport'),
-    FacebookStrategy = require('passport-facebook').Strategy;
+    FacebookStrategy = require('passport-facebook').Strategy,
+    GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
 
 var FACEBOOK_APP_ID = "444085589117612";
 var FACEBOOK_APP_SECRET = "d5b622072a8d8a38551cc3d601ab3ad7";
+
+var GOOGLE_CLIENT_ID = "583113923049-inuvhr4ht5td989p9fio2p9o78muai33.apps.googleusercontent.com";
+var GOOGLE_CLIENT_SECRET = "I_5Q6HEBT8LgeGxfRcePBiWe";
 
 // Passport session setup.
 //   To support persistent login sessions, Passport needs to be able to
@@ -61,6 +65,20 @@ passport.use(new FacebookStrategy({
             // and return that user instead.
             return done(null, profile);
         });
+    }
+));
+
+passport.use(new GoogleStrategy({
+        clientID:     GOOGLE_CLIENT_ID,
+        clientSecret: GOOGLE_CLIENT_SECRET,
+        callbackURL: config.GOOGLEcallbackUrl,
+        passReqToCallback   : true
+    },
+    function(request, accessToken, refreshToken, profile, done) {
+        console.log('---------------------------------------------------------- do something');
+        // User.findOrCreate({ googleId: profile.id }, function (err, user) {
+        //     return done(err, user);
+        // });
     }
 ));
 

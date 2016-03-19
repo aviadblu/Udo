@@ -3,7 +3,7 @@ angular.module('udo.directives')
 
         function uploadOne() {
             var modalInstance = $uibModal.open({
-                animation: true,
+                animation: false,
                 templateUrl: 'modules/directives/add-new-task/add-new-task.modal.tpl.html',
                 controller: 'addNewTaskCtrl',
                 controllerAs: 'ctrl',

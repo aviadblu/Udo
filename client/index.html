@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="./assets/img/icon-36x36.png">
     <title>Udo app</title>
     <link rel="stylesheet" href="./assets/css/style.css">
     <base href="/">
@@ -47,11 +48,13 @@
 <script src="modules/services/locations.svc.js"></script>
 <script src="modules/services/map-serach.svc.js"></script>
 <script src="modules/services/tasks.svc.js"></script>
-<script src="modules/directives/gmap/gmap.drtv.js"></script>
 <script src="modules/directives/add-new-task/add-new-task.ctrl.js"></script>
 <script src="modules/directives/add-new-task/add-new-task.drtv.js"></script>
+<script src="modules/directives/gmap/gmap.drtv.js"></script>
 <script src="modules/directives/how-it-works/how-it-works.drtv.js"></script>
 <script src="modules/directives/search-task/search-task.drtv.js"></script>
+<script src="modules/directives/sign-in/sign-in-modal.ctrl.js"></script>
+<script src="modules/directives/sign-in/sign-in.drtv.js"></script>
 <script src="modules/directives/upload-one/upload-one-modal.ctrl.js"></script>
 <script src="modules/directives/upload-one/upload-one.drtv.js"></script>
 <script src="modules/directives/user-top/user-top-modal.ctrl.js"></script>
@@ -67,4 +70,15 @@
 <script src="modules/views/s/s.ctrl.js"></script>
 <script src="modules/views/s/s.js"></script>
 <!-- endinject -->
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-75280785-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
 </html>

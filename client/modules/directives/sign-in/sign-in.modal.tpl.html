@@ -1,0 +1,12 @@
+<div class="modal-body sign-in-modal">
+    <a class="btn btn-facebook" href="/auth/facebook" ng-click="$event.stopPropagation()">
+        <span ng-if="ctrl.signIn">Login</span>
+        <span ng-if="!ctrl.signIn">Continue</span>
+        with Facebook
+    </a>
+    <a class="btn btn-google" href="/auth/google" ng-click="$event.stopPropagation()">
+        <span ng-if="ctrl.signIn">Login</span>
+        <span ng-if="!ctrl.signIn">Continue</span>
+        with Google
+    </a>
+</div>

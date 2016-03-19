@@ -94,6 +94,7 @@ angular.module('udo.controllers')
                 ctrl.loading = true;
                 TasksService.saveTask(taskData)
                     .then(function (response) {
+                        localStorage.removeItem('pendingTask');
                         ctrl.loading = false;
                         initStep('taskPostDone');
                     });

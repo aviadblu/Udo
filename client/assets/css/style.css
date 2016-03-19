@@ -5885,7 +5885,7 @@ a.pure-button-primary {
  */
 .splash-container {
   background: #1f8dd6 url(../img/hp-slides/bg1.jpg) center top no-repeat;
-  background-size: 100%;
+  background-size: cover;
   z-index: 1;
   overflow: hidden;
   /* The following styles are required for the "scroll-over" effect */
@@ -6409,3 +6409,60 @@ input[type=number]:focus {
   height: 22px;
   display: inline-block;
   vertical-align: text-bottom; }
+
+.become-a-boss {
+  display: block;
+  cursor: pointer;
+  border: 1px solid #FFF; }
+  .become-a-boss:hover {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    color: #FFF !important;
+    text-decoration: none;
+    border: 1px solid #FFF !important; }
+
+.user-top:hover {
+  background: none; }
+
+.user-top a {
+  margin: 0px 10px; }
+
+.pure-menu-link a:hover, .pure-menu-link a:active, .pure-menu-link a:focus {
+  color: #FFF !important;
+  background: none;
+  text-decoration: none; }
+
+.modal {
+  display: -webkit-box !important;
+  display: -webkit-flex !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  height: 100%; }
+
+.modal .modal-dialog {
+  margin: auto; }
+
+.sign-in-modal .btn {
+  width: 100%;
+  border-radius: 1px;
+  height: 50px;
+  line-height: 38px;
+  font-size: 16px;
+  margin-bottom: 10px;
+  background-repeat: no-repeat;
+  background-position: left 10px top 15px;
+  background-size: 20px; }
+
+.btn-facebook {
+  background-color: #3B5998;
+  color: #fff;
+  background-image: url(../img/fb-logo.png); }
+  .btn-facebook:hover {
+    color: #fff; }
+
+.btn-google {
+  background-color: #fff;
+  border-color: #aaa;
+  color: #565a5c;
+  background-image: url(../img/google-logo.png); }
+  .btn-google:hover {
+    color: #565a5c; }

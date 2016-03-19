@@ -159,7 +159,7 @@ input[type=number] {
 
     width: 60%;
     margin: 0px auto;
-    margin-bottom:30px;
+    margin-bottom: 30px;
 
     th, td {
       border-bottom: 1px solid #fff;
@@ -186,7 +186,7 @@ input[type=number] {
 
     &.start-over {
       padding: 5px 10px;
-      font-size:80%;
+      font-size: 80%;
     }
   }
 }
@@ -546,9 +546,89 @@ input[type=number] {
   }
 }
 
-
 .field-icon {
   height: 22px;
   display: inline-block;
   vertical-align: text-bottom;
+}
+
+.become-a-boss {
+  display: block;
+  cursor: pointer;
+  border: 1px solid $main-bg-text-color;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    color: $main-bg-text-color !important;
+    text-decoration: none;
+    border: 1px solid $main-bg-text-color !important;
+  }
+}
+
+.user-top {
+
+  &:hover {
+    background: none;
+  }
+
+  a {
+    margin: 0px 10px;
+  }
+}
+
+.pure-menu-link {
+  a {
+    &:hover, &:active, &:focus {
+      color: $main-bg-text-color !important;
+      background: none;
+      text-decoration: none;
+    }
+  }
+}
+
+.modal {
+  display: flex !important;
+  height: 100%;
+}
+
+.modal .modal-dialog {
+  margin: auto;
+}
+
+.sign-in-modal {
+  .btn {
+    width: 100%;
+    border-radius: 1px;
+    height: 50px;
+    line-height: 38px;
+    font-size: 16px;
+    margin-bottom: 10px;
+
+    background-repeat: no-repeat;
+    background-position: left 10px top 15px;
+    background-size: 20px;
+  }
+}
+
+.btn-facebook {
+  background-color: #3B5998;
+  color: #fff;
+
+  background-image: url(../img/fb-logo.png);
+
+  &:hover {
+    color: #fff;
+  }
+}
+
+.btn-google {
+  background-color: #fff;
+  border-color: #aaa;
+  color: #565a5c;
+
+  background-image: url(../img/google-logo.png);
+
+  &:hover {
+    color: #565a5c;
+  }
 }
