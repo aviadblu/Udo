@@ -65,5 +65,5 @@ var EventsDispatcher = (function () {
         return (_self.eventListeners[eventName] !== undefined);
     };
     return EventsDispatcher;
-})();
+}());
 //# sourceMappingURL=events-dispatcher.js.map

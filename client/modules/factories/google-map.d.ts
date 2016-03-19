@@ -12,12 +12,17 @@ declare class GoogleMapFactory extends EventsDispatcher {
     private mapOptions;
     private map;
     private _place;
+    private infoWindows;
+    private markers;
     private CONST;
     private randomString(length);
     private fillOptions();
     place: any;
     setCustomStyle(): void;
-    goTo(location: ILocation): void;
+    private goTo(location);
+    private addInfoMarker(place);
+    clearInfoMarkers(): void;
+    centerMap(): void;
     addSearchInput(): void;
     constructor(mapId: string, focusCurrentLocation: boolean);
     initMap(): void;

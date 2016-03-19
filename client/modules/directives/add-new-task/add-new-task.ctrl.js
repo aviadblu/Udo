@@ -3,12 +3,14 @@ angular.module('udo.controllers')
         '$scope',
         '$timeout',
         '$uibModalInstance',
+        'principal',
         'TasksService',
         'LocationsService',
         'GoogleMapFactory',
         function ($scope,
                   $timeout,
                   $uibModalInstance,
+                  principal,
                   TasksService,
                   LocationsService,
                   GoogleMapFactory) {
@@ -16,6 +18,15 @@ angular.module('udo.controllers')
             var ctrl = this;
             var formattedAddress;
             var _taskData = {};
+            ctrl.form = {
+                field: undefined,
+                description: '',
+                pricing: {
+                    calc: 'hour',
+                    rate: undefined,
+                    method: 'paypal'
+                }
+            };
             ctrl.loading = false;
             ctrl.cancel = function () {
                 $uibModalInstance.dismiss('cancel');
@@ -23,7 +34,10 @@ angular.module('udo.controllers')
 
             var initStepsMap = {
                 'provideLocation': initLocationStep,
-                'provideGeneralData': initGeneralDataStep
+                'provideGeneralData': initGeneralDataStep,
+                'providePricingData': initPricingDataStep,
+                'pendingTask': initPendingTaskStep,
+                'taskPostDone': initTaskPostDoneStep
             };
 
             function initStep(step) {
@@ -37,12 +51,18 @@ angular.module('udo.controllers')
 
             function initLocationStep() {
                 $timeout(function() {
-                    console.log('initLocationStep called');
                     // check if element ready
                     var mapInstance = new GoogleMapFactory('mapContainer',true);
                     mapInstance.setCustomStyle();
                     mapInstance.initMap();
                     mapInstance.addSearchInput();
+                    if(_taskData.location) {
+                        mapInstance.clearInfoMarkers();
+                        ctrl.addressCheck = LocationsService.analyzeAddress(_taskData.location.fullData);
+                        formattedAddress = _taskData.location;
+                        mapInstance.place = _taskData.location.fullData;
+                        mapInstance.centerMap();
+                    }
                     mapInstance.on('newPlaceSelected', function(event, place){
                         ctrl.addressCheck = LocationsService.analyzeAddress(place);
                         if(ctrl.addressCheck) {
@@ -55,11 +75,29 @@ angular.module('udo.controllers')
                         }
                         $scope.$digest();
 
-                    })
+                    });
                 });
             }
 
             function initGeneralDataStep() {}
+
+            function initPricingDataStep() {}
+
+            function initTaskPostDoneStep() {}
+
+            function initPendingTaskStep() {
+                ctrl.authenticated = principal.isAuthenticated();
+                ctrl.taskData = _taskData;
+            }
+
+            function saveTask(taskData) {
+                ctrl.loading = true;
+                TasksService.saveTask(taskData)
+                    .then(function (response) {
+                        ctrl.loading = false;
+                        initStep('taskPostDone');
+                    });
+            }
 
             function init() {
                 TasksService.getFields()
@@ -68,7 +106,20 @@ angular.module('udo.controllers')
                         ctrl.form.field = ctrl.fieldsList[0];
                     });
 
-                initStep('provideLocation');
+                if(localStorage.pendingTask) {
+                    _taskData = JSON.parse(localStorage.pendingTask);
+                    ctrl.form = {
+                        field: _taskData.field,
+                        description: _taskData.description,
+                        pricing: _taskData.pricing
+                    };
+                    initStep('pendingTask');
+
+                } else {
+                    initStep('provideLocation');
+                }
+
+
             }
 
             init();
@@ -84,5 +135,60 @@ angular.module('udo.controllers')
                 }
             };
 
+            ctrl.saveGeneralData = function () {
+                ctrl.errors = [];
+
+                if (!ctrl.form.field) {
+                    ctrl.errors.push('Please provide field');
+                }
+
+                if (ctrl.errors.length === 0) {
+                    _taskData.field = ctrl.form.field;
+                    _taskData.description = ctrl.form.description;
+                    initStep('providePricingData');
+                }
+            };
+
+            ctrl.savePricingData = function () {
+                ctrl.errors = [];
+
+                if (!ctrl.form.pricing.rate) {
+                    ctrl.errors.push('Please provide pricing rate');
+                }
+
+                if (ctrl.errors.length === 0) {
+                    _taskData.pricing = ctrl.form.pricing;
+                    var newTaskPending = JSON.stringify(_taskData);
+                    localStorage.setItem('pendingTask', newTaskPending);
+
+                    initStep('pendingTask');
+                }
+            };
+
+            ctrl.backTo = function(step) {
+                initStep(step);
+            };
+
+            ctrl.startOver = function() {
+                localStorage.removeItem('pendingTask');
+                _taskData = {};
+                ctrl.form = {
+                    field: undefined,
+                    description: '',
+                    pricing: {
+                        calc: 'hour',
+                        rate: undefined,
+                        method: 'paypal'
+                    }
+                };
+                ctrl.loading = false;
+                initStep('provideLocation');
+            };
+
+            ctrl.postTask = function() {
+                if (principal.isAuthenticated()) {
+                    saveTask(_taskData);
+                }
+            };
 
         }]);

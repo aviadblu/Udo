@@ -5,7 +5,6 @@
 @import "../../bower_components/angular-ui-grid/ui-grid.css";
 @import "../../bower_components/ui-select/dist/select.css";
 
-
 $main-bg-color: #00C3BF;
 $sec-bg-color: #f5f5f5;
 $faild-color: #f2dede;
@@ -115,9 +114,9 @@ input[type=number] {
 
 .grid-user {
   img {
-    height:27px;
-    margin-right:5px;
-    float:left;
+    height: 27px;
+    margin-right: 5px;
+    float: left;
   }
 }
 
@@ -129,8 +128,8 @@ input[type=number] {
     padding: 0;
 
     a {
-      height:30px;
-      font-size:60%;
+      height: 30px;
+      font-size: 60%;
       padding: 5px;
       text-decoration: underline;
     }
@@ -142,14 +141,53 @@ input[type=number] {
   text-align: center;
 
   h2 {
-    margin-top:100px;
+    margin-top: 100px;
     color: $main-bg-text-color;
   }
 
   .btn {
     padding: 15px 30px;
     font-size: 130%;
-    margin:10px;
+    margin: 10px;
+  }
+}
+
+.pendingTask {
+  text-align: center;
+
+  table {
+
+    width: 60%;
+    margin: 0px auto;
+    margin-bottom:30px;
+
+    th, td {
+      border-bottom: 1px solid #fff;
+      padding-top: 15px;
+    }
+
+    th {
+      width: 30%;
+    }
+
+    td {
+      text-align: right;
+    }
+  }
+
+  h2 {
+    margin-top: 50px;
+  }
+
+  .btn {
+    padding: 15px 30px;
+    font-size: 130%;
+    margin: 10px;
+
+    &.start-over {
+      padding: 5px 10px;
+      font-size:80%;
+    }
   }
 }
 
@@ -161,9 +199,9 @@ input[type=number] {
 
 #gmap-container {
   position: absolute;
-  width:100%;
-  height:calc(100% - 62px);
-  margin-top:62px;
+  width: 100%;
+  height: calc(100% - 62px);
+  margin-top: 62px;
 }
 
 .hp-search-wrapper {
@@ -181,69 +219,68 @@ input[type=number] {
     margin: 0px auto;
     max-width: 700px;
 
-    &>div {
-      float:left;
+    & > div {
+      float: left;
     }
 
     .location-input-wrapper {
-      display:inline-block;
-      width:45%;
-      height:40px;
+      display: inline-block;
+      width: 45%;
+      height: 40px;
       #gmap-search {
-        color:#333;
-        width:100%;
-        height:100%;
-        padding:0px 10px;
-        line-height:40px;
-        border:0;
+        color: #333;
+        width: 100%;
+        height: 100%;
+        padding: 0px 10px;
+        line-height: 40px;
+        border: 0;
         border-right: 1px solid $main-bg-color;
       }
     }
 
-
     .ui-select-container {
-      display:inline-block;
-      width:35%;
-      height:40px;
+      display: inline-block;
+      width: 35%;
+      height: 40px;
       margin: 0px;
-      padding:0;
-      border:0;
+      padding: 0;
+      border: 0;
 
       .ui-select-match {
-          width:100%;
-          height:100%;
+        width: 100%;
+        height: 100%;
       }
 
       .ui-select-toggle {
-        height:100%;
+        height: 100%;
         border-radius: 0;
-        border:0;
+        border: 0;
         line-height: 40px;
         padding: 0px 10px;
       }
 
       .ui-select-search {
-        height:100%;
+        height: 100%;
         border-radius: 0;
-        border:0;
+        border: 0;
         line-height: 40px;
-        padding:0px 10px;
+        padding: 0px 10px;
       }
 
-      .ui-select-choices-row.active>a {
+      .ui-select-choices-row.active > a {
         background-color: $main-bg-color;
       }
     }
 
     .search-btn-wrapper {
-      display:inline-block;
+      display: inline-block;
       width: 20%;
       button {
         background-color: $main-bg-color;
         color: #fff;
         border-radius: 0;
         text-transform: uppercase;
-        height:40px;
+        height: 40px;
         width: 100%;
       }
     }
@@ -253,37 +290,37 @@ input[type=number] {
 .content-wrapper.pages.search-results {
   height: calc(100% - #{$header-height});
   .search-bar {
-    height:50px;
+    height: 50px;
     overflow: hidden;
-    border-bottom:1px solid #dce0e0;
+    border-bottom: 1px solid #dce0e0;
 
     .address {
       width: 400px;
-      display:inline-block;
-      float:left;
-      padding:10px;
-      line-height:30px;
-      border-right:1px solid #dce0e0;
+      display: inline-block;
+      float: left;
+      padding: 10px;
+      line-height: 30px;
+      border-right: 1px solid #dce0e0;
       input[type=text] {
-        height:30px;
-        line-height:30px;
-        width:100%;
-        border:0;
+        height: 30px;
+        line-height: 30px;
+        width: 100%;
+        border: 0;
       }
     }
   }
 
   .radius {
-    display:inline-block;
-    float:left;
-    padding:10px;
-    line-height:30px;
-    border-right:1px solid #dce0e0;
+    display: inline-block;
+    float: left;
+    padding: 10px;
+    line-height: 30px;
+    border-right: 1px solid #dce0e0;
     input[type=number] {
-      height:30px;
-      line-height:30px;
-      width:30px;
-      border:0;
+      height: 30px;
+      line-height: 30px;
+      width: 30px;
+      border: 0;
     }
   }
 
@@ -291,25 +328,25 @@ input[type=number] {
     //height: calc(100% - #{$footer-height});
     height: 100%;
     &.row {
-      margin-right:0;
-      margin-left:0;
+      margin-right: 0;
+      margin-left: 0;
     }
 
     .list-results {
-      height:100%;
-      border-right:1px solid #dce0e0;
+      height: 100%;
+      border-right: 1px solid #dce0e0;
       padding-right: 0px;
       padding-left: 0px;
 
       .tasks-list {
-        height:calc(100% - 50px);
+        height: calc(100% - 50px);
         padding: 10px;
         background-color: $sec-bg-color;
 
         .task {
           position: relative;
           margin: 10px;
-          padding:10px;
+          padding: 10px;
           width: calc(50% - 20px);
           float: left;
           height: 250px;
@@ -318,22 +355,22 @@ input[type=number] {
 
           .task-row {
             //min-height:22px;
-            font-size:14px;
-            line-height:22px;
+            font-size: 14px;
+            line-height: 22px;
             margin-bottom: 5px;
             text-overflow: ellipsis;
 
             &.description {
-              min-height:30px;
+              min-height: 30px;
               max-height: 110px;
 
             }
 
             label {
-              float:left;
-              font-weight:bold;
+              float: left;
+              font-weight: bold;
               margin: 0;
-              margin-right:4px;
+              margin-right: 4px;
             }
 
             .field-icon {
@@ -354,7 +391,7 @@ input[type=number] {
           }
 
           .task-bottom {
-            height:60px;
+            height: 60px;
             line-height: 40px;
             vertical-align: middle;
             width: 100%;
@@ -377,13 +414,13 @@ input[type=number] {
     }
 
     .map-results {
-      height:100%;
+      height: 100%;
       padding-right: 0px;
       padding-left: 0px;
       .angular-google-map {
-        height:100%;
+        height: 100%;
         .angular-google-map-container {
-          height:100%;
+          height: 100%;
         }
       }
     }
@@ -391,7 +428,7 @@ input[type=number] {
 }
 
 @keyframes example {
-  3%  {
+  3% {
     color: $main-bg-text-color;
     background-color: $main-bg-color;
   }
@@ -403,18 +440,18 @@ input[type=number] {
 }
 
 .labels {
-     color: $main-bg-text-color;
-     background-color: $main-bg-color;
-     font-family: "Arial", sans-serif;
-     font-size: 12px;
-     text-align: center;
-     width: auto;
-     min-width: 40px;
-     border: 0;
-     white-space: nowrap;
-     line-height: 14px;
-     padding: 2px;
-   }
+  color: $main-bg-text-color;
+  background-color: $main-bg-color;
+  font-family: "Arial", sans-serif;
+  font-size: 12px;
+  text-align: center;
+  width: auto;
+  min-width: 40px;
+  border: 0;
+  white-space: nowrap;
+  line-height: 14px;
+  padding: 2px;
+}
 
 .price {
   .extraData {
@@ -430,15 +467,15 @@ input[type=number] {
   justify-content: space-around;
   -webkit-align-items: center;
   align-items: center;
-  top:62px;
-  bottom:100px;
+  top: 62px;
+  bottom: 100px;
 
   .how-it-works {
     padding: 10px 40px;
     display: block;
     background: rgba(0, 195, 191, 0.7);
-    color:#fff;
-    font-size:20px;
+    color: #fff;
+    font-size: 20px;
 
     &:hover {
       background: rgba(0, 195, 191, 1);
@@ -447,14 +484,14 @@ input[type=number] {
 }
 
 #how-it-works-content {
-  height:400px;
+  height: 400px;
   width: 100%;
-  position:absolute;
-  z-index:1000;
-  top:-450px;
+  position: absolute;
+  z-index: 1000;
+  top: -450px;
   background: rgba(0, 0, 0, 0.8);
-  color:#fff;
-  padding:30px;
+  color: #fff;
+  padding: 30px;
   -webkit-transition: all 1s ease;
   -moz-transition: all 1s ease;
   -o-transition: all 1s ease;
@@ -462,20 +499,20 @@ input[type=number] {
   transition: all 1s ease;
 
   &.open {
-    top:0px;
+    top: 0px;
   }
 
   #close-tab {
     position: absolute;
-    bottom:-30px;
-    left:50%;
-    margin-left:-40px;
-    height:30px;
-    width:80px;
+    bottom: -30px;
+    left: 50%;
+    margin-left: -40px;
+    height: 30px;
+    width: 80px;
     background: rgba(0, 195, 191, 0.9);
-    color:#fff;
+    color: #fff;
     text-align: center;
-    cursor:pointer;
+    cursor: pointer;
   }
 }
 
@@ -509,3 +546,9 @@ input[type=number] {
   }
 }
 
+
+.field-icon {
+  height: 22px;
+  display: inline-block;
+  vertical-align: text-bottom;
+}

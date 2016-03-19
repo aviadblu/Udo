@@ -6106,6 +6106,29 @@ input[type=number]:focus {
     font-size: 130%;
     margin: 10px; }
 
+.pendingTask {
+  text-align: center; }
+  .pendingTask table {
+    width: 60%;
+    margin: 0px auto;
+    margin-bottom: 30px; }
+    .pendingTask table th, .pendingTask table td {
+      border-bottom: 1px solid #fff;
+      padding-top: 15px; }
+    .pendingTask table th {
+      width: 30%; }
+    .pendingTask table td {
+      text-align: right; }
+  .pendingTask h2 {
+    margin-top: 50px; }
+  .pendingTask .btn {
+    padding: 15px 30px;
+    font-size: 130%;
+    margin: 10px; }
+    .pendingTask .btn.start-over {
+      padding: 5px 10px;
+      font-size: 80%; }
+
 #gmap-container {
   position: absolute;
   width: 100%;
@@ -6381,3 +6404,8 @@ input[type=number]:focus {
   width: 300px; }
   .gmapInput:focus {
     border-color: #4d90fe; }
+
+.field-icon {
+  height: 22px;
+  display: inline-block;
+  vertical-align: text-bottom; }

@@ -51,7 +51,7 @@
         <div class="modal-footer modal-bottom-navigation">
             <div class="error-msg bg-danger" ng-repeat="err in ctrl.errors">{{err}}</div>
             <button class="btn btn-primary" type="button" ng-click="ctrl.saveGeneralData()">Next</button>
-            <button class="btn btn-primary back" type="button" ng-click="ctrl.currentStep = 'provideLocation'">Back</button>
+            <button class="btn btn-primary back" type="button" ng-click="ctrl.backTo('provideLocation')">Back</button>
         </div>
     </div>
     <div ng-show="ctrl.currentStep === 'providePricingData'">
@@ -91,8 +91,36 @@
         </div>
         <div class="modal-footer modal-bottom-navigation">
             <div class="error-msg bg-danger" ng-repeat="err in ctrl.errors">{{err}}</div>
-            <button class="btn btn-info" type="button" ng-click="ctrl.savePricingData()">Post task</button>
-            <button class="btn btn-primary back" type="button" ng-click="ctrl.currentStep = 'provideGeneralData'">Back</button>
+            <button class="btn btn-info" type="button" ng-click="ctrl.savePricingData()">Show task summary</button>
+            <button class="btn btn-primary back" type="button" ng-click="ctrl.backTo('provideGeneralData')">Back</button>
+        </div>
+    </div>
+    <div ng-show="ctrl.currentStep === 'pendingTask'">
+        <div class="modal-body pendingTask">
+            <h2>Task summary:</h2>
+            <div>
+                <table>
+                    <tr>
+                        <th>Location</th>
+                        <td>{{ctrl.taskData.location.name}}</td>
+                    </tr>
+                    <tr>
+                        <th>Field</th>
+                        <td><img class="field-icon" ng-src="{{ctrl.taskData.field.icon}}">{{ctrl.taskData.field.name}}</td>
+                    </tr>
+                    <tr>
+                        <th>Description</th>
+                        <td>{{ctrl.taskData.description}}</td>
+                    </tr>
+                    <tr>
+                        <th>Pricing</th>
+                        <td>${{ctrl.taskData.pricing.rate}}, {{ctrl.taskData.pricing.calc}}, {{ctrl.taskData.pricing.method}}</td>
+                    </tr>
+                </table>
+            </div>
+            <button class="btn btn-danger start-over" type="button" ng-click="ctrl.startOver()">Start over</button>
+            <button ng-if="ctrl.authenticated" class="btn btn-success" type="button" ng-click="ctrl.postTask()">Post task</button>
+            <button ng-if="!ctrl.authenticated" class="btn btn-info" type="button">Login / Register and post task</button>
         </div>
     </div>
     <div ng-show="ctrl.currentStep === 'taskPostDone'">

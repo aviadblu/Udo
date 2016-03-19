@@ -8,6 +8,8 @@ var GoogleMapFactory = (function (_super) {
     __extends(GoogleMapFactory, _super);
     function GoogleMapFactory(mapId, focusCurrentLocation) {
         _super.call(this);
+        this.infoWindows = [];
+        this.markers = [];
         this.CONST = {
             events: {
                 'newPlaceSelected': 'newPlaceSelected'
@@ -52,6 +54,9 @@ var GoogleMapFactory = (function (_super) {
         get: function () {
             return this._place;
         },
+        set: function (value) {
+            this._place = value;
+        },
         enumerable: true,
         configurable: true
     });
@@ -78,6 +83,55 @@ var GoogleMapFactory = (function (_super) {
         this.map.setCenter(location);
         this.map.setZoom(17);
     };
+    GoogleMapFactory.prototype.addInfoMarker = function (place) {
+        // marker
+        var _self = this;
+        var marker = new google.maps.Marker({
+            anchorPoint: new google.maps.Point(0, -29),
+            map: _self.map
+        });
+        marker.setVisible(false);
+        marker.setPosition(place.geometry.location);
+        marker.setVisible(true);
+        marker.setIcon(/** @type {google.maps.Icon} */ ({
+            url: _self._place.icon,
+            size: new google.maps.Size(71, 71),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(17, 34),
+            scaledSize: new google.maps.Size(35, 35)
+        }));
+        _self.markers.push(marker);
+        // info window
+        var infowindow = new google.maps.InfoWindow();
+        infowindow.close();
+        var address = '';
+        if (place.address_components) {
+            address = [
+                (place.address_components[0] && place.address_components[0].short_name || ''),
+                (place.address_components[1] && place.address_components[1].short_name || ''),
+                (place.address_components[2] && place.address_components[2].short_name || '')
+            ].join(' ');
+        }
+        infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+        infowindow.open(_self.map, marker);
+        _self.infoWindows.push(infowindow);
+    };
+    GoogleMapFactory.prototype.clearInfoMarkers = function () {
+        var _self = this;
+        for (var i = 0; i < _self.markers.length; i++) {
+            _self.markers[i].setMap(null);
+        }
+        _self.markers = [];
+        _self.markers = [];
+    };
+    GoogleMapFactory.prototype.centerMap = function () {
+        var place = this._place;
+        if (place) {
+            this.clearInfoMarkers();
+            this.goTo(place.geometry.location);
+            this.addInfoMarker(place);
+        }
+    };
     GoogleMapFactory.prototype.addSearchInput = function () {
         var _self = this;
         // create DOM element
@@ -91,16 +145,8 @@ var GoogleMapFactory = (function (_super) {
         // add autocomplete dropdown functionality
         var autocomplete = new google.maps.places.Autocomplete(input);
         autocomplete.bindTo('bounds', _self.map);
-        // init search result info window
-        var infowindow = new google.maps.InfoWindow();
-        var marker = new google.maps.Marker({
-            map: _self.map,
-            anchorPoint: new google.maps.Point(0, -29)
-        });
         // create listener for search completion
         autocomplete.addListener('place_changed', function () {
-            infowindow.close();
-            marker.setVisible(false);
             _self._place = autocomplete.getPlace();
             _self.dispatch.apply(_self, [_self.CONST.events.newPlaceSelected, _self._place]);
             if (!_self._place.geometry) {
@@ -114,25 +160,8 @@ var GoogleMapFactory = (function (_super) {
             else {
                 _self.goTo(_self._place.geometry.location);
             }
-            marker.setIcon(/** @type {google.maps.Icon} */ ({
-                url: _self._place.icon,
-                size: new google.maps.Size(71, 71),
-                origin: new google.maps.Point(0, 0),
-                anchor: new google.maps.Point(17, 34),
-                scaledSize: new google.maps.Size(35, 35)
-            }));
-            marker.setPosition(_self._place.geometry.location);
-            marker.setVisible(true);
-            var address = '';
-            if (_self._place.address_components) {
-                address = [
-                    (_self._place.address_components[0] && _self._place.address_components[0].short_name || ''),
-                    (_self._place.address_components[1] && _self._place.address_components[1].short_name || ''),
-                    (_self._place.address_components[2] && _self._place.address_components[2].short_name || '')
-                ].join(' ');
-            }
-            infowindow.setContent('<div><strong>' + _self._place.name + '</strong><br>' + address);
-            infowindow.open(_self.map, marker);
+            _self.clearInfoMarkers();
+            _self.addInfoMarker(_self._place);
         });
     };
     GoogleMapFactory.prototype.initMap = function () {
@@ -161,5 +190,5 @@ var GoogleMapFactory = (function (_super) {
         }
     };
     return GoogleMapFactory;
-})(EventsDispatcher);
+}(EventsDispatcher));
 //# sourceMappingURL=google-map.js.map
