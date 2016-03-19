@@ -1,85 +1,151 @@
-var config = require('../../config/'),
-    passport = require('passport'),
-    FacebookStrategy = require('passport-facebook').Strategy,
-    GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
+var LocalStrategy = require('passport-local').Strategy;
+var FacebookStrategy = require('passport-facebook').Strategy;
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+var configAuth = require('../../config/').configAuth;
+var db = require('../db/');
+var usersCtrl = require('../entities/users/users-ctrl');
 
-var FACEBOOK_APP_ID = "444085589117612";
-var FACEBOOK_APP_SECRET = "d5b622072a8d8a38551cc3d601ab3ad7";
+module.exports = function(passport) {
 
-var GOOGLE_CLIENT_ID = "583113923049-inuvhr4ht5td989p9fio2p9o78muai33.apps.googleusercontent.com";
-var GOOGLE_CLIENT_SECRET = "I_5Q6HEBT8LgeGxfRcePBiWe";
 
-// Passport session setup.
-//   To support persistent login sessions, Passport needs to be able to
-//   serialize users into and deserialize users out of the session.  Typically,
-//   this will be as simple as storing the user ID when serializing, and finding
-//   the user by ID when deserializing.  However, since this example does not
-//   have a database of user records, the complete Facebook profile is serialized
-//   and deserialized.
-passport.serializeUser(function (user, done) {
-    var db = require('../db/');
+    passport.serializeUser(function(user, done){
+        console.log('-------------------serializeUser-----------------');
+        console.log(user);
+        done(null, user.id);
+    });
 
-    var nameArr = user._json.name.split(' ');
-    var fname = nameArr[0];
-    var lname = nameArr[1] ? nameArr[1] : '';
-    var email = user._json.email;
-    var facebook_id = user._json.id;
-    var picture = user._json.picture && user._json.picture.data && user._json.picture.data.url ? user._json.picture.data.url : '';
+    passport.deserializeUser(function(id, done){
+        console.log('-------------------deserializeUser [' + id + ']-----------------');
+        usersCtrl.searchUsers('id=$1 OR facebook_id=$2 OR google_id=$3', [id,id,id])
+            .then(function (result) {
+                done(null, result[0]);
+            }, function (err) {
+                console.log('err:::::' + err);
+                done(err);
+            });
+    });
 
-    var queryParams = {
-        'fname': fname,
-        'lname': lname,
-        'email': email,
-        'facebook_id': facebook_id,
-        'picture': picture,
-        'roles': JSON.stringify(['user'])
-    };
 
-    db.upsert('users', queryParams, 'email');
+    passport.use('local-signup', new LocalStrategy({
+            usernameField: 'email',
+            passwordField: 'password',
+            passReqToCallback: true
+        },
+        function(req, email, password, done){
+            process.nextTick(function(){
+                // TODO
+                // User.findOne({'local.username': email}, function(err, user){
+                //     if(err)
+                //         return done(err);
+                //     if(user){
+                //         return done(null, false, req.flash('signupMessage', 'That email already taken'));
+                //     } else {
+                //         var newUser = new User();
+                //         newUser.local.username = email;
+                //         newUser.local.password = newUser.generateHash(password);
+                //
+                //         newUser.save(function(err){
+                //             if(err)
+                //                 throw err;
+                //             return done(null, newUser);
+                //         })
+                //     }
+                // })
 
-    done(null, user);
-});
+            });
+        }));
 
-passport.deserializeUser(function (obj, done) {
-    console.log('+++++++++++++++++++++++++ deserializeUser +++++++++++++++++++++++++');
-    done(null, obj);
-});
+    passport.use('local-login', new LocalStrategy({
+            usernameField: 'email',
+            passwordField: 'password',
+            passReqToCallback: true
+        },
+        function(req, email, password, done){
+            process.nextTick(function(){
+                // TODO
+                // User.findOne({ 'local.username': email}, function(err, user){
+                //     if(err)
+                //         return done(err);
+                //     if(!user)
+                //         return done(null, false, req.flash('loginMessage', 'No User found'));
+                //     if(!user.validPassword(password)){
+                //         return done(null, false, req.flash('loginMessage', 'invalid password'));
+                //     }
+                //     return done(null, user);
+                //
+                // });
+            });
+        }
+    ));
 
-// Use the FacebookStrategy within Passport.
-//   Strategies in Passport require a `verify` function, which accept
-//   credentials (in this case, an accessToken, refreshToken, and Facebook
-//   profile), and invoke a callback with a user object.
-passport.use(new FacebookStrategy({
-        clientID: FACEBOOK_APP_ID,
-        clientSecret: FACEBOOK_APP_SECRET,
-        callbackURL: config.FBcallbackUrl,
-        profileFields: ['id', 'displayName', 'email', 'photos']
-    },
-    function (accessToken, refreshToken, profile, done) {
-        // asynchronous verification, for effect...
-        process.nextTick(function () {
 
-            // To keep the example simple, the user's Facebook profile is returned to
-            // represent the logged-in user.  In a typical application, you would want
-            // to associate the Facebook account with a user record in your database,
-            // and return that user instead.
-            return done(null, profile);
-        });
-    }
-));
+    passport.use(new FacebookStrategy({
+            clientID: configAuth.facebookAuth.clientID,
+            clientSecret: configAuth.facebookAuth.clientSecret,
+            callbackURL: configAuth.facebookAuth.callbackURL,
+            profileFields: ['id', 'displayName', 'email', 'photos']
+        },
+        function(accessToken, refreshToken, profile, done) {
+            process.nextTick(function(){
+                
+                var nameArr = profile._json.name.split(' ');
+                var fname = nameArr[0];
+                var lname = nameArr[1] ? nameArr[1] : '';
+                var email = profile._json.email;
+                var facebook_id = profile._json.id;
+                var picture = profile._json.picture && profile._json.picture.data && profile._json.picture.data.url ? profile._json.picture.data.url : '';
 
-passport.use(new GoogleStrategy({
-        clientID:     GOOGLE_CLIENT_ID,
-        clientSecret: GOOGLE_CLIENT_SECRET,
-        callbackURL: config.GOOGLEcallbackUrl,
-        passReqToCallback   : true
-    },
-    function(request, accessToken, refreshToken, profile, done) {
-        console.log('---------------------------------------------------------- do something');
-        // User.findOrCreate({ googleId: profile.id }, function (err, user) {
-        //     return done(err, user);
-        // });
-    }
-));
+                var queryParams = {
+                    'fname': fname,
+                    'lname': lname,
+                    'email': email,
+                    'facebook_id': facebook_id,
+                    'picture': picture,
+                    'roles': JSON.stringify(['user'])
+                };
 
-module.exports = passport;
+                db.upsert('users', queryParams, 'email');
+
+                done(null, profile);
+            });
+        }
+
+    ));
+
+    passport.use(new GoogleStrategy({
+            clientID: configAuth.googleAuth.clientID,
+            clientSecret: configAuth.googleAuth.clientSecret,
+            callbackURL: configAuth.googleAuth.callbackURL
+        },
+        function(accessToken, refreshToken, profile, done) {
+            process.nextTick(function(){
+
+                var fname = profile.name.givenName;
+                var lname = profile.name.familyName;
+                var email = profile.emails[0].value;
+                var google_id = profile.id;
+                var picture = profile.photos[0].value
+
+                var queryParams = {
+                    'fname': fname,
+                    'lname': lname,
+                    'email': email,
+                    'google_id': google_id,
+                    'picture': picture,
+                    'roles': JSON.stringify(['user'])
+                };
+
+                db.upsert('users', queryParams, 'email');
+
+                done(null, profile);
+
+            });
+        }
+
+    ));
+
+
+
+
+
+};

@@ -7,10 +7,14 @@ var express = require('express')
     , path = require('path')
     , config = require('./config/')
     , port = process.env.PORT || config.port
-      passport = require('./modules/passport');
+      passport = require('passport');
 
 var app = express();
 // configure Express
+
+app.db = require('./modules/db/');
+config.app = app;
+require('./modules/passport')(passport);
 
 app.use(logger('dev'));
 app.use(cookieParser());
@@ -29,10 +33,10 @@ app.use(passport.session());
 app.use(express.static(path.resolve(__dirname, '../client')));
 
 // configure app globals
-app.db = require('./modules/db/');
+
 app.passport = passport;
 // save app into config singleton
-config.app = app;
+
 
 // routes
 require('./routes.js')(app);

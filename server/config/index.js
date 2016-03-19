@@ -44,5 +44,4 @@ if(config.proxy) {
     });
 }
 
-
 module.exports = config;

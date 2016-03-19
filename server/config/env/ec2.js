@@ -1,7 +1,17 @@
 module.exports = {
     pgConnectionStr: 'postgres://udo:udo1234@0.0.0.0/udo_db',
-    FBcallbackUrl: 'http://ec2-52-58-2-209.eu-central-1.compute.amazonaws.com:9090/auth/facebook/callback',
-    GOOGLEcallbackUrl: 'http://ec2-52-58-2-209.eu-central-1.compute.amazonaws.com:9090/auth/google/callback',
     port: 9090,
-    app: null
+    app: null,
+    configAuth: {
+        facebookAuth: {
+            clientID: '444085589117612',
+            clientSecret: 'd5b622072a8d8a38551cc3d601ab3ad7',
+            callbackURL: 'http://ec2-52-58-2-209.eu-central-1.compute.amazonaws.com:9090/auth/facebook/callback'
+        },
+        googleAuth: {
+            clientID: '583113923049-inuvhr4ht5td989p9fio2p9o78muai33.apps.googleusercontent.com',
+            clientSecret: 'I_5Q6HEBT8LgeGxfRcePBiWe',
+            callbackURL: 'http://ec2-52-58-2-209.eu-central-1.compute.amazonaws.com:9090/auth/google/callback'
+        }
+    }
 };
