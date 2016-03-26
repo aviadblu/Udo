@@ -15,8 +15,12 @@ module.exports = function(passport) {
     });
 
     passport.deserializeUser(function(id, done){
+        var uId = id;
+        if(id.length > 10) {
+            uId = 0;
+        }
         console.log('-------------------deserializeUser [' + id + ']-----------------');
-        usersCtrl.searchUsers('id=$1 OR facebook_id=$2 OR google_id=$3', [id,id,id])
+        usersCtrl.searchUsers('id=$1 OR facebook_id=$2 OR google_id=$3', [uId,id,id])
             .then(function (result) {
                 done(null, result[0]);
             }, function (err) {
