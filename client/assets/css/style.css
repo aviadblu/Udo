@@ -6426,6 +6426,14 @@ input[type=number]:focus {
 .user-top a {
   margin: 0px 10px; }
 
+.user-top img {
+  height: 50px;
+  max-width: 50px; }
+
+.user-modal img {
+  height: 50px;
+  max-width: 50px; }
+
 .pure-menu-link a:hover, .pure-menu-link a:active, .pure-menu-link a:focus {
   color: #FFF !important;
   background: none;
@@ -6452,17 +6460,43 @@ input[type=number]:focus {
   background-position: left 10px top 15px;
   background-size: 20px; }
 
-.btn-facebook {
+.sign-in-modal .btn-facebook {
   background-color: #3B5998;
   color: #fff;
   background-image: url(../img/fb-logo.png); }
-  .btn-facebook:hover {
+  .sign-in-modal .btn-facebook:hover {
     color: #fff; }
 
-.btn-google {
+.sign-in-modal .btn-google {
   background-color: #fff;
   border-color: #aaa;
   color: #565a5c;
   background-image: url(../img/google-logo.png); }
-  .btn-google:hover {
+  .sign-in-modal .btn-google:hover {
     color: #565a5c; }
+
+.sign-in-modal .btn-email {
+  background-color: #fff;
+  border-color: #00C3BF;
+  color: #565a5c;
+  background-image: url(../img/email-logo.png); }
+  .sign-in-modal .btn-email:hover {
+    color: #565a5c; }
+
+.sign-in-modal .btn-submit {
+  background-color: #00C3BF;
+  border-color: #00C3BF;
+  color: #FFF; }
+  .sign-in-modal .btn-submit:hover {
+    background-color: #FFF;
+    border-color: #00C3BF;
+    color: #00C3BF; }
+
+.sign-in-modal .form-control {
+  border-radius: 1px; }
+
+.sign-in-modal .error-msg {
+  font-size: 12px; }
+
+.sign-in-modal .password-help-block {
+  font-size: 12px; }

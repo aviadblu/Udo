@@ -31,6 +31,7 @@ CREATE TABLE users
   google_id character varying(80),
   picture text,
   roles json,
+  password character varying(100),
   CONSTRAINT pk_id PRIMARY KEY (id),
   CONSTRAINT users_email_key UNIQUE (email)
 )

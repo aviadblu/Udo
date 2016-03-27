@@ -9,7 +9,7 @@ router.post('/', function (req, res) {
     }
 
     tasksCtrl.newTask(
-        req.session.user[0].id,
+        req.session.user.id,
         req.body.location.name,
         req.body.location.latitude,
         req.body.location.longitude,

@@ -574,6 +574,18 @@ input[type=number] {
   a {
     margin: 0px 10px;
   }
+
+  img {
+    height:50px;
+    max-width:50px;
+  }
+}
+
+.user-modal {
+  img {
+    height:50px;
+    max-width:50px;
+  }
 }
 
 .pure-menu-link {
@@ -608,27 +620,67 @@ input[type=number] {
     background-position: left 10px top 15px;
     background-size: 20px;
   }
-}
 
-.btn-facebook {
-  background-color: #3B5998;
-  color: #fff;
-
-  background-image: url(../img/fb-logo.png);
-
-  &:hover {
+  .btn-facebook {
+    background-color: #3B5998;
     color: #fff;
+
+    background-image: url(../img/fb-logo.png);
+
+    &:hover {
+      color: #fff;
+    }
   }
-}
 
-.btn-google {
-  background-color: #fff;
-  border-color: #aaa;
-  color: #565a5c;
-
-  background-image: url(../img/google-logo.png);
-
-  &:hover {
+  .btn-google {
+    background-color: #fff;
+    border-color: #aaa;
     color: #565a5c;
+
+    background-image: url(../img/google-logo.png);
+
+    &:hover {
+      color: #565a5c;
+    }
   }
+
+  .btn-email {
+    background-color: #fff;
+    border-color: $main-bg-color;
+    color: #565a5c;
+
+    background-image: url(../img/email-logo.png);
+
+    &:hover {
+      color: #565a5c;
+    }
+  }
+
+
+  .btn-submit {
+    background-color: $main-bg-color;
+    border-color: $main-bg-color;
+    color: $main-bg-text-color;
+
+    &:hover {
+      background-color: $main-bg-text-color;
+      border-color: $main-bg-color;
+      color: $main-bg-color;
+    }
+  }
+
+
+  .form-control {
+    border-radius: 1px;
+  }
+
+  .error-msg {
+    font-size:12px;
+  }
+
+  .password-help-block {
+    font-size:12px;
+  }
+
 }
+

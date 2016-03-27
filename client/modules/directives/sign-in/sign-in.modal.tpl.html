@@ -1,4 +1,4 @@
-<div class="modal-body sign-in-modal">
+<div class="modal-body sign-in-modal" ng-hide="ctrl.formInProcess">
     <a class="btn btn-facebook" href="/auth/facebook" ng-click="$event.stopPropagation()">
         <span ng-if="ctrl.signIn">Login</span>
         <span ng-if="!ctrl.signIn">Continue</span>
@@ -9,4 +9,58 @@
         <span ng-if="!ctrl.signIn">Continue</span>
         with Google
     </a>
+    <a ng-show="!showForm" ng-hide="ctrl.signIn" class="btn btn-email" href="javascript:void(0)" ng-click="showForm = !showForm">
+        <span ng-if="ctrl.signIn">Login</span>
+        <span ng-if="!ctrl.signIn">Sign up</span>
+        by Email
+    </a>
+    <div class="signForm" ng-if="showForm">
+        <form ng-if="!ctrl.signIn" ng-init="ctrl.initForm()">
+            <div class="form-group">
+                <input type="text" id="su_fname" class="form-control" placeholder="First Name" ng-model="user.fname">
+            </div>
+            <div class="form-group">
+                <input type="text" id="su_lname" class="form-control" placeholder="Last Name" ng-model="user.lname">
+            </div>
+            <div class="form-group">
+                <input name="email" type="email" id="su_email" class="form-control" placeholder="Email" ng-model="user.email" ng-model-options="{debounce: 300}" ng-change="ctrl.checkEmail(user.email)">
+            </div>
+            <div class="form-group has-{{ctrl.passFeedback.cl}}">
+                <input type="password" id="su_password" class="form-control" placeholder="Password" ng-model="user.password" ng-model-options="{debounce: 100}" ng-change="ctrl.checkPassword(user.password)">
+                <span ng-if="ctrl.passFeedback.text && ctrl.showPassFeedback" class="password-help-block" ng-class="ctrl.passFeedback.cl">{{ctrl.passFeedback.text}}</span>
+            </div>
+            <div class="form-group">
+                <input type="password" id="su_passwordConfirm" class="form-control" placeholder="Type your password again" ng-model="user.passwordConfirm">
+            </div>
+            <div class="form-group error-msg bg-danger" ng-repeat="error in ctrl.errors track by $index">
+                {{error}}
+            </div>
+            <button type="submit" class="btn btn-submit" ng-click="ctrl.signUp(user)">Sign Up</button>
+        </form>
+    </div>
+    <div class="signForm" ng-if="ctrl.signIn">
+        <h4>By Email:</h4>
+        <form ng-init="ctrl.initForm()">
+            <div class="form-group">
+                <input name="email" type="email" id="si_email" class="form-control" placeholder="Email" ng-model="user.email">
+            </div>
+            <div class="form-group has-{{ctrl.passFeedback.cl}}">
+                <input type="password" id="si_password" class="form-control" placeholder="Password" ng-model="user.password">
+            </div>
+
+            <div class="form-group error-msg bg-danger" ng-repeat="error in ctrl.errors track by $index">
+                {{error}}
+            </div>
+            <button type="submit" class="btn btn-submit" ng-click="ctrl.login(user)">Login</button>
+        </form>
+    </div>
+</div>
+
+<div class="modal-body sign-in-modal" ng-show="ctrl.loading">
+    loading
+</div>
+
+<div class="modal-body sign-in-modal" ng-show="ctrl.formResults">
+    <div>{{ctrl.formResults}}</div>
+    <button type="button" class="btn btn-info" ng-click="ctrl.close()">Close</button>
 </div>

@@ -3,28 +3,27 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var configAuth = require('../../config/').configAuth;
 var db = require('../db/');
-var usersCtrl = require('../entities/users/users-ctrl');
+var User = require('../entities/users/user').User;
 
-module.exports = function(passport) {
+module.exports = function (passport) {
 
 
-    passport.serializeUser(function(user, done){
+    passport.serializeUser(function (user, done) {
         console.log('-------------------serializeUser-----------------');
-        console.log(user);
-        done(null, user.id);
+        done(null, user);
     });
 
-    passport.deserializeUser(function(id, done){
-        var uId = id;
-        if(id.length > 10) {
+    passport.deserializeUser(function (user, done) {
+        var uId = user.id;
+        if (user.id.length > 10) {
             uId = 0;
         }
-        console.log('-------------------deserializeUser [' + id + ']-----------------');
-        usersCtrl.searchUsers('id=$1 OR facebook_id=$2 OR google_id=$3', [uId,id,id])
-            .then(function (result) {
-                done(null, result[0]);
-            }, function (err) {
-                console.log('err:::::' + err);
+        console.log('-------------------deserializeUser [' + user.id + ']-----------------');
+        User.findOne('id=$1 OR facebook_id=$2 OR google_id=$3', [uId, user.id, user.id])
+            .then(function (res) {
+                done(null, res.data);
+            })
+            .catch(function (err) {
                 done(err);
             });
     });
@@ -35,26 +34,15 @@ module.exports = function(passport) {
             passwordField: 'password',
             passReqToCallback: true
         },
-        function(req, email, password, done){
-            process.nextTick(function(){
-                // TODO
-                // User.findOne({'local.username': email}, function(err, user){
-                //     if(err)
-                //         return done(err);
-                //     if(user){
-                //         return done(null, false, req.flash('signupMessage', 'That email already taken'));
-                //     } else {
-                //         var newUser = new User();
-                //         newUser.local.username = email;
-                //         newUser.local.password = newUser.generateHash(password);
-                //
-                //         newUser.save(function(err){
-                //             if(err)
-                //                 throw err;
-                //             return done(null, newUser);
-                //         })
-                //     }
-                // })
+        function (req, email, password, done) {
+            process.nextTick(function () {
+                User.createOne(req.body.fname, req.body.lname, req.body.email, req.body.password)
+                    .then(function (newUser) {
+                        return done(null, newUser.data);
+                    }, function (err) {
+                        console.error(err);
+                        return done(err);
+                    });
 
             });
         }));
@@ -64,21 +52,14 @@ module.exports = function(passport) {
             passwordField: 'password',
             passReqToCallback: true
         },
-        function(req, email, password, done){
-            process.nextTick(function(){
-                // TODO
-                // User.findOne({ 'local.username': email}, function(err, user){
-                //     if(err)
-                //         return done(err);
-                //     if(!user)
-                //         return done(null, false, req.flash('loginMessage', 'No User found'));
-                //     if(!user.validPassword(password)){
-                //         return done(null, false, req.flash('loginMessage', 'invalid password'));
-                //     }
-                //     return done(null, user);
-                //
-                // });
-            });
+        function (req, email, password, done) {
+            User.auth(email, password)
+                .then(function (user) {
+                    return done(null, user.data);
+                })
+                .catch(function (err) {
+                    return done(err);
+                });
         }
     ));
 
@@ -89,9 +70,9 @@ module.exports = function(passport) {
             callbackURL: configAuth.facebookAuth.callbackURL,
             profileFields: ['id', 'displayName', 'email', 'photos']
         },
-        function(accessToken, refreshToken, profile, done) {
-            process.nextTick(function(){
-                
+        function (accessToken, refreshToken, profile, done) {
+            process.nextTick(function () {
+
                 var nameArr = profile._json.name.split(' ');
                 var fname = nameArr[0];
                 var lname = nameArr[1] ? nameArr[1] : '';
@@ -113,7 +94,6 @@ module.exports = function(passport) {
                 done(null, profile);
             });
         }
-
     ));
 
     passport.use(new GoogleStrategy({
@@ -121,8 +101,8 @@ module.exports = function(passport) {
             clientSecret: configAuth.googleAuth.clientSecret,
             callbackURL: configAuth.googleAuth.callbackURL
         },
-        function(accessToken, refreshToken, profile, done) {
-            process.nextTick(function(){
+        function (accessToken, refreshToken, profile, done) {
+            process.nextTick(function () {
 
                 var fname = profile.name.givenName;
                 var lname = profile.name.familyName;
@@ -145,11 +125,7 @@ module.exports = function(passport) {
 
             });
         }
-
     ));
-
-
-
 
 
 };
