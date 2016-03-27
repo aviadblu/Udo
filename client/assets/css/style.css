@@ -6195,7 +6195,8 @@ input[type=number]:focus {
         border-radius: 0;
         text-transform: uppercase;
         height: 40px;
-        width: 100%; }
+        width: 100%;
+        border: 0; }
 
 .content-wrapper.pages.search-results {
   height: calc(100% - 66px); }

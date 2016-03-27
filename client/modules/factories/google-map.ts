@@ -181,7 +181,7 @@ class GoogleMapFactory extends EventsDispatcher {
             _self.dispatch.apply(_self, [_self.CONST.events.newPlaceSelected,_self._place]);
 
             if (!_self._place.geometry) {
-                window.alert("Autocomplete's returned place contains no geometry");
+                //window.alert("Autocomplete's returned place contains no geometry");
                 return;
             }
 

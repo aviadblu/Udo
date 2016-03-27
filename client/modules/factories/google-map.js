@@ -150,7 +150,7 @@ var GoogleMapFactory = (function (_super) {
             _self._place = autocomplete.getPlace();
             _self.dispatch.apply(_self, [_self.CONST.events.newPlaceSelected, _self._place]);
             if (!_self._place.geometry) {
-                window.alert("Autocomplete's returned place contains no geometry");
+                //window.alert("Autocomplete's returned place contains no geometry");
                 return;
             }
             // If the place has a geometry, then present it on a map.
