@@ -72,14 +72,20 @@ var User = (function () {
         var sql = 'SELECT id,fname,lname,email,password,picture,roles FROM users WHERE email=$1';
         app.db.query(sql, [email]).then(function (userData) {
             if (userData) {
-                var dbPass = userData[0].password;
-                var checkPass = bcrypt.compareSync(password, dbPass);
-                if (checkPass) {
-                    delete userData[0].password;
-                    deferred.resolve(new User(userData[0]));
+                if (userData[0].password) {
+                    var dbPass = userData[0].password;
+                    var checkPass = bcrypt.compareSync(password, dbPass);
+                    if (checkPass) {
+                        delete userData[0].password;
+                        deferred.resolve(new User(userData[0]));
+                    }
+                    else {
+                        console.warn('Password not match');
+                        deferred.reject('User Email or password incorrect');
+                    }
                 }
                 else {
-                    console.warn('Password not match');
+                    console.warn('No password for this user');
                     deferred.reject('User Email or password incorrect');
                 }
             }

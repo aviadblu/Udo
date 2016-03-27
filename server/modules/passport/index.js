@@ -53,13 +53,15 @@ module.exports = function (passport) {
             passReqToCallback: true
         },
         function (req, email, password, done) {
-            User.auth(email, password)
-                .then(function (user) {
-                    return done(null, user.data);
-                })
-                .catch(function (err) {
-                    return done(err);
-                });
+            process.nextTick(function () {
+                User.auth(email, password)
+                    .then(function (user) {
+                        return done(null, user.data);
+                    })
+                    .catch(function (err) {
+                        return done(err);
+                    });
+            });
         }
     ));
 

@@ -23,10 +23,8 @@ router.get('/google/callback',
     }));
 
 
-
-
-router.post('/signup', function(req, res, next) {
-    passport.authenticate('local-signup', function(err, user, info) {
+router.post('/signup', function (req, res, next) {
+    passport.authenticate('local-signup', function (err, user, info) {
         if (err) {
             return res.status(500).send(err);
         }
@@ -34,31 +32,11 @@ router.post('/signup', function(req, res, next) {
     })(req, res, next);
 });
 
-
-// router.post('/signup', passport.authenticate('local-signup', {
-//     successRedirect : '/', // redirect to the secure profile section
-//     failureRedirect : '/', // redirect back to the signup page if there is an error
-//     failureFlash : true // allow flash messages
-// }));
-
-
-router.post('/login', function(req, res, next) {
-    passport.authenticate('local-login', function(err, user, info) {
-        if (err) {
-            return res.status(500).send(err);
-        }
-
-        console.log(user);
-        res.send(user);
-    })(req, res, next);
-});
-
-
-// process the login form
+//process the login form
 router.post('/login', passport.authenticate('local-login', {
-    successRedirect : '/', // redirect to the secure profile section
-    failureRedirect : '/', // redirect back to the signup page if there is an error
-    failureFlash : true // allow flash messages
+    successRedirect: '/', // redirect to the secure profile section
+    failureRedirect: '/', // redirect back to the signup page if there is an error
+    failureFlash: true // allow flash messages
 }));
 
 router.get('/logout', function (req, res) {
@@ -73,8 +51,7 @@ router.get('/identity', function (req, res) {
         usersCtrl.searchUsers('email=$1', [req.user.email])
             .then(function (result) {
                 var userData = result[0];
-                console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^');
-                if(!userData.picture) {
+                if (!userData.picture) {
                     userData.picture = '/assets/img/user.png';
                 }
                 req.session.user = userData;
