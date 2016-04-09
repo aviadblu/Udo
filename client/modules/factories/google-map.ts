@@ -1,5 +1,7 @@
 'use strict';
+declare var _:any;
 declare var google:any;
+declare var MarkerWithLabel:any;
 declare var navigator:Navigator;
 
 interface ILocation {
@@ -63,8 +65,7 @@ class GoogleMapFactory extends EventsDispatcher {
     get place():any {
         return this._place;
     }
-
-
+    
     set place(value:any) {
         this._place = value;
     }
@@ -91,6 +92,7 @@ class GoogleMapFactory extends EventsDispatcher {
     }
 
     private goTo(location:ILocation):void {
+        console.log(location)
         this.map.setCenter(location);
         this.map.setZoom(17);
     }
@@ -116,9 +118,7 @@ class GoogleMapFactory extends EventsDispatcher {
         }));
 
         _self.markers.push(marker);
-
-
-
+        
         // info window
         var infowindow = new google.maps.InfoWindow();
         infowindow.close();
@@ -137,6 +137,22 @@ class GoogleMapFactory extends EventsDispatcher {
         _self.infoWindows.push(infowindow);
     }
 
+    private markerEvents(marker):any {
+        return {
+            on: function(event, cb) {
+                if(event === 'click') {
+                    google.maps.event.addListener(marker, "click", cb);
+                }
+            }
+        }
+    }
+
+    constructor(mapId:string, focusCurrentLocation:boolean) {
+        super();
+        this.mapId = mapId;
+        this.focusCurrentLocation = focusCurrentLocation;
+    }
+
     public clearInfoMarkers():void {
         var _self = this;
         for (var i = 0; i < _self.markers.length; i++) {
@@ -153,7 +169,6 @@ class GoogleMapFactory extends EventsDispatcher {
             this.goTo(place.geometry.location);
             this.addInfoMarker(place);
         }
-
     }
 
     public addSearchInput():void {
@@ -198,16 +213,19 @@ class GoogleMapFactory extends EventsDispatcher {
         });
 
     }
-
-    constructor(mapId:string, focusCurrentLocation:boolean) {
-        super();
-        this.mapId = mapId;
-        this.focusCurrentLocation = focusCurrentLocation;
+    
+    public setCenter(LatLng:ILocation):void {
+        this.goTo(LatLng);
     }
 
-    public initMap():void {
+    public initMap(options):void {
         var _self = this;
+        // default options
         this.fillOptions();
+        // override options
+        this.mapOptions = _.assign(this.mapOptions, options);
+
+
         this.map = new google.maps.Map(document.getElementById(_self.mapId), _self.mapOptions);
 
         if (this.customStyle) {
@@ -234,5 +252,33 @@ class GoogleMapFactory extends EventsDispatcher {
             }
         }
 
+    }
+    
+    public addCustomMarker(options):any {
+        var _self = this;
+        var markerOptions = _.assign({
+            anchorPoint: new google.maps.Point(0, -29),
+            map: _self.map
+        }, options);
+
+        var marker = new google.maps.Marker(markerOptions);
+
+        marker.setVisible(true);
+
+        _self.markers.push(marker);
+
+        return this.markerEvents(marker);
+    }
+
+    public addLabelMarker(options):any {
+        var _self = this;
+        var markerOptions = _.assign({
+            map: _self.map
+        }, options);
+
+        var marker = new MarkerWithLabel(markerOptions);
+        _self.markers.push(marker);
+
+        return this.markerEvents(marker);
     }
 }

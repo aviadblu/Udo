@@ -80,6 +80,7 @@ var GoogleMapFactory = (function (_super) {
         this.customStyleId = 'custom_style';
     };
     GoogleMapFactory.prototype.goTo = function (location) {
+        console.log(location);
         this.map.setCenter(location);
         this.map.setZoom(17);
     };
@@ -115,6 +116,15 @@ var GoogleMapFactory = (function (_super) {
         infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
         infowindow.open(_self.map, marker);
         _self.infoWindows.push(infowindow);
+    };
+    GoogleMapFactory.prototype.markerEvents = function (marker) {
+        return {
+            on: function (event, cb) {
+                if (event === 'click') {
+                    google.maps.event.addListener(marker, "click", cb);
+                }
+            }
+        };
     };
     GoogleMapFactory.prototype.clearInfoMarkers = function () {
         var _self = this;
@@ -164,9 +174,15 @@ var GoogleMapFactory = (function (_super) {
             _self.addInfoMarker(_self._place);
         });
     };
-    GoogleMapFactory.prototype.initMap = function () {
+    GoogleMapFactory.prototype.setCenter = function (LatLng) {
+        this.goTo(LatLng);
+    };
+    GoogleMapFactory.prototype.initMap = function (options) {
         var _self = this;
+        // default options
         this.fillOptions();
+        // override options
+        this.mapOptions = _.assign(this.mapOptions, options);
         this.map = new google.maps.Map(document.getElementById(_self.mapId), _self.mapOptions);
         if (this.customStyle) {
             this.map.mapTypes.set(this.customStyleId, this.customStyle);
@@ -188,6 +204,26 @@ var GoogleMapFactory = (function (_super) {
             else {
             }
         }
+    };
+    GoogleMapFactory.prototype.addCustomMarker = function (options) {
+        var _self = this;
+        var markerOptions = _.assign({
+            anchorPoint: new google.maps.Point(0, -29),
+            map: _self.map
+        }, options);
+        var marker = new google.maps.Marker(markerOptions);
+        marker.setVisible(true);
+        _self.markers.push(marker);
+        return this.markerEvents(marker);
+    };
+    GoogleMapFactory.prototype.addLabelMarker = function (options) {
+        var _self = this;
+        var markerOptions = _.assign({
+            map: _self.map
+        }, options);
+        var marker = new MarkerWithLabel(markerOptions);
+        _self.markers.push(marker);
+        return this.markerEvents(marker);
     };
     return GoogleMapFactory;
 }(EventsDispatcher));

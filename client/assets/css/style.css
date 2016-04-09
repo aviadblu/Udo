@@ -6064,7 +6064,8 @@ input[type=number]:focus {
   min-height: 300px; }
 
 .home-menu {
-  background-color: rgba(0, 195, 191, 0.7); }
+  background-color: rgba(0, 195, 191, 0.7);
+  height: 62px; }
   .home-menu li a.facebook-btn {
     background-color: #2E5A94;
     color: #fff; }
@@ -6077,7 +6078,7 @@ input[type=number]:focus {
 .content-wrapper {
   top: 600px; }
   .content-wrapper.pages {
-    top: 66px; }
+    top: 62px; }
 
 .grid-user img {
   height: 27px;
@@ -6199,7 +6200,7 @@ input[type=number]:focus {
         border: 0; }
 
 .content-wrapper.pages.search-results {
-  height: calc(100% - 66px); }
+  height: calc(100% - 62px); }
   .content-wrapper.pages.search-results .search-bar {
     height: 50px;
     overflow: hidden;

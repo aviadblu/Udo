@@ -55,8 +55,10 @@ module.exports = {
             'tasks.user_id = users.id AND tasks.status = \'open\' ' +
             'ORDER BY ' +
             'tasks."time" DESC;';
-
         app.db.query(sql).then(function(data){
+            if(!data) {
+                data = [];
+            }
             deferred.resolve(data);
         }, function(err){
             deferred.reject(err);

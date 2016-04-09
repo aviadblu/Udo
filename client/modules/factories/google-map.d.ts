@@ -1,4 +1,6 @@
+declare var _: any;
 declare var google: any;
+declare var MarkerWithLabel: any;
 declare var navigator: Navigator;
 interface ILocation {
     lat: any;
@@ -21,9 +23,13 @@ declare class GoogleMapFactory extends EventsDispatcher {
     setCustomStyle(): void;
     private goTo(location);
     private addInfoMarker(place);
+    private markerEvents(marker);
+    constructor(mapId: string, focusCurrentLocation: boolean);
     clearInfoMarkers(): void;
     centerMap(): void;
     addSearchInput(): void;
-    constructor(mapId: string, focusCurrentLocation: boolean);
-    initMap(): void;
+    setCenter(LatLng: ILocation): void;
+    initMap(options: any): void;
+    addCustomMarker(options: any): any;
+    addLabelMarker(options: any): any;
 }
