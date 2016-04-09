@@ -66,6 +66,7 @@ EXPOSE 5432
 
 # Copy create db file
 ADD ./create_db /var/lib/postgresql/create_db
+ADD ./sample_data /var/lib/postgresql/sample_data
 
 # Add VOLUMEs to allow backup of config, logs and databases
 VOLUME  ["/etc/postgresql", "/var/log/postgresql", "/var/lib/postgresql"]
