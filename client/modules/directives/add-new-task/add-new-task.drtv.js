@@ -10,10 +10,10 @@ angular.module('udo.directives')
                 size: 'lg'
             });
 
-            modalInstance.result.then(function (selectedItem) {
-                $scope.selected = selectedItem;
+            modalInstance.result.then(function () {
+                
             }, function () {
-                console.warn('Modal dismissed at: ' + new Date());
+                
             });
         }
 

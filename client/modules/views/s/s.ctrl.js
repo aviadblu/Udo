@@ -7,28 +7,39 @@ angular.module('udo.controllers')
         '$uibModal',
         'TasksService',
         'GoogleMapFactory',
+        'GoogleMapAutoCompeteFactory',
         function ($scope,
                   $window,
                   $timeout,
                   $state,
                   $uibModal,
                   TasksService,
-                  GoogleMapFactory) {
+                  GoogleMapFactory,
+                  GoogleMapAutoCompeteFactory) {
             //console.log(openTasks);
             var ctrl = this;
-            var map, autocomplete, markers = [];
+            var mapInstance, autocomplete, markers = [];
 
             ctrl.loading = true;
             ctrl.radius = 2;
             ctrl.tasks = [];
             ctrl.address = $state.params.address;
+            ctrl.viewMode = 'gallery';
+            var scrollInitialized = {
+                gallery: false,
+                list: false
+            };
+
+            ctrl.setViewMode = function(viewMode) {
+                ctrl.viewMode = viewMode;
+            };
 
             var currLocation = [parseFloat($state.params.latitude), parseFloat($state.params.longitude)];
 
             function focusTask(taskID) {
                 var index = _.findIndex(ctrl.tasks, {'id': taskID});
                 var task = ctrl.tasks[index];
-                var element = angular.element(".task[task-id=" + taskID + "]");
+                var element = angular.element(".taskHL[task-id=" + taskID + "]");
 
                 element.addClass("highlight");
                 $timeout(function () {
@@ -80,36 +91,8 @@ angular.module('udo.controllers')
                 return '<span class="price">$' + pricing_rate + (pricing_calc === "hour" ? '<span class="extraData">(hour)</span>' : '') + '</span>';
             };
 
-            var initMapOld = function () {
-                autocomplete = new google.maps.places.Autocomplete(document.getElementById("mapSearch"), {types: ['geocode']});
-                map = new google.maps.Map(document.getElementById("mapContainer"), mapProp);
-                // search location
-                var marker = new google.maps.Marker({
-                    map: map,
-                    position: new google.maps.LatLng(currLocation[0], currLocation[1]),
-                    icon: 'http://www.google.com/mapfiles/arrow.png'
-                });
-                ctrl.tasks.forEach(function (task) {
-                    var field = JSON.parse(task.field);
-                    var marker = new MarkerWithLabel({
-                        map: map,
-                        position: new google.maps.LatLng(parseFloat(task.location_latitude), parseFloat(task.location_longitude)),
-                        icon: field.icon,
-                        labelContent: ctrl.getPrice(task.pricing_rate, task.pricing_calc),
-                        labelAnchor: new google.maps.Point(22, 0),
-                        labelClass: "labels", // the CSS class for the label
-                        labelStyle: {opacity: 0.9},
-                    });
-
-                    google.maps.event.addListener(marker, "click", function (e) {
-                        focusTask(task.id);
-                    });
-                });
-            };
-
             var initMap = function () {
-                
-                var mapInstance = new GoogleMapFactory('sMapContainer', false);
+                mapInstance = new GoogleMapFactory('sMapContainer', false);
                 mapInstance.setCustomStyle();
                 mapInstance.initMap({
                     center: new google.maps.LatLng($state.params.latitude, $state.params.longitude)
@@ -134,9 +117,25 @@ angular.module('udo.controllers')
                         focusTask(task.id);
                     });
                 });
-
-
             };
+
+            var initAutoCompleteAddress = function() {
+                ac = new GoogleMapAutoCompeteFactory('mapSearch');
+                ac.on('newPlaceSelected',function(e,place){
+                    if(place && place.geometry) {
+                        ctrl.address = place.formatted_address;
+                        $state.params.latitude = place.geometry.location.lat();
+                        $state.params.longitude = place.geometry.location.lng();
+                        $state.go('app.s', {
+                            field: $state.params.field,
+                            address: place.formatted_address,
+                            latitude: place.geometry.location.lat(),
+                            longitude: place.geometry.location.lng()
+                        });
+                    }
+                });
+            };
+
 
             function initScroll() {
                 $(".scroll-body").slimScroll({
@@ -160,6 +159,7 @@ angular.module('udo.controllers')
                             allTasks = response.data;
                             ctrl.tasks = TasksService.updateFieldAndDistance(currLocation, allTasks, ctrl.radius);
                             initMap();
+                            initAutoCompleteAddress();
                             initScroll();
                             angular.element($window).bind('resize', function () {
                                 initScroll();
@@ -177,10 +177,10 @@ angular.module('udo.controllers')
                     size: 'lg'
                 });
 
-                modalInstance.result.then(function (selectedItem) {
-                    $scope.selected = selectedItem;
+                modalInstance.result.then(function () {
+
                 }, function () {
-                    console.warn('Modal dismissed at: ' + new Date());
+
                 });
             };
 

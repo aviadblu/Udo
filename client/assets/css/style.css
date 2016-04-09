@@ -6205,6 +6205,18 @@ input[type=number]:focus {
     height: 50px;
     overflow: hidden;
     border-bottom: 1px solid #dce0e0; }
+    .content-wrapper.pages.search-results .search-bar .toggle-view-mode {
+      font-size: 20px;
+      width: 60px;
+      display: inline-block;
+      float: left;
+      padding: 5px;
+      line-height: 40px;
+      border-right: 1px solid #dce0e0; }
+      .content-wrapper.pages.search-results .search-bar .toggle-view-mode span {
+        cursor: pointer; }
+        .content-wrapper.pages.search-results .search-bar .toggle-view-mode span.selected {
+          color: #00C3BF; }
     .content-wrapper.pages.search-results .search-bar .address {
       width: 400px;
       display: inline-block;
@@ -6238,11 +6250,11 @@ input[type=number]:focus {
       border-right: 1px solid #dce0e0;
       padding-right: 0px;
       padding-left: 0px; }
-      .content-wrapper.pages.search-results .search-grid .list-results .tasks-list {
+      .content-wrapper.pages.search-results .search-grid .list-results .tasks-gallery {
         height: calc(100% - 50px);
         padding: 10px;
         background-color: #f5f5f5; }
-        .content-wrapper.pages.search-results .search-grid .list-results .tasks-list .task {
+        .content-wrapper.pages.search-results .search-grid .list-results .tasks-gallery .task {
           position: relative;
           margin: 10px;
           padding: 10px;
@@ -6250,24 +6262,27 @@ input[type=number]:focus {
           float: left;
           height: 250px;
           background-color: #fff;
-          cursor: pointer; }
-          .content-wrapper.pages.search-results .search-grid .list-results .tasks-list .task .task-row {
+          cursor: pointer;
+          border: 1px solid #fff; }
+          .content-wrapper.pages.search-results .search-grid .list-results .tasks-gallery .task:hover {
+            border: 1px solid #00C3BF; }
+          .content-wrapper.pages.search-results .search-grid .list-results .tasks-gallery .task .task-row {
             font-size: 14px;
             line-height: 22px;
             margin-bottom: 5px;
             text-overflow: ellipsis; }
-            .content-wrapper.pages.search-results .search-grid .list-results .tasks-list .task .task-row.description {
+            .content-wrapper.pages.search-results .search-grid .list-results .tasks-gallery .task .task-row.description {
               min-height: 30px;
               max-height: 110px; }
-            .content-wrapper.pages.search-results .search-grid .list-results .tasks-list .task .task-row label {
+            .content-wrapper.pages.search-results .search-grid .list-results .tasks-gallery .task .task-row label {
               float: left;
               font-weight: bold;
               margin: 0;
               margin-right: 4px; }
-            .content-wrapper.pages.search-results .search-grid .list-results .tasks-list .task .task-row .field-icon {
+            .content-wrapper.pages.search-results .search-grid .list-results .tasks-gallery .task .task-row .field-icon {
               height: 20px;
               display: inline-block; }
-            .content-wrapper.pages.search-results .search-grid .list-results .tasks-list .task .task-row .price-row {
+            .content-wrapper.pages.search-results .search-grid .list-results .tasks-gallery .task .task-row .price-row {
               position: absolute;
               right: 0px;
               top: 0px;
@@ -6276,7 +6291,7 @@ input[type=number]:focus {
               background-color: #00C3BF;
               font-size: 16px;
               text-align: center; }
-          .content-wrapper.pages.search-results .search-grid .list-results .tasks-list .task .task-bottom {
+          .content-wrapper.pages.search-results .search-grid .list-results .tasks-gallery .task .task-bottom {
             height: 60px;
             line-height: 40px;
             vertical-align: middle;
@@ -6288,10 +6303,18 @@ input[type=number]:focus {
             padding: 10px;
             overflow: hidden;
             text-overflow: ellipsis; }
-            .content-wrapper.pages.search-results .search-grid .list-results .tasks-list .task .task-bottom img {
+            .content-wrapper.pages.search-results .search-grid .list-results .tasks-gallery .task .task-bottom img {
               height: 100%;
               vertical-align: middle;
               margin-right: 5px; }
+      .content-wrapper.pages.search-results .search-grid .list-results .tasks-list {
+        padding: 10px; }
+        .content-wrapper.pages.search-results .search-grid .list-results .tasks-list table {
+          width: 100%;
+          border-collapse: collapse; }
+          .content-wrapper.pages.search-results .search-grid .list-results .tasks-list table th, .content-wrapper.pages.search-results .search-grid .list-results .tasks-list table td {
+            border: 1px solid #dce0e0;
+            padding: 3px; }
     .content-wrapper.pages.search-results .search-grid .map-results {
       height: 100%;
       padding-right: 0px;

@@ -2,41 +2,74 @@
 
 
     <div class="search-grid row">
-      <div class="list-results col-lg-7 col-md-6">
-        <div class="search-bar">
-            <div class="address">
-              <input type="text" ng-model="ctrl.address" id="mapSearch" >
-            </div>
-            <div class="radius">
-              Search in radius of <input type="number" ng-model="ctrl.radius"> (Km)
-            </div>
-        </div>
-        <div class="tasks-list">
-          <div class="scroll-body">
-            <div class="task" ng-repeat="task in ctrl.tasks" task-id="{{task.id}}" ng-click="ctrl.openTask(task)">
-                <div class="task-row">
-                  <!-- <label>Field:</label> -->
-                  <img class="field-icon" ng-src="{{task.fieldObj.icon}}"> {{task.fieldObj.name}}
-                  <div class="price-row" ng-bind-html="ctrl.getPrice(task.pricing_rate, task.pricing_calc)"></div>
+        <div class="list-results col-lg-7 col-md-6">
+            <div class="search-bar">
+                <div class="toggle-view-mode">
+                    <span class="glyphicon glyphicon-th-large" ng-class="{selected: ctrl.viewMode === 'gallery'}"
+                          ng-click="ctrl.setViewMode('gallery')"></span>
+                    <span class="glyphicon glyphicon-th-list" ng-class="{selected: ctrl.viewMode === 'list'}"
+                          ng-click="ctrl.setViewMode('list')"></span>
                 </div>
-                <div class="task-row description" ng-if="task.description" ng-init="ctrl.initDescScroll()">
-                    <div class="desc-scroll">
-                        {{task.description}}
+                <div class="address">
+                    <input type="text" ng-model="ctrl.address" id="mapSearch">
+                </div>
+                <!--<div class="radius">-->
+                <!--Search in radius of <input type="number" ng-model="ctrl.radius"> (Km)-->
+                <!--</div>-->
+            </div>
+            <div class="tasks-gallery" ng-show="ctrl.viewMode === 'gallery'">
+                <div class="scroll-body gallery">
+                    <div class="task taskHL" ng-repeat="task in ctrl.tasks track by $index" task-id="{{task.id}}"
+                         ng-click="ctrl.openTask(task)">
+                        <div class="task-row">
+                            <!-- <label>Field:</label> -->
+                            <img class="field-icon" ng-src="{{task.fieldObj.icon}}"> {{task.fieldObj.name}}
+                            <div class="price-row"
+                                 ng-bind-html="ctrl.getPrice(task.pricing_rate, task.pricing_calc)"></div>
+                        </div>
+                        <div class="task-row description" ng-if="task.description" ng-init="ctrl.initDescScroll()">
+                            <div class="desc-scroll">
+                                {{task.description}}
+                            </div>
+                        </div>
+                        <div class="task-row">
+                            <label>Location:</label>
+                            {{task.location_name}}
+                        </div>
+                        <div class="task-bottom">
+                            <img ng-src="{{task.picture}}">
+                            {{task.fname}} {{task.lname}}, {{task.time | timeAgo}}
+                        </div>
                     </div>
                 </div>
-                <div class="task-row">
-                  <label>Location:</label>
-                  {{task.location_name}}
-                </div>
-                <div class="task-bottom">
-                    <img ng-src="{{task.picture}}">
-                    {{task.fname}} {{task.lname}}, {{task.time | timeAgo}}
+            </div>
+            <div class="tasks-list" ng-show="ctrl.viewMode === 'list'">
+                <div class="scroll-body list">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Field</th>
+                            <th>Location</th>
+                            <th>$</th>
+                            <th>Posted</th>
+                            <th>By</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="taskHL" ng-repeat="task in ctrl.tasks track by $index" task-id="{{task.id}}"
+                            ng-click="ctrl.openTask(task)">
+                            <td>{{task.fieldObj.name}}</td>
+                            <td>{{task.location_name}}</td>
+                            <td ng-bind-html="ctrl.getPrice(task.pricing_rate, task.pricing_calc)"></td>
+                            <td>{{task.time | timeAgo}}</td>
+                            <td>{{task.fname}} {{task.lname}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-          </div>
         </div>
-      </div>
-      <div id="sMapContainer" class="map-results col-lg-5 col-md-6"></div>
+        <div id="sMapContainer" class="map-results col-lg-5 col-md-6"></div>
     </div>
 
     <!-- <div ng-include src="'modules/views/footer/footer.tpl.html'"></div> -->

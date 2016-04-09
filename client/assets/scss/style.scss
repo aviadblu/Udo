@@ -283,7 +283,7 @@ input[type=number] {
         text-transform: uppercase;
         height: 40px;
         width: 100%;
-        border:0;
+        border: 0;
       }
     }
   }
@@ -295,6 +295,24 @@ input[type=number] {
     height: 50px;
     overflow: hidden;
     border-bottom: 1px solid #dce0e0;
+
+    .toggle-view-mode {
+      font-size: 20px;
+      width: 60px;
+      display: inline-block;
+      float: left;
+      padding: 5px;
+      line-height: 40px;
+      border-right: 1px solid #dce0e0;
+
+      span {
+        cursor: pointer;
+
+        &.selected {
+          color: $main-bg-color;
+        }
+      }
+    }
 
     .address {
       width: 400px;
@@ -340,7 +358,7 @@ input[type=number] {
       padding-right: 0px;
       padding-left: 0px;
 
-      .tasks-list {
+      .tasks-gallery {
         height: calc(100% - 50px);
         padding: 10px;
         background-color: $sec-bg-color;
@@ -354,6 +372,11 @@ input[type=number] {
           height: 250px;
           background-color: #fff;
           cursor: pointer;
+          border: 1px solid #fff;
+
+          &:hover {
+            border: 1px solid $main-bg-color;
+          }
 
           .task-row {
             //min-height:22px;
@@ -410,6 +433,18 @@ input[type=number] {
               vertical-align: middle;
               margin-right: 5px;
             }
+          }
+        }
+      }
+
+      .tasks-list {
+        padding: 10px;
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          th, td {
+            border: 1px solid #dce0e0;
+            padding: 3px;
           }
         }
       }
@@ -578,15 +613,15 @@ input[type=number] {
   }
 
   img {
-    height:50px;
-    max-width:50px;
+    height: 50px;
+    max-width: 50px;
   }
 }
 
 .user-modal {
   img {
-    height:50px;
-    max-width:50px;
+    height: 50px;
+    max-width: 50px;
   }
 }
 
@@ -658,7 +693,6 @@ input[type=number] {
     }
   }
 
-
   .btn-submit {
     background-color: $main-bg-color;
     border-color: $main-bg-color;
@@ -671,17 +705,16 @@ input[type=number] {
     }
   }
 
-
   .form-control {
     border-radius: 1px;
   }
 
   .error-msg {
-    font-size:12px;
+    font-size: 12px;
   }
 
   .password-help-block {
-    font-size:12px;
+    font-size: 12px;
   }
 
 }
