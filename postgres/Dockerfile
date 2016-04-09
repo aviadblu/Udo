@@ -28,6 +28,11 @@ RUN apt-get update && apt-get install -y python-software-properties software-pro
 # Note: The official Debian and Ubuntu images automatically ``apt-get clean``
 # after each ``apt-get``
 
+#USER udo
+#RUN echo "0.0.0.0:5432:*:udo:udo1234" > ~/.pgpass
+#RUN chmod 600 ~/.pgpass
+
+
 # Run the rest of the commands as the ``postgres`` user created by the ``postgres-9.3`` package when it was ``apt-get installed``
 USER postgres
 
