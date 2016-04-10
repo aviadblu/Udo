@@ -18,23 +18,25 @@ angular.module('udo.controllers')
                   GoogleMapAutoCompeteFactory) {
             //console.log(openTasks);
             var ctrl = this;
-            var mapInstance, autocomplete, markers = [];
+            var mapInstance,
+                autocomplete,
+                markers = [],
+                currLocation = [parseFloat($state.params.latitude), parseFloat($state.params.longitude)],
+                scrollInitialized = {
+                    gallery: false,
+                    list: false
+                };
 
             ctrl.loading = true;
             ctrl.radius = 2;
             ctrl.tasks = [];
             ctrl.address = $state.params.address;
-            ctrl.viewMode = 'gallery';
-            var scrollInitialized = {
-                gallery: false,
-                list: false
-            };
+            ctrl.viewMode = 'list';
 
             ctrl.setViewMode = function(viewMode) {
                 ctrl.viewMode = viewMode;
+                $window.dispatchEvent(new Event('resize'));
             };
-
-            var currLocation = [parseFloat($state.params.latitude), parseFloat($state.params.longitude)];
 
             function focusTask(taskID) {
                 var index = _.findIndex(ctrl.tasks, {'id': taskID});
